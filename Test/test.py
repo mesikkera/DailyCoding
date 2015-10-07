@@ -15,7 +15,7 @@ class EchoClientDatagramProtocol(DatagramProtocol):
     ]
     
     def startProtocol(self):
-        self.transport.connect('220.75.206.31', 19515)
+        self.transport.connect('192.168.4.48', 19515)
         self.sendDatagram()
     
     def sendDatagram(self):
