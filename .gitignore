@@ -1,0 +1,43 @@
+# Mac OS X
+.DS_Store
+*.zip
+
+# Python 
+*.pyc
+*_pb2.py
+__pycache__/
+twisted/
+
+# Sublime
+*.sublime-project
+*.sublime-workspace
+
+# Eclipse
+*.project
+*.pydevproject
+*.metadata
+*.settings
+.idea
+*.rdb
+
+# CSharp
+obj/
+
+# web2py
+sessions/
+errors/
+.log
+.pid
+.pyc
+.w2p
+*.table
+*.log
+dalfiles/
+
+# uwsgi
+*.pid
+
+
+# Backup Files
+*.csv#
+.gitignore~
