@@ -90,3 +90,36 @@ auth.settings.reset_password_requires_verification = True
 
 ## after defining tables, uncomment below to enable auditing
 # auth.enable_record_versioning(db)
+
+class PacketLogDB(object):
+
+    def __init__(self, migrate=False):
+        self.migrate = migrate
+        self.log_conn = None
+
+    def get_log_conn(self):
+        self.log_conn = self.define_log_db(settings.LOG)
+        return self.log_conn
+
+    def define_log_db(self, conn_str):
+        conn = DAL(conn_str, migrate_enabled=self.migrate, pool_size=1)
+        self.define_packets(conn)
+        return conn
+
+    @staticmethod
+    def define_packets(conn):
+        conn.define_table("Packets",
+            Field("userid", "integer"),
+            Field("request", "blob"),
+            Field("response", "blob"),
+            Field("time", "datetime"),
+            Field("duration", "integer"))
+
+    def select_packets_logs(self, count):
+        conn = self.get_log_conn()
+        return conn(conn.Packets.id > 0).select(orderby=~conn.Packets.time, limitby=(0, count))
+        
+
+
+
+
