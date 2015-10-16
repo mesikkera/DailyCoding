@@ -118,8 +118,7 @@ class PacketLogDB(object):
     def select_packets_logs(self, count):
         conn = self.get_log_conn()
         return conn(conn.Packets.id > 0).select(orderby=~conn.Packets.time, limitby=(0, count))
-        
 
-
-
-
+    def select_packets_logs_user_id(sefl, user_id, count):
+        conn = self.get_log_conn()
+        return conn(conn.Packets.id == user_id).select(orderby=~conn.Packets.time, limitby=(0, count))

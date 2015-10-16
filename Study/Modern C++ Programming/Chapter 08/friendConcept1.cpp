@@ -32,7 +32,7 @@ public:
 	{
 		cout << "철수 나이: " << age << endl;
 	}
-	// friend class Younghee;
+	friend class Younghee;
 };
 
 void Younghee::whoIsOlder(const Chulsoo & chulsooObj)
@@ -44,7 +44,7 @@ int main(void)
 {
 	Chulsoo chulsoo1(32);
 	chulsoo1.introduce();
-	Younghee.younghee1(35);
+	Younghee younghee1(35);
 	younghee1.introduce();
 
 	younghee1.whoIsOlder(chulsoo1);

@@ -1,5 +1,5 @@
 #include <iostream>
-using namestace std;
+using namespace std;
 
 class Chulsoo;
 
