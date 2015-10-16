@@ -13,5 +13,7 @@ public:
 	Chulsoo(int age) : age(age)
 	{
 		chulsooPrivateCounter++;
+		chulsooProtectedCounter++;
+		chulsooPublicCounter++;
 	}
 }
