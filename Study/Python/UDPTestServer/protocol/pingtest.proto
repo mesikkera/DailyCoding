@@ -1,0 +1,9 @@
+package pingtest;
+
+message Message {
+	// commands
+	enum Command {
+		TEST_PING=1;
+	}
+	required Command command=1;
+}
