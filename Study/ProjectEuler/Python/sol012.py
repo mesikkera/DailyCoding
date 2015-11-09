@@ -56,10 +56,9 @@ from sympy import divisors
 
 def find_first_triangle_number(number):
 	natural_number = 1
-	triangle_number = natural_number * (natural_number) / 2
 	while True:
 	    if len(divisors(natural_number*(natural_number+1)/2)) > 500:
-	        print natural_number*(natural_number+1)/2
+	        return natural_number*(natural_number+1)/2
 	        break
 	    natural_number += 1
 
