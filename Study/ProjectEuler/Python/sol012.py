@@ -26,6 +26,43 @@ What is the value of the first triangle number to have over five hundred divisor
 
 import time
 
+# def get_divisor_count(triangle_number):
+# 	divisor_count = 1
+# 	# 약수의 개수는 주어진 수의 제곱근까지만 검사하면 된다.
+# 	square_root = triangle_number ** 0.5
+
+# 	for divide_number in xrange(3, square_root, 2):
+# 		pass
+# 	return divisor_count
+
+# def find_first_triangle_number(number):
+# 	natural_number = 1
+# 	triangle_number = 2
+# 	divisor_count = 0
+	
+# 	while True:
+# 		# get triangle numberw
+# 		triangle_number = natural_number * (natural_number+1) / 2
+# 		natural_number += 1
+
+# 		# get divisor of triangle_number
+# 		divisor_count = get_divisor_count(triangle_number)
+
+# 		if divisor_count > number:
+# 			break
+# 	return triangle_number
+
+from sympy import divisors
+
+def find_first_triangle_number(number):
+	natural_number = 1
+	triangle_number = natural_number * (natural_number) / 2
+	while True:
+	    if len(divisors(natural_number*(natural_number+1)/2)) > 500:
+	        print natural_number*(natural_number+1)/2
+	        break
+	    natural_number += 1
+
 start = time.time()
 first_triangle_number = find_first_triangle_number(500)
 elapsed = (time.time() - start)
