@@ -32,25 +32,26 @@ n → 3 n + 1 (n이 홀수일 때)
 '''
 import time
  
-def find_chain_count(hailstone_sequence):
-	count = 1
-	while hailstone_sequence > 1:
-		if hailstone_sequence % 2 == 0:
-			hailstone_sequence = hailstone_sequence / 2
-		else:
-			hailstone_sequence = 3 * hailstone_sequence + 1
-		count += 1
-	return count
+# TODO: 문제가 원하는 답은 구했으나, 실행시간이 매우 길어(약 16초) 개선이 필요하다. 
+# def find_chain_count(hailstone_sequence):
+# 	count = 1
+# 	while hailstone_sequence > 1:
+# 		if hailstone_sequence % 2 == 0:
+# 			hailstone_sequence = hailstone_sequence / 2
+# 		else:
+# 			hailstone_sequence = 3 * hailstone_sequence + 1
+# 		count += 1
+# 	return count
 
-def find_longest_chain():
-	longest_chain = 1
-	has_longest_chain_number = 1
-	for number in range(1000000):
-		count = find_chain_count(number)
-		if count > longest_chain:
-			longest_chain = count
-			has_longest_chain_number = number
-	return has_longest_chain_number
+# def find_longest_chain():
+# 	longest_chain = 1
+# 	has_longest_chain_number = 1
+# 	for number in range(1000000):
+# 		count = find_chain_count(number)
+# 		if count > longest_chain:
+# 			longest_chain = count
+# 			has_longest_chain_number = number
+# 	return has_longest_chain_number
 
 start = time.time()
 longest_chain_number = find_longest_chain()
