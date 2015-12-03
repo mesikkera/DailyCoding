@@ -37,6 +37,9 @@ dalfiles/
 # uwsgi
 *.pid
 
+# java
+*.class
+
 
 # Backup Files
 *.csv#
