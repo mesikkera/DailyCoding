@@ -32,15 +32,37 @@
 
 import time
 
+# 정수 N --> 2진수
+# 가장 긴 0의 연속 개수
+
 def solution(N):
+    binary_number = bin(N)
+    max_gap = 0
+    current_gap = 0
+    max_sequence = 0
+    for digit in binary_number[2:]:
+        if digit == '0':
+            current_gap += 1
+        elif digit == '1':
+            max_gap = max(max_gap, current_gap)
+            current_gap = 0
+    return max_gap
+
+def solution2(N):
     pass
 
 def main():
+    start_time = time.time()
     result = solution(1041)
-    print("Result: ", result)
+    elapsed_time = time.time() - start_time
+    print("Result(1041): ", result)
+    print("Elapsed Time using solution1(1041): ", elapsed_time)
+
+    start_time = time.time()
+    result = solution(1376796946)
+    elapsed_time = time.time() - start_time
+    print("Result(1376796946): ", result)
+    print("Elapsed Time using solution1(1376796946): ", elapsed_time)
 
 if __name__ == '__main__':
-    start_time = time.time()
     main()
-    elapsed_time = time.time() - start_time
-    print("Elapsed Time: ", elapsed_time)
