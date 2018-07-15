@@ -13,8 +13,8 @@ int main()
 
     srand(static_cast<unsigned int>(time(NULL)));
 
-    random_shuffle(str1.begin(), str1.end());
-    random_shuffle(str2.begin(), str2.end());
+    // random_shuffle(str1.begin(), str1.end());
+    // random_shuffle(str2.begin(), str2.end());
 
     cout << "== str1 == " << endl;
     for (auto i : str1)
