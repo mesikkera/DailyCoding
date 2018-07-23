@@ -8,9 +8,16 @@ class Point
 public:
     Point(int _x = 0, int _y = 0):x(_x), y(_y) {}
     void Print() const { cout << x << ", " << y << endl;}
-    void operator+(Point arg)
+    // void operator+(Point arg)
+    // {
+    //     cout << "operator+ Function call" << endl;
+    // }
+    void operator+(const Point& arg)
     {
-        cout << "operator+ Function call" << endl;
+        Point pt;
+        pt.x = this->x + arg.x;
+        pt.y = this->y + arg.y;
+        cout << "p1 + p2 = " << "(" << pt.x << ", " << pt.y << ")" << endl;
     }
 };
 
