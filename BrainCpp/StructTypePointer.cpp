@@ -24,5 +24,9 @@ int main()
     cout << "rc = ( " << rc.x << ", " << rc.y << ", " << rc.width << ", " << rc.height << " ) " << endl; 
     cout << "rc = ( " << (*p).x << ", " << (*p).y << ", " << (*p).width << ", " << (*p).height << " ) " << endl;
     cout << "rc = ( " << p->x << ", " << p->y << ", " << p->width << ", " << p->height << " ) " << endl;
+    
+    // request for member 'x' in 'p', which is of pointer type 'Rectangle*' (maybe you meant to use '->' ?)
+    // cout << "rc = ( " << *p.x << ", " << *p.y << ", " << *p.width << ", " << *p.height << " ) " << endl;
+    
     return 0;
 }
