@@ -10,13 +10,20 @@ class Point
 		int y;
 
 		// 멤버 함수
-		void Print()
-		{
-			// 멤버 변수에서 사용하고 있는 X, Y는 
-			// 자기 자신의 멤버 변수를 의미
-			cout << " ( " << x << ", " << y << " )\n";
-		}
+		void Print();
+		// void Print()
+		// {
+		// 	// 멤버 변수에서 사용하고 있는 X, Y는 
+		// 	// 자기 자신의 멤버 변수를 의미
+		// 	cout << " ( " << x << ", " << y << " )\n";
+		// }
+
 };
+
+void Print::Print()
+{
+	cout << " ( " << x << ", " << y << " )\n";
+}
 
 int main()
 {
