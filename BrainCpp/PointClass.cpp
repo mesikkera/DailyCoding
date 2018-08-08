@@ -38,9 +38,21 @@ int main()
 	pt2.x = 200;
 	pt2.y = 200;
 
+	// pt1을 사용하여 새로운 pt3을 초기화
+	Point pt3 = pt1;
+
+	// pt3의 내용을 출력
+	pt3.Print();
+
+	// pt2을 pt3에 대입
+	pt3 = pt2;
+
+	// pt3의 내용을 출력
+	pt3.Print();
+	
 	// 멤버 함수 호출
-	pt1.Print();
-	pt2.Print();
+	// pt1.Print();
+	// pt2.Print();
 	
 	return 0;
 }
