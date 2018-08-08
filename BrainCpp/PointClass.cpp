@@ -21,6 +21,7 @@ class Point
 		//생성자들
 		Point();								// 디폴트 생성자
 		Point(int initialX, int initialY);		// 두개의 인자를 가진 생성자
+		Point(const Point& pt);					// 복사생성자
 };
 
 void Point::Print()
@@ -44,6 +45,14 @@ Point::Point(int initialX, int initialY)
 	y = initialY;
 }
 
+// 복사생성자
+Point::Point(const Point& pt)
+{
+	cout << "복사 생성자 호출!\n";
+	x = pt.x;
+	y = pt.y;
+}
+
 int main()
 {
 	// 객체 생성
@@ -56,6 +65,7 @@ int main()
 	pt2.y = 200;
 
 	// pt1을 사용하여 새로운 pt3을 초기화
+	// 복사생성자 호출
 	Point pt3 = pt1;
 
 	// pt3의 내용을 출력
