@@ -18,13 +18,21 @@ class Point
 		// 	cout << " ( " << x << ", " << y << " )\n";
 		// }
 
+		//생성자
+		Point();
 };
 
 void Point::Print()
 {
 	// 클래스의 멤버 변수와 동일한 변수명
-	int x = 333;
+	// int x = 333;
 	cout << " ( " << x << ", " << y << " )\n";
+}
+
+Point::Point()
+{
+	x = 0;
+	y = 0;
 }
 
 int main()
@@ -54,6 +62,12 @@ int main()
 	// pt1.Print();
 	// pt2.Print();
 	
+	// pt4 생성
+	Point pt4;
+
+	// pt4 출력 
+	pt4.Print();
+
 	return 0;
 }
 
