@@ -20,8 +20,10 @@ class Point
 
 };
 
-void Print::Print()
+void Point::Print()
 {
+	// 클래스의 멤버 변수와 동일한 변수명
+	int x = 333;
 	cout << " ( " << x << ", " << y << " )\n";
 }
 
