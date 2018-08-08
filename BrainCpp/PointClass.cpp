@@ -18,8 +18,9 @@ class Point
 		// 	cout << " ( " << x << ", " << y << " )\n";
 		// }
 
-		//생성자
-		Point();
+		//생성자들
+		Point();								// 디폴트 생성자
+		Point(int initialX, int initialY);		// 두개의 인자를 가진 생성자
 };
 
 void Point::Print()
@@ -29,10 +30,18 @@ void Point::Print()
 	cout << " ( " << x << ", " << y << " )\n";
 }
 
+// 디폴트 생성자
 Point::Point()
 {
 	x = 0;
 	y = 0;
+}
+
+// 인자로 넘어온 값을 사용해서 멤버 변수 초기화
+Point::Point(int initialX, int initialY)
+{
+	x = initialX;
+	y = initialY;
 }
 
 int main()
@@ -67,6 +76,12 @@ int main()
 
 	// pt4 출력 
 	pt4.Print();
+
+	// pt5 생성
+	Point pt5(3, 5);
+
+	// pt5 객체를 생성
+	pt5.Print();
 
 	return 0;
 }
