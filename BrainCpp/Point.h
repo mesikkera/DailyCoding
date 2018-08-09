@@ -8,6 +8,12 @@ public:
     // 열거체 정의
     enum { MIN_X = 0, MAX_X = 100, MIN_Y = 0, MAX_Y = 100};
 
+    // static const 멤버 변수 사용
+    // static const MIN_X = 0;
+    // static const MAX_X = 100;
+    // static const MIN_Y = 0;
+    // static const MAX_Y = 100;
+
     // 멤버 함수
     void Print();
     
