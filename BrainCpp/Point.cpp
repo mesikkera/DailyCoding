@@ -8,7 +8,7 @@ Point::Point(const Point& pt)
     y = pt.y;
 }
 
-Point::Point(int initialX, int initialY)
+Point::Point(COOR_T initialX, COOR_T initialY)
 {
     SetX(initialX);
     SetY(initialY);
