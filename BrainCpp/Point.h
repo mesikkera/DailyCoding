@@ -5,6 +5,9 @@
 class Point 
 {
 public:
+    // 열거체 정의
+    enum { MIN_X = 0, MAX_X = 100, MIN_Y = 0, MAX_Y = 100};
+
     // 멤버 함수
     void Print();
     
@@ -16,15 +19,15 @@ public:
     // 접근자
     void SetX(int value)
     {
-        if (value < 0)          x = 0;
-        else if (value > 100)   x = 100;
+        if (value < MIN_X)          x = 0;
+        else if (value > MAX_X)   x = 100;
         else                    x = value;
     }
 
     void SetY(int value)
     {
-        if (value < 0)          y = 0;
-        else if (value > 100)   y = 100;
+        if (value < MIN_Y)          y = 0;
+        else if (value > MAX_Y)   y = 100;
         else                    y = value;
     }
 
