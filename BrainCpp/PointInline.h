@@ -7,6 +7,7 @@ class Point
 public:
     // 멤버 함수
     void Print() const;
+ 
     // 멤버 함수의 오버로딩
     void Offset(int x_delta, int y_delta);
     void Offset(const Point& pt);
