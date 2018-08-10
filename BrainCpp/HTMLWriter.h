@@ -10,6 +10,7 @@ class HTMLWriter : public DocWriter
 {
 public:
     HTMLWriter();
+    HTMLWriter(const string& fileName, const string& content);
     ~HTMLWriter();
 
     // 텍스트를 파일로 저장

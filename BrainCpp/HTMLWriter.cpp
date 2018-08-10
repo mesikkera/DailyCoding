@@ -18,6 +18,14 @@ HTMLWriter::~HTMLWriter()
 
 }
 
+HTMLWriter::HTMLWriter(const string& fileName, const string& content) : DocWriter(fileName, content)
+{
+    // 디폴트 폰트 지정
+    _fontName = "굴림";
+    _fontSize = 3;
+    _fontColor = "black";
+}
+
 void HTMLWriter::Write()
 {
     // 파일 열기
