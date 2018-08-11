@@ -129,6 +129,28 @@ int main()
     c.SetRadius(30);
     c.Draw();
 
+    // 도형들을 담을 배열 준비
+    Shape* shapes[5] = {NULL};
+
+    // 각 타입의 객체를 생성 후 배열 보관
+    shapes[0] = new Circle(100, 100, 50);
+    shapes[1] = new Rectangle(300, 300, 100, 100);
+    shapes[2] = new Rectangle(200, 100, 50, 150);
+    shapes[3] = new Circle(100, 300, 150);
+    shapes[4] = new Rectangle(200, 200, 200, 200);
+
+    // 배열의 모든 객체 그리기
+    cout << endl;
+    for (int i = 0; i < 5; ++i)
+        shapes[i] -> Draw();
+
+    // 배열에 보관된 모든 객체 소멸
+    for (int i = 0; i < 5; ++i)
+    {
+        delete shapes[i];
+        shapes[i] = NULL;
+    }
+
     return 0;
 }
 
