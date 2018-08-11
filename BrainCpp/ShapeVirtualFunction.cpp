@@ -6,7 +6,7 @@ class Shape
 {
 public:
     void Move(double x, double y);
-    void Draw() const;
+    virtual void Draw() const;          // 함수의 원형 앞에 virtual 키워드를 붙이면 가상함수가 된다.
 
     Shape();
     Shape(double x, double y);
