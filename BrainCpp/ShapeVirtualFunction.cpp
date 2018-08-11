@@ -6,7 +6,8 @@ class Shape
 {
 public:
     void Move(double x, double y);
-    virtual void Draw() const;          // 함수의 원형 앞에 virtual 키워드를 붙이면 가상함수가 된다.
+    // virtual void Draw() const;          // 함수의 원형 앞에 virtual 키워드를 붙이면 가상함수가 된다.
+    virtual void Draw() const = 0;         // 함수 선언 = 0 --> 순수 가상 함수
 
     Shape();
     Shape(double x, double y);
@@ -32,10 +33,12 @@ void Shape::Move(double x, double y)
     _y = y;
 }
 
-void Shape::Draw() const 
-{
-    cout << "[Shape] Position = ( " << _x << ", " << _y << ")\n";
-}
+// Draw()를 순수 가상 함수로 선언했으므로 
+// Shape::Draw() 함수의 정의를 제거할 수 있다.
+// void Shape::Draw() const 
+// {
+//     cout << "[Shape] Position = ( " << _x << ", " << _y << ")\n";
+// }
 
 // 사각형을 상징하는 클래스
 class Rectangle : public Shape 
@@ -111,9 +114,13 @@ int main()
 {
     // 도형 객체 생성 및 그리기
     // Shape s(100, 100);
-    Shape s;
-    s.Move(100, 100);
-    s.Draw();
+
+    // 하나 이상의 순수 가상 함수를 가진 클래스: 추상 클래스
+    // 추상클래스의 객체를 만드는 것은 불가능.
+    
+    // Shape s;
+    // s.Move(100, 100);
+    // s.Draw();
 
     // 사각형 객체 생성 및 그리기
     // Rectangle r(200, 100, 50, 50)
