@@ -33,8 +33,15 @@ class Dog : public Pet
 public:
     void Eat();
 
+    // Dog 클래스에 인자가 있는 생성자 추가
+    Dog(int n);
+
 };
 
+Dog::Dog(int n)
+{
+    // 하는 일 없음.
+}
 void Dog::Eat()
 {
     cout << name << " says, 'Growl~'\n";
