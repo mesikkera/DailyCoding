@@ -18,7 +18,8 @@ public:
     void SetContent(const string& content);
 
     // 파일에 텍스트 저장
-    void Write();
+    // virtual 키워드를 사용해서 가상함수도 만들었다.
+    virtual void Write();
 
 protected:
     string _fileName;
