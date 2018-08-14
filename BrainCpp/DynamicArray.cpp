@@ -17,9 +17,20 @@ DynamicArray::~DynamicArray()
 }
 
 // 원소의 값을 바꾼다.
-void DynamicArray::SetAt(int index, int value)
+// void DynamicArray::SetAt(int index, int value)
+// {
+//     arr[index] = value;
+// }
+
+// 반환값을 사용한 예외 처리
+bool DynamicArray::SetAt(int index, int value)
 {
+    if (index < 0 || index >= GetSize())
+        return false;
+
     arr[index] = value;
+
+    return true;
 }
 
 // 원소의 값을 반환

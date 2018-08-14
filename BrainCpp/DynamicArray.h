@@ -10,7 +10,8 @@ public:
     ~DynamicArray();
 
     // 접근자
-    void SetAt(int index, int value);
+    //void SetAt(int index, int value);
+    bool SetAt(int index, int value);
     int GetAt(int index) const;
     int GetSize() const;
 
