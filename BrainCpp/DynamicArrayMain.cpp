@@ -2,6 +2,8 @@
 #include <iostream>
 using namespace std;
 
+void UseArray(DynamicArray& arr);
+
 int main()
 {
     // 크기가 10인 배열 객체
@@ -19,16 +21,32 @@ int main()
 
     // 반환값을 사용한 예외 처리
     // 올바른 인덱스를 참조시
-    bool b;
-    b = arr.SetAt(5, 0);
+    // bool b;
+    // b = arr.SetAt(5, 0);
 
-    if(!b) 
-        cout << "arr[5] Fail!\n";
+    // if(!b) 
+    //     cout << "arr[5] Fail!\n";
     
-    // 예외 사항: 범위 밖의 인덱스 참조
-    b = arr.SetAt(20, 0);
-    if (!b) 
-        cout << "arr[20] 사용 실패!\n";
+    // // 예외 사항: 범위 밖의 인덱스 참조
+    // b = arr.SetAt(20, 0);
+    // if (!b) 
+    //     cout << "arr[20] 사용 실패!\n";
+    
+    UseArray(arr);
 
     return 0;
+}
+
+void UseArray(DynamicArray& arr)
+{
+    try
+    {
+        arr.SetAt(5, 100);
+        arr.SetAt(8, 100);
+        arr.SetAt(10, 100);
+    }
+    catch(const char* ex)
+    {
+        cout << "예외 종류 : " << ex << endl;
+    }
 }

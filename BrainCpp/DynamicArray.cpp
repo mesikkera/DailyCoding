@@ -23,19 +23,22 @@ DynamicArray::~DynamicArray()
 // }
 
 // 반환값을 사용한 예외 처리
-bool DynamicArray::SetAt(int index, int value)
+void DynamicArray::SetAt(int index, int value)
 {
     if (index < 0 || index >= GetSize())
-        return false;
+        // return false;
+        // 인덱스 범위가 맞지 않으면 예외를 던진다.
+        throw "Out of Range!!!";
 
     arr[index] = value;
-
-    return true;
 }
 
 // 원소의 값을 반환
 int DynamicArray::GetAt(int index) const
 {
+    // 인덱스가 범위에 맞지 않으면 예외를 던진다.
+    if (index < 0 || index >= GetSize())
+        throw "Out of Range!!!";
     return arr[index];
 }
 
