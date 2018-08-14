@@ -17,5 +17,5 @@ int main()
 
     cout << data1 << ", " << data2 << ", " << data3 << endl;
 
-    return 0;    
+    return 0;       
 }
