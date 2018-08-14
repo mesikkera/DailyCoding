@@ -1,4 +1,5 @@
 #include "DynamicArray.h"
+#include "MyException.h"
 
 DynamicArray::DynamicArray(int arraySize)
 {
@@ -28,7 +29,7 @@ void DynamicArray::SetAt(int index, int value)
     if (index < 0 || index >= GetSize())
         // return false;
         // 인덱스 범위가 맞지 않으면 예외를 던진다.
-        throw "Out of Range!!!";
+        throw MyException(this, "Out of Range!!!", index);
 
     arr[index] = value;
 }
@@ -38,7 +39,8 @@ int DynamicArray::GetAt(int index) const
 {
     // 인덱스가 범위에 맞지 않으면 예외를 던진다.
     if (index < 0 || index >= GetSize())
-        throw "Out of Range!!!";
+        throw MyException(this, "Out of Range!!!", index);
+
     return arr[index];
 }
 
