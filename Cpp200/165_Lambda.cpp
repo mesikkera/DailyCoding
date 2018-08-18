@@ -15,7 +15,7 @@ int main()
     // [=]: 유효 영역 모든 변수에 접근하여 사용할 수 있다는 의미.
     auto func3 = [=](int y) { 
         func1();
-        cout << "x < y = " << func2(x, y) << endl;
+        cout << "x < y = " << func2(x, y) << endl; 
     };
 
     func3(4);
