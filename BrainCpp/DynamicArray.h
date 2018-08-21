@@ -16,8 +16,8 @@ public:
     int GetSize() const;
 
 protected:
-    int* arr;
-    int size;    
+    int* arr;   // 할당한 메모리 보관
+    int size;   // 배열의 길이 보관
 };
 
 #endif
