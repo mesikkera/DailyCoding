@@ -9,15 +9,15 @@ int main()
     // 크기가 10인 배열 객체
     DynamicArray arr(10);
 
-    // 각 원소에 10, 20, 30, ... 100의 순서로 값을 넣는다.
-    for (int i = 0; i < 10; ++i)
-        arr.SetAt(i, (i+1)*10);
+    // 올바른 인덱스 참조
+    bool b;
+    b = arr.SetAt(5, 0);
+    if (!b)
+        cout << "arr[5] 사용 실패!!" << endl;
 
-    // 배열의 크기 출력 및 각 원소의 값을 역순으로 출력
-    cout << "Size of arr = " << arr.GetSize() << endl;
-
-    for (int i = 9; i >= 0; --i)
-        cout << "arr[" << i << "] = " << arr.GetAt(i) << endl;
-
+    // 범위 밖의 인덱스 참조
+    b = arr.SetAt(20, 0);
+    if (!b)
+        cout << "arr[20] 사용 실패!!" << endl;
     return 0;
 }
