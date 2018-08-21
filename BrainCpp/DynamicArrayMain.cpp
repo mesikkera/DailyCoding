@@ -9,15 +9,21 @@ int main()
     // 크기가 10인 배열 객체
     DynamicArray arr(10);
 
-    // 올바른 인덱스 참조
-    bool b;
-    b = arr.SetAt(5, 0);
-    if (!b)
-        cout << "arr[5] 사용 실패!!" << endl;
+    UseArray(arr);
 
-    // 범위 밖의 인덱스 참조
-    b = arr.SetAt(20, 0);
-    if (!b)
-        cout << "arr[20] 사용 실패!!" << endl;
     return 0;
+}
+
+void UseArray(DynamicArray& arr)
+{
+    try
+    {
+        arr.SetAt(5, 100);
+        arr.SetAt(8, 100);
+        arr.SetAt(10, 100);
+    }
+    catch(const char* ex)
+    {
+        cout << "예외 종류 : " << ex << endl;
+    }
 }
