@@ -3,6 +3,7 @@
 #include <iostream>
 using namespace std;
 
+void UseMemory();
 void UseArray(DynamicArray& arr1, DynamicArray& arr2);
 
 int main()
@@ -16,12 +17,20 @@ int main()
     return 0;
 }
 
+void UseMemory()
+{
+    // 1000 바이트를 할당하려다 실패했다고 가정
+    throw MemoryException(NULL, 1000);
+}
+
 void UseArray(DynamicArray& arr1, DynamicArray& arr2)
 {
     try
     {
         arr1.SetAt(5, 100);
         arr2.SetAt(5, 100);
+
+        UseMemory();
 
         arr1.SetAt(8, 100);
         arr2.SetAt(8, 100);
@@ -31,12 +40,8 @@ void UseArray(DynamicArray& arr1, DynamicArray& arr2)
     }
     catch(MyException& ex)
     {
-        // 두 배열의 주소를 먼저 출력
-        cout << "&arr1 = " << &arr1 << "\narr2 = " << &arr2 << endl;
-        
-        // 예외에 대한 자세한 정보 출력
-        cout << "예외를 던진 객체의 주소 = " << ex.sender << endl;
+        // OutOfRangeException과 MemoryException 모두
+        // 여기서 잡을 수 있다.
         cout << "예외에 대한 설명 = " << ex.description << endl;
-        cout << "부가 정보 = " << ex.info << endl;
     }
 }

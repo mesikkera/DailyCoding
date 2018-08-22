@@ -21,8 +21,7 @@ public:
 class OutOfRangeException : public MyException 
 {
 public:
-    OutOfRangeException(const void* sender, int index) 
-        : MyException(sender, "Out of Range!!!", index)
+    OutOfRangeException(const void* sender, int index) : MyException(sender, "Out of Range!!!", index)
     {
         
     }    
@@ -32,11 +31,10 @@ public:
 class MemoryException : public MyException 
 {
 public:
-    MemoryException(const void* sender, int bytes)
-        : MyException(sender "Out of Memory", bytes)
+    MemoryException(const void* sender, int bytes) : MyException(sender, "Out of Memory", bytes)
     {
 
     }
-}
+};
 
 #endif
