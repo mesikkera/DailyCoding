@@ -17,4 +17,26 @@ public:
     }
 };
 
+// 인덱스와 관련된 예외
+class OutOfRangeException : public MyException 
+{
+public:
+    OutOfRangeException(const void* sender, int index) 
+        : MyException(sender, "Out of Range!!!", index)
+    {
+        
+    }    
+};
+
+// 메모리와 관련된 예외
+class MemoryException : public MyException 
+{
+public:
+    MemoryException(const void* sender, int bytes)
+        : MyException(sender "Out of Memory", bytes)
+    {
+
+    }
+}
+
 #endif
