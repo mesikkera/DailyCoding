@@ -35,6 +35,30 @@ public:
         //  결과 반환
         return Complex(real, img);
     }
+
+    // ++C의 경우 (전치 연산)
+    Complex operator++()
+    {
+        // 실수부의 값을 먼저 더한다.
+        this->real++;
+
+        // 현재 값을 반환
+        return *this;
+    }
+
+    // C++의 경우 (후치 연산)
+    Complex operator++(int)
+    {
+        // 현재의 값을 보관
+        Complex prev(this->real, this->imaginary);
+
+        // 실수부의 값을 먼저 더한다.
+        this->real++;
+
+        // 현재 값을 반환
+        // 후치 연산이므로 증가되기 전의 값을 반환
+        return prev;
+    }
     
 private:
     int real;           // 실수부
