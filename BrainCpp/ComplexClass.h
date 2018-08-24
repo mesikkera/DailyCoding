@@ -15,15 +15,17 @@ public:
     int Real() const { return real; }
     int Imaginary() const { return imaginary; }
 
-    Complex operator+(const Complex& right)
-    {
-        // 실수부와 허수부를 각각 더한다.
-        int real = this->real + right.real;
-        int img = this->imaginary + right.imaginary;
+    // Complex operator+(const Complex& right)
+    // {
+    //     // 실수부와 허수부를 각각 더한다.
+    //     int real = this->real + right.real;
+    //     int img = this->imaginary + right.imaginary;
 
-        // 결과를 보관한 복소수 객체를 반환
-        return Complex(real, img);
-    }
+    //     // 결과를 보관한 복소수 객체를 반환
+    //     return Complex(real, img);
+    // }
+
+    friend Complex operator+(const Complex& left, const Complex& right);
 
     Complex operator-(const Complex& right)
     {
