@@ -24,6 +24,17 @@ public:
         // 결과를 보관한 복소수 객체를 반환
         return Complex(real, img);
     }
+
+    Complex operator-(const Complex& right)
+    {
+        // 실수부와 허수부를 각각 뺀다.
+        // 단순 예제로 예외처리 하지 않음.
+        int real = this->real - right.real;
+        int img = this->imaginary - right.imaginary;
+
+        //  결과 반환
+        return Complex(real, img);
+    }
     
 private:
     int real;           // 실수부
