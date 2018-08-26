@@ -18,5 +18,5 @@ int main()
     for (it = intList.begin(); it != intList.end(); ++it)
         std::cout << *it << std::endl;
 
-    return ;
+    return 0;
 }
