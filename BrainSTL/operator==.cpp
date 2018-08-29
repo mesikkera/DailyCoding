@@ -18,9 +18,9 @@ int main()
 {
     Point p1(2, 3), p2(5, 5), p3(2, 3);
 
-    if(p1== p2)
+    if(p1== p2) // p1.operator==(p2)
         cout << "p1 == p2" << endl;
-    if(p1== p3)
+    if(p1== p3) // p1.operator==(p3)
         cout << "p1 == p3" << endl;
 
     return 0;
