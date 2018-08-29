@@ -28,5 +28,11 @@ int main()
     if(pt != 0)
         *pt = 30;
 
+    char c = 'B';
+    cout << "C의 주소 : " << (int*)&c << endl;
+    cout << "C의 주소 : " << &c << endl;
+    cout << "C : " << *p << endl;
+    cout << "C : " << (char*)p << endl;
+
     return 0;
 }
