@@ -25,9 +25,12 @@ void Print (T a, T b)
 
 int main()
 {
-    Print(10, 20);          // 정수 출력
-    Print(0.123, 1.123);    // 실수 출력
-    Print("ABC", "abcde");  // 문자열 출력
+    // Print(10, 20);          // 정수 출력
+    // Print(0.123, 1.123);    // 실수 출력
+    // Print("ABC", "abcde");  // 문자열 출력
+    Print<int>(10, 20);                     // 정수 출력
+    Print<double>(0.123, 1.123);            // 실수 출력
+    Print<const char*>("ABC", "abcde");     // 문자열 출력
     return 0;
 }
 
