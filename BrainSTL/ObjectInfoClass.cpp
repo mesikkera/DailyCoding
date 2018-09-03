@@ -19,6 +19,24 @@ public:
     }
 };
 
+template<>              // T를 string으로 특수화(클래스 템플릿 특수화)
+class ObjectInfo<string>
+{
+    string data;
+public:
+    ObjectInfo(const string& d):data(d) { } 
+
+    void Print()
+    {
+        cout << "타입 : " << typeid(data).name() << endl;
+        cout << "타입 : " << "string" << endl;
+        cout << "길이 : " << data.size() << endl;
+        cout << "값   : " << data << endl;
+        cout << endl;
+    }
+};
+
+
 int main()
 {
     ObjectInfo<int> d1(10);
