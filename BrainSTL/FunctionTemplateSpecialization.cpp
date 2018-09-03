@@ -9,10 +9,19 @@ public:
     void Print() const { cout << x << ", " << y << endl; }
 };
 
+// 일반화 함수 템플릿
 template<typename T>
 void Print(T a)
 {
     cout << a << endl;
+}
+
+// 특수화 함수 템플릿
+template<>
+void Print(Point a)
+{
+    cout << "Print 특수화 버전: ";
+    a.Print();
 }
 
 int main()
@@ -23,7 +32,7 @@ int main()
 
     Print(n);
     Print(d);
-    // Print(pt);      // 에러! cout << pt 연산이 불가능하다.
+    Print(pt);
 
     return 0;
 }
