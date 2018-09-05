@@ -30,5 +30,32 @@ int main()
         cout << v[i] << " ";
     cout << endl;
 
+    vector<int> v1;
+
+    v1.reserve(8);
+    cout << "size : " << v1.size() << "    capacity : " << v1.capacity() << endl;
+    v1.push_back(10);
+    cout << "size : " << v1.size() << "    capacity : " << v1.capacity() << endl;
+    v1.push_back(20);
+    cout << "size : " << v1.size() << "    capacity : " << v1.capacity() << endl;
+    v1.push_back(30);
+    cout << "size : " << v1.size() << "    capacity : " << v1.capacity() << endl;
+    v1.push_back(40);
+    cout << "size : " << v1.size() << "    capacity : " << v1.capacity() << endl;
+    v1.push_back(50);
+    cout << "size : " << v1.size() << "    capacity : " << v1.capacity() << endl;
+    v1.push_back(60);
+    cout << "size : " << v1.size() << "    capacity : " << v1.capacity() << endl;
+    v1.push_back(70);
+    cout << "size : " << v1.size() << "    capacity : " << v1.capacity() << endl;
+    v1.push_back(80);
+    cout << "size : " << v1.size() << "    capacity : " << v1.capacity() << endl;
+    v1.push_back(90);
+    cout << "size : " << v1.size() << "    capacity : " << v1.capacity() << endl;
+
+    for(vector<int>::size_type i = 0; i < v1.size(); ++i)
+        cout << v1[i] << " ";
+    cout << endl;
+
     return 0;
 }
