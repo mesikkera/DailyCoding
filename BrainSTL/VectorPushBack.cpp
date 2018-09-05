@@ -25,5 +25,13 @@ int main()
 
     cout << typeid(vector<int>::size_type).name() << endl;
 
+
+    for(vector<int>::size_type i = 0 ; i < v.size() ; ++i)
+        cout << v[i] << endl;
+    cout << endl;
+
+    cout << v.size() << endl;
+    cout << v.max_size() << endl;
+    cout << v.capacity() << endl;
     return 0;
 }
