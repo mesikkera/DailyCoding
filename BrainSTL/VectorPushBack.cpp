@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <typeinfo>
 using namespace std;
 
 int main()
@@ -15,7 +16,14 @@ int main()
     // i --> int type
     // v.size() --> unsigned int type 반환
     for (int i = 0; i < v.size(); ++i)
-        cout << v[i] << endl;
+        cout << v[i] << " ";
+    cout << endl;
+
+    for(vector<int>::size_type i = 0; i < v.size(); ++i)
+        cout << v[i] << " ";
+    cout << endl;
+
+    cout << typeid(vector<int>::size_type).name() << endl;
 
     return 0;
 }
