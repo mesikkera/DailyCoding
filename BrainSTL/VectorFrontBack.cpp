@@ -108,5 +108,17 @@ int main()
         cout << *riter << " ";
     cout << endl;
 
+    // insert() 멤버 함수의 사용
+    vector<int>::iterator iter2 = v.begin() + 2;
+    vector<int>::iterator iter3;
+
+    iter3 = v.insert(iter2, 100);
+
+    for(iter = v.begin(); iter != v.end(); ++iter)
+        cout << *iter << " ";
+    cout << endl;
+    cout << "iter3 : " << *iter3 << endl;
+
+
     return 0;
 }
