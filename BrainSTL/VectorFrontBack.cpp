@@ -45,5 +45,10 @@ int main()
         cout << e.what() << endl;
     }
 
+    v.assign(5, 2);     // 5개의 원소값을 2로 할당
+    for(vector<int>::size_type i = 0; i < v.size(); ++i)
+        cout << v[i] << " ";
+    cout << endl;
+
     return 0;
 }
