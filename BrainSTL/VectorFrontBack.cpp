@@ -50,5 +50,10 @@ int main()
         cout << v[i] << " ";
     cout << endl;
 
+    // begin(), end()
+    for(vector<int>::iterator iter = v.begin(); iter != v.end(); ++iter)
+        cout << *iter << " ";
+    cout << endl;
+
     return 0;
 }
