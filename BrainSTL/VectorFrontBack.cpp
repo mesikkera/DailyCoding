@@ -37,5 +37,13 @@ int main()
         cout << v[i] << " ";
     cout << endl;
 
+    try {
+        cout << v.at(0) << endl;
+        cout << v.at(3) << endl;
+        cout << v.at(6) << endl;
+    } catch (out_of_range &e) {
+        cout << e.what() << endl;
+    }
+
     return 0;
 }
