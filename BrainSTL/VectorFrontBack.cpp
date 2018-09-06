@@ -84,7 +84,21 @@ int main()
     *iter = 100;                // 일반 반복자는 가리키는 원소를 변경할 수 있음
     // *citer = 100;            // 상수 반복자는 가리키는 원소를 변경할 수 없음.
 
+    // const와 반복자
+    int arr[5] = {10, 20, 30, 40, 50};
+    int* p = arr;
+    cout << *iter << ", " << *p << endl;    // iter는 p처럼 동작
 
+    const int* cp = arr;
+    cout << *citer << ", " << *cp << endl;  // citer는 cp처럼 동작
 
+    const vector<int>::iterator iter_const = v.begin();
+    int* const p_const = arr;               // iter_const는 p_const 처럼 동작
+    cout << *iter_const << ", " << *p_const << endl;
+
+    const vector<int>::const_iterator citer_const = v.begin();
+    const int* const cp_const = arr;        // citer_const는 cp_const처럼 동작
+    cout << *citer_const << ", " << *cp_const << endl;
+    
     return 0;
 }
