@@ -18,5 +18,24 @@ int main()
     cout << v[0] << ", " << v.front() << endl;      // 첫 번째 원소
     cout << v[4] << ", " << v.back() << endl;       // 마지막 원소
     
+    v.front() = 100;        // 첫 번째 원소를 100으로
+    v.back() = 500;         // 마지막 원소를 500으로
+
+    for(vector<int>::size_type i = 0; i < v.size(); ++i)
+        cout << v[i] << " ";
+    cout << endl;
+
+    v[0] = 100;     // 범위점검 없는 0 index 원소의 참조
+    v[4] = 500;     // 범위점검 없는 4 index 원소의 참조
+    for(vector<int>::size_type i = 0; i < v.size(); ++i)
+        cout << v[i] << " ";
+    cout << endl;
+
+    v.at(0) = 1000; // 범위 점검 있는 0 index 원소의 참조
+    v.at(4) = 5000; // 범위 점검 있는 4 index 원소의 참조
+    for(vector<int>::size_type i = 0; i < v.size(); ++i)
+        cout << v[i] << " ";
+    cout << endl;
+
     return 0;
 }
