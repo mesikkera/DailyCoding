@@ -99,6 +99,14 @@ int main()
     const vector<int>::const_iterator citer_const = v.begin();
     const int* const cp_const = arr;        // citer_const는 cp_const처럼 동작
     cout << *citer_const << ", " << *cp_const << endl;
-    
+
+    // 역방향 반복자
+    vector<int>::reverse_iterator riter;
+
+    v[1] = 20;
+    for(riter = v.rbegin(); riter != v.rend(); ++riter)
+        cout << *riter << " ";
+    cout << endl;
+
     return 0;
 }
