@@ -27,6 +27,25 @@ int main()
     for(deque<int>::size_type i = 0; i < dq1.size(); ++i)
         cout << dq1[i] << " ";
     cout << endl;
-    
+
+    // deque의 push_front()
+    deque<int> dq2;
+
+    dq2.push_back(10);
+    dq2.push_back(20);
+    dq2.push_back(30);
+    dq2.push_back(40);
+    dq2.push_back(50);
+
+    for(deque<int>::size_type i = 0; i < dq2.size(); ++i)
+        cout << dq2[i] << " ";
+    cout << endl;
+
+    dq2.push_front(100);        // 앞쪽에 추가
+    dq2.push_front(200);        
+    for(deque<int>::size_type i = 0; i < dq2.size(); ++i)
+        cout << dq2[i] << " ";
+    cout << endl;
+
     return 0;
 }
