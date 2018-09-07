@@ -70,5 +70,25 @@ int main()
     iter -= 3;                  // 반복자에 -3 한다.
     cout << *iter << endl;
 
+    // deque의 insert()
+    deque<int> dq4;
+
+    for(int i = 0; i < 10; i++)
+        dq4.push_back((i+1) * 10);
+
+    deque<int>::iterator iter2;
+    deque<int>::iterator iter3;
+    for(iter2 = dq4.begin(); iter2 != dq4.end(); ++iter2)
+        cout << *iter2 << " ";
+    cout << endl;
+
+    iter2 = dq4.begin() + 2;
+    iter3 = dq4.insert(iter2, 500);
+    cout << *iter3 << endl;
+
+    for(iter2 = dq4.begin(); iter2 != dq4.end(); ++iter2)
+        cout << *iter2 << " ";
+    cout << endl;
+
     return 0;
 }
