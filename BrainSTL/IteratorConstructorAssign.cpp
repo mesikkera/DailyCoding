@@ -26,5 +26,14 @@ int main()
         cout << *iter << " ";       // v3 출력
     cout << endl;
 
+    if(v2 == v3)
+        cout << "v2 == v3" << endl;
+
+    if( v2 != v3)
+        cout << "v2 != v3" << endl;
+
+    if(v2 < v3)
+        cout << "v2 < v3" << endl;
+        
     return 0;
 }
