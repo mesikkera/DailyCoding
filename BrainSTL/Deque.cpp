@@ -47,5 +47,28 @@ int main()
         cout << dq2[i] << " ";
     cout << endl;
 
+    // deque의 반복자
+    deque<int> dq3;
+
+    dq3.push_back(10);
+    dq3.push_back(20);
+    dq3.push_back(30);
+    dq3.push_back(40);
+    dq3.push_back(50);
+
+    deque<int>::iterator iter;
+    for(iter = dq3.begin(); iter != dq3.end(); ++iter)
+        cout << *iter << " ";
+    cout << endl;
+
+    iter = dq.begin() + 2;      // 반복자에 + 2 한다.
+    cout << *iter << endl;
+
+    iter += 2;                  // 반복자에 +2 한다.
+    cout << *iter << endl;
+
+    iter -= 3;                  // 반복자에 -3 한다.
+    cout << *iter << endl;
+
     return 0;
 }
