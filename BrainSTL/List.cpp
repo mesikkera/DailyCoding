@@ -24,5 +24,26 @@ int main()
         cout << *iter << " ";
     cout << endl;
 
+    // list의 remove()
+    list<int> lt2;
+
+    lt2.push_back(10);
+    lt2.push_back(20);
+    lt2.push_back(30);
+    lt2.push_back(40);
+    lt2.push_back(50);
+    lt2.push_back(10);
+    lt2.push_back(10);
+
+    list<int>::iterator iter2;
+    for(iter2 = lt2.begin(); iter2 != lt2.end(); ++iter2)
+        cout << *iter2 << " ";
+    cout << endl;
+
+    lt2.remove(10);     // 10 원소의 노드를 모두 제거
+    for(iter2 = lt2.begin(); iter2 != lt2.end(); ++iter2)
+        cout << *iter2 << " ";
+    cout << endl;
+
     return 0;
 }
