@@ -39,6 +39,7 @@ int main()
     ++iter2;            // 20 원소의 위치를 가리킴
 
     // iter1이 가리키는 위치에 iter2가 가리키는 위치의 lt2의 원소를 잘라 붙임.
+    // iter1(30)이 가리키는 위치에 iter2가 가리키는 원소(200)를 잘라 붙인다.
     lt1.splice(iter1, lt2, iter2);
 
     cout << "lt1 : ";
