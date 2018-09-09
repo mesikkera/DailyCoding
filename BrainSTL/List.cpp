@@ -2,6 +2,11 @@
 #include <list>
 using namespace std;
 
+bool Predicate(int n)       // 단항 조건자
+{
+    return 10 <= n && n <=30;
+}
+
 int main()
 {
     list<int> lt;
@@ -43,6 +48,25 @@ int main()
     lt2.remove(10);     // 10 원소의 노드를 모두 제거
     for(iter2 = lt2.begin(); iter2 != lt2.end(); ++iter2)
         cout << *iter2 << " ";
+    cout << endl;
+
+    // list의 remove_if()
+    list<int> lt3;
+
+    lt3.push_back(10);
+    lt3.push_back(20);
+    lt3.push_back(30);
+    lt3.push_back(40);
+    lt3.push_back(50);
+
+    list<int>::iterator iter3;
+    for(iter = lt3.begin(); iter != lt3.end(); ++iter)
+        cout << *iter << " ";
+    cout << endl;
+
+    lt3.remove_if(Predicate);       // 조건자가 참인 원소를 모두 제거
+    for(iter = lt3.begin(); iter != lt3.end(); ++iter)
+        cout << *iter << " ";
     cout << endl;
 
     return 0;
