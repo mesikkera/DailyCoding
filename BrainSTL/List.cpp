@@ -7,7 +7,7 @@ bool Predicate(int n)       // 단항 조건자
     return 10 <= n && n <=30;
 }
 
-bool Predicate(int first, int second)
+bool Predicate2(int first, int second)
 {
     return second - first <= 0;
 }
@@ -119,6 +119,29 @@ int main()
 
     for(iter5 = lt5.begin(); iter5 != lt5.end(); ++iter5)
         cout << *iter5 << " ";
+    cout << endl;
+
+    // list의 조건자 버전 unique()
+    list<int> lt6;
+
+    lt6.push_back(10);
+    lt6.push_back(10);
+    lt6.push_back(20);
+    lt6.push_back(30);
+    lt6.push_back(30);
+    lt6.push_back(30);
+    lt6.push_back(40);
+    lt6.push_back(50);
+    lt6.push_back(10);
+
+    list<int>::iterator iter6;
+    for(iter6 = lt6.begin(); iter6 != lt6.end(); ++iter6)
+        cout << *iter6 << " ";
+    cout << endl;
+
+    lt6.unique(Predicate2);
+    for(iter6 = lt6.begin(); iter6 != lt6.end(); ++iter6)
+        cout << *iter6 << " ";
     cout << endl;
 
     return 0;
