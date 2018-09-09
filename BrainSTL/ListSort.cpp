@@ -2,6 +2,14 @@
 #include <list>
 using namespace std;
 
+struct Greater
+{
+    bool operator()(int left, int right) const 
+    {
+        return left > right;
+    }
+};
+
 int main()
 {
     list<int> lt;
@@ -24,6 +32,38 @@ int main()
 
     for(iter = lt.begin(); iter != lt.end(); ++iter)
         cout << *iter << " ";
+
+
+    // list의 조건자 버전 sort()
+    list<int> lt2;
+    lt2.push_back(20);
+    lt2.push_back(10);
+    lt2.push_back(50);
+    lt2.push_back(30);
+    lt2.push_back(40);
+
+    list<int>::iterator iter2;
+    for(iter2 = lt2.begin(); iter2 != lt2.end(); ++iter2)
+        cout << *iter2 << " ";
+    cout << endl;
+
+    // 조건자 greater를 사용하여 내림차순 정렬
+    lt2.sort(greater<int>());
+    for(iter2 = lt2.begin(); iter2 != lt2.end(); ++iter2)
+        cout << *iter2 << " ";
+    cout << endl;
+
+    // 조건자 less를 사용하여 오름차순 정렬
+    lt2.sort(less<int>());
+    for(iter2 = lt2.begin(); iter2 != lt2.end(); ++iter2)
+        cout << *iter2 << " ";
+    cout << endl;
+
+    // 사용자 정의 조건자를 사용하여 내림차순 정렬
+    lt2.sort(Greater()); 
+    for(iter2 = lt2.begin(); iter2 != lt2.end(); ++iter2)
+        cout << *iter2 << " ";
+    cout << endl;
 
     return 0;
 }
