@@ -7,6 +7,11 @@ bool Predicate(int n)       // 단항 조건자
     return 10 <= n && n <=30;
 }
 
+bool Predicate(int first, int second)
+{
+    return second - first <= 0;
+}
+
 int main()
 {
     list<int> lt;
@@ -88,6 +93,33 @@ int main()
     for(iter4 = lt4.begin(); iter4 != lt4.end(); ++iter4)
         cout << *iter4 << " ";
     cout << endl; 
+
+    // list의 unique()
+    list<int> lt5;
+
+    lt5.push_back(10);
+    lt5.push_back(10);
+    lt5.push_back(20);
+    lt5.push_back(30);
+    lt5.push_back(30);
+    lt5.push_back(30);
+    lt5.push_back(40);
+    lt5.push_back(50);
+    lt5.push_back(10);
+
+    list<int>::iterator iter5;
+    for(iter5 = lt5.begin(); iter5 != lt5.end(); ++iter5)
+        cout << *iter5 << " ";
+    cout << endl;
+
+    // 인접한 원소를 유니크하게 만든다.
+    // unique() 멤버 함수로 모든 원소를 유일하게 만들고자 한다면
+    // 원소를 정렬한 후 unique()를 수행하면 된다.
+    lt5.unique();
+
+    for(iter5 = lt5.begin(); iter5 != lt5.end(); ++iter5)
+        cout << *iter5 << " ";
+    cout << endl;
 
     return 0;
 }
