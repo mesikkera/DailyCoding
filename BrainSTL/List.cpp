@@ -69,5 +69,25 @@ int main()
         cout << *iter << " ";
     cout << endl;
 
+    // list의 reverse()
+    list<int> lt4;
+
+    lt4.push_back(10);
+    lt4.push_back(20);
+    lt4.push_back(30);
+    lt4.push_back(40);
+    lt4.push_back(50);
+
+    list<int>::iterator iter4;
+    for(iter4 = lt4.begin(); iter4 != lt4.end(); ++iter4)
+        cout << *iter4 << " ";
+    cout << endl; 
+
+    lt4.reverse();
+
+    for(iter4 = lt4.begin(); iter4 != lt4.end(); ++iter4)
+        cout << *iter4 << " ";
+    cout << endl; 
+
     return 0;
 }
