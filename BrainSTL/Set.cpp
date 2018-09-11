@@ -55,5 +55,19 @@ int main()
     else 
         cout << "55가 s에 없음!" << endl;
 
+// set의 equal_range()
+    // 반복자 쌍의 pair 객체
+    pair<set<int>::iterator, set<int>::iterator> iter_pair;
+
+    iter_pair = s.equal_range(30);
+    cout << *iter_pair.first << endl;
+    cout << *iter_pair.second << endl;
+
+    iter_pair = s.equal_range(55);
+    if(iter_pair.first != iter_pair.second)
+        cout << "55가 s에 있음!" << endl;
+    else 
+        cout << "55가 s에 없음!" << endl;
+
     return 0;
 }
