@@ -1,42 +1,81 @@
 {
-
     "configurations": [
-
         {
-            "name": "Win32",
+            "name": "Mac",
             "includePath": [
-                "${workspaceRoot}",
-                "C:/Program Files/boost/include/boost-1_68/boost",
-                "C:/Program Files/boost/include/boost-1_68",
-                "C:/MinGW/lib/gcc/mingw32/6.3.0/include/c++",
-                "C:/MinGW/lib/gcc/mingw32/6.3.0/include/c++/mingw32",
-                "C:/MinGW/lib/gcc/mingw32/6.3.0/include/c++/backward",
-                "C:/MinGW/include",
-                "C:/MinGW/lib/gcc/mingw32/6.3.0/include-fixed",
-                "C:/MinGW/lib/gcc/mingw32/6.3.0/include"
+                "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1",
+                "/usr/local/include",
+                "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/8.1.0/include",
+                "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include",
+                "/usr/include",
+                "${workspaceRoot}"
             ],
-            "defines": [
-                "_DEBUG",
-                "UNICODE",
-                "__GNUC__=6",
-                "__cdecl=__attribute__((__cdecl__))"
-            ],
+            "defines": [],
             "intelliSenseMode": "clang-x64",
             "browse": {
                 "path": [
-                    "${workspaceRoot}",
-                    "C:/Program Files/boost/include/boost-1_68/boost",
-                    "C:/Program Files/boost/include/boost-1_68",
-                    "C:/MinGW/lib/gcc/mingw32/6.3.0/include/c++",
-                    "C:/MinGW/lib/gcc/mingw32/6.3.0/include/c++/mingw32",
-                    "C:/MinGW/lib/gcc/mingw32/6.3.0/include/c++/backward",
-                    "C:/MinGW/include",
-                    "C:/MinGW/lib/gcc/mingw32/6.3.0/include-fixed",
-                    "C:/MinGW/lib/gcc/mingw32/6.3.0/include"
+                    "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1",
+                    "/usr/local/include",
+                    "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/8.1.0/include",
+                    "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include",
+                    "/usr/include",
+                    "${workspaceRoot}"
                 ],
                 "limitSymbolsToIncludedHeaders": true,
                 "databaseFilename": ""
-            }
+            },
+            "macFrameworkPath": [
+                "/System/Library/Frameworks",
+                "/Library/Frameworks"
+            ],
+            "compilerPath": "C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/VC/Tools/MSVC/14.15.26726/bin/Hostx64/x64/cl.exe",
+            "cStandard": "c11",
+            "cppStandard": "c++17"
+        },
+        {
+            "name": "Linux",
+            "includePath": [
+                "/usr/include",
+                "/usr/local/include",
+                "${workspaceRoot}"
+            ],
+            "defines": [],
+            "intelliSenseMode": "clang-x64",
+            "browse": {
+                "path": [
+                    "/usr/include",
+                    "/usr/local/include",
+                    "${workspaceRoot}"
+                ],
+                "limitSymbolsToIncludedHeaders": true,
+                "databaseFilename": ""
+            },
+            "compilerPath": "C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/VC/Tools/MSVC/14.15.26726/bin/Hostx64/x64/cl.exe",
+            "cStandard": "c11",
+            "cppStandard": "c++17"
+        },
+        {
+            "name": "Win32",
+            "includePath": [
+                "C:/Program Files (x86)/Microsoft Visual Studio 14.0/VC/include",
+                "${workspaceRoot}"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE"
+            ],
+            "intelliSenseMode": "msvc-x64",
+            "browse": {
+                "path": [
+                    "C:/Program Files (x86)/Microsoft Visual Studio 14.0/VC/include/*",
+                    "${workspaceRoot}"
+                ],
+                "limitSymbolsToIncludedHeaders": true,
+                "databaseFilename": ""
+            },
+            "compilerPath": "C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/VC/Tools/MSVC/14.15.26726/bin/Hostx64/x64/cl.exe",
+            "cStandard": "c11",
+            "cppStandard": "c++17"
         }
     ],
     "version": 4
