@@ -36,5 +36,24 @@ int main()
     // 30과 30의 비교
     cout << (!s.key_comp()(30, 30) && !s.key_comp()(30, 30)) << endl;
 
+// set의 lower_bound(), upper_bound()
+    for(iter = s.begin(); iter != s.end(); ++iter)
+            cout << *iter << " ";
+        cout << endl; 
+    set<int>::iterator iter_lower;
+    set<int>::iterator iter_upper;
+
+    iter_lower = s.lower_bound(30);
+    iter_upper = s.upper_bound(30);
+    cout << *iter_lower << endl;
+    cout << *iter_upper << endl;
+
+    iter_lower = s.lower_bound(55);
+    iter_upper = s.lower_bound(55);
+    if(iter_lower != iter_upper)
+        cout << "55가 s에 있음!" << endl;
+    else 
+        cout << "55가 s에 없음!" << endl;
+
     return 0;
 }
