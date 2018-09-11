@@ -22,5 +22,12 @@ int main()
     cout << "원소 50의 개수 : " << s.count(50) << endl;
     cout << "원소 100의 개수 : " << s.count(100) << endl;
 
+    // set의 find()
+    iter = s.find(30);      // 30의 반복자를 반환
+    if(iter != s.end())
+        cout << *iter << "이 s에 있다." << endl;
+    else 
+        cout << "s에 30이 없다" << endl;
+
     return 0;
 }
