@@ -40,5 +40,16 @@ int main()
         cout << *iter << " ";
     cout << endl;
 
+// multiset의 equal_range()
+
+    // multiset의 반복자 쌍(pair) 객체 생성
+    pair<multiset<int>::iterator, multiset<int>::iterator> iter_pair;
+    iter_pair = ms.equal_range(30);
+
+    for(iter = iter_pair.first; iter != iter_pair.second; ++iter)
+        cout << *iter << " ";
+        // [iter_pair.first, iter_pair.second] 구간의 순차열
+    cout << endl;
+
     return 0;
 }
