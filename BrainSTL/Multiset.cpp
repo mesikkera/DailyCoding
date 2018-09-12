@@ -20,5 +20,25 @@ int main()
     for(iter = ms.begin(); iter != ms.end(); ++iter)
         cout << *iter << " ";
     cout << endl;
+
+// multiset의 찾기 관련 함수
+
+    cout << "30원소의 개수 : " << ms.count(30) << endl;     // 30 원소의 개수
+
+    iter = ms.find(30);     // 30 첫 번째 원소의 반복자
+    cout << "iter : " << *iter << endl;
+
+    multiset<int>::iterator lower_iter;
+    multiset<int>::iterator upper_iter;
+
+    lower_iter = ms.lower_bound(30);        // 30 순차열의 시작 반복자
+    upper_iter = ms.upper_bound(30);        // 30 순차열의 끝 반복자
+    cout << "lower_iter: " << *lower_iter << ", " << "upper_iter: " << *upper_iter << endl;
+
+    cout << "구간 [lower_iter, upper_iter)의 순차열: ";
+    for(iter = lower_iter; iter != upper_iter; ++iter)
+        cout << *iter << " ";
+    cout << endl;
+
     return 0;
 }
