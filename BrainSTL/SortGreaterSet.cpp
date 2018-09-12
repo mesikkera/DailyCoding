@@ -15,7 +15,7 @@ int main()
     s.insert(90);
 
     // greater<int> 조건자를 사용하는 반복자 생성
-    set<int, greater<int>>::iterator iter;
+    set<int, greater<int>>::iterator iter;;
     for(iter = s.begin(); iter != s.end(); ++iter)
         cout << *iter << " ";
     cout << endl;
