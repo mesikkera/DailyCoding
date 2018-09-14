@@ -80,6 +80,9 @@ int main()
         cout << *iter << " ";
     cout << endl;
 
-
+// count() 알고리즘 
+    // 구간 [v2.begin(), v2.end())에서 30 원소의 개수를 반환
+    int n = count(v2.begin(), v2.end(), 30);
+    cout << "30의 개수 : " << n << endl;
     return 0;
 }
