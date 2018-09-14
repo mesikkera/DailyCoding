@@ -47,7 +47,11 @@ int main()
     // 찾는 원소가 없어 iter는 구간의 끝인 iter_e입니다.
     iter = adjacent_find(iter_b, iter_e);
 
-
+    // 모두 맞는지 확인
+    if(iter != iter_e)
+        cout << *iter << endl;
+    if(iter != v.end())
+        cout << *iter << endl;
 
     return 0;
 }
