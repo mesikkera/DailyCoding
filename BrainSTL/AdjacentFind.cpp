@@ -3,6 +3,12 @@
 #include <algorithm>    // 알고리즘 헤더
 using namespace std;
 
+// 이항 조건자 
+bool Pred(int a, int b)
+{
+    return abs(b - a) > 10;
+}
+
 int main()
 {
     vector<int> v;
