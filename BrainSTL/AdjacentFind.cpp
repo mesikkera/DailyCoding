@@ -9,6 +9,11 @@ bool Pred(int a, int b)
     return abs(b - a) > 10;
 }
 
+bool Pred2(int n)
+{
+    return 25 < n;
+}
+
 int main()
 {
     vector<int> v;
@@ -84,5 +89,10 @@ int main()
     // 구간 [v2.begin(), v2.end())에서 30 원소의 개수를 반환
     int n = count(v2.begin(), v2.end(), 30);
     cout << "30의 개수 : " << n << endl;
+
+// 조건자 버전의 count_if()
+    // 구간 [v2.begn(), v2.end()) 에서 25보다 큰 원소의 개수를 반환
+    int n2 = count_if(v2.begin(), v2.end(), Pred2);
+    cout << "25보다 큰 원소의 개수 : " << n2 << endl;
     return 0;
 }
