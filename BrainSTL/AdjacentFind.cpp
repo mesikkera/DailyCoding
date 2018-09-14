@@ -59,5 +59,27 @@ int main()
     if(iter != v.end())
         cout << *iter << endl;
 
+// adjacent_find() 조건자 버전
+    vector<int> v2;
+    v2.push_back(10);
+    v2.push_back(20);
+    v2.push_back(30);
+    v2.push_back(50);
+    v2.push_back(90);
+
+    for(vector<int>::size_type i = 0; i < v2.size(); ++i)
+        cout << v2[i] << " ";
+    cout << endl;
+
+    iter = adjacent_find(v2.begin(), v2.end(), Pred);
+
+    if(iter != v2.end())
+        cout << *iter << endl;
+
+    for ( ; iter != v2.end(); ++iter)
+        cout << *iter << " ";
+    cout << endl;
+
+
     return 0;
 }
