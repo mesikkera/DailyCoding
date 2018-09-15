@@ -3,6 +3,11 @@
 #include <algorithm>        // find 사용
 using namespace std;
 
+bool Pred(int left, int right)
+{
+    return left <= right;
+}
+
 int main()
 {
     vector<int> v;
@@ -45,6 +50,33 @@ int main()
         cout << "iter : " << *iter << endl;
         cout << "iter - 1 : " << *(iter - 1) << endl;
         cout << "iter + 1 : " << *(iter + 1) << endl;
+    }
+
+// find_end() 알고리즘 조건자 버전
+    vector<int> v3;
+    v3.push_back(10);
+    v3.push_back(15);
+    v3.push_back(20);
+    v3.push_back(40);
+    v3.push_back(50);
+    v3.push_back(60);
+    v3.push_back(10);
+    v3.push_back(11);
+    v3.push_back(12);
+    v3.push_back(80);
+
+    vector<int> v4;
+    v4.push_back(10);
+    v4.push_back(15);
+    v4.push_back(25);
+
+    iter = find_end(v3.begin(), v3.end(), v4.begin(), v4.end(), Pred);
+    if(iter != v3.end())
+    {
+        // 일치하는 마지막 순차열의 첫 원소의 반복자 iter
+        cout << "iter : " << *iter << endl;
+        cout << "iter - 1 :  " << *(iter - 1) << endl;
+        cout << "iter + 1 :  " << *(iter + 1) << endl;
     }
     return 0;
 }
