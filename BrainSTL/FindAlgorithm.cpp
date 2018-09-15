@@ -8,6 +8,11 @@ bool Pred(int left, int right)
     return left <= right;
 }
 
+bool Pred2(int left, int right)
+{
+    return left > right;
+}
+
 int main()
 {
     vector<int> v;
@@ -106,5 +111,9 @@ int main()
     if(iter != v5.end())
         cout << "iter : " << *iter << endl;
     
+// find_first_of() 알고리즘2
+    iter = find_first_of(v5.begin(), v5.end(), v6.begin(), v6.end(), Pred2);
+    if(iter != v5.end())
+        cout << "iter : " << *iter << endl;
     return 0;
 }
