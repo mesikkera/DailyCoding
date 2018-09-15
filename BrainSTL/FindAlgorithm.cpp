@@ -78,5 +78,33 @@ int main()
         cout << "iter - 1 :  " << *(iter - 1) << endl;
         cout << "iter + 1 :  " << *(iter + 1) << endl;
     }
+
+// find_first_of() 알고리즘
+    vector<int> v5;
+    v5.push_back(10);
+    v5.push_back(20);
+    v5.push_back(30);
+    v5.push_back(40);
+    v5.push_back(50);
+
+    vector<int> v6;
+    v6.push_back(40);
+    v6.push_back(80);
+    v6.push_back(20);
+
+    cout << "v5 : ";
+    for(vector<int>::size_type i = 0; i < v5.size(); ++i)
+        cout << v5[i] << " ";
+    cout << endl;
+
+    cout << "v6 : ";
+    for(vector<int>::size_type i = 0; i < v6.size(); ++i)
+        cout << v6[i] << " ";
+    cout << endl;
+
+    iter = find_first_of(v5.begin(), v5.end(), v6.begin(), v6.end());
+    if(iter != v5.end())
+        cout << "iter : " << *iter << endl;
+    
     return 0;
 }
