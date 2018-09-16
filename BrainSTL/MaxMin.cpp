@@ -44,6 +44,22 @@ int main()
     pt3 = max(pt1, pt2, YCompare);
     cout << "y max : "; pt3.Print();
 
+// max_element(), min_element() 알고리즘
+    vector<int> v;
+
+    v.push_back(30);
+    v.push_back(10);
+    v.push_back(20);
+    v.push_back(50);
+    v.push_back(40);
+
+    vector<int>::iterator iter;
+    iter = max_element(v.begin(), v.end());
+    cout << *iter << endl;
+
+    iter = min_element(v.begin(), v.end());
+    cout << *iter << endl;
+    
     return 0;
 
 }
