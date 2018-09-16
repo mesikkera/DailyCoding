@@ -115,5 +115,6 @@ int main()
     iter = find_first_of(v5.begin(), v5.end(), v6.begin(), v6.end(), Pred2);
     if(iter != v5.end())
         cout << "iter : " << *iter << endl;
+        
     return 0;
 }
