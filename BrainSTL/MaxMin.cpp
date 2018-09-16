@@ -14,6 +14,16 @@ public:
     }
 };
 
+bool Compare(const Point& left, const Point& right)
+{
+    if(left.GetX() < right.GetX())
+        return true;
+    else if (left.GetY() > right.GetY())
+        return false;
+    else 
+        return left.GetY() < right.GetY();
+}
+
 bool XCompare(const Point& left, const Point& right)
 {
     return left.GetX() < right.GetX();
@@ -59,7 +69,21 @@ int main()
 
     iter = min_element(v.begin(), v.end());
     cout << *iter << endl;
-    
+
+// 조건자 버전 max_element() 알고리즘
+    vector<Point> v1;
+
+    v1.push_back(Point(3,2));
+    v1.push_back(Point(2,5));
+    v1.push_back(Point(1,5));
+    v1.push_back(Point(3,3));
+    v1.push_back(Point(3,2));
+
+    vector<Point>::iterator iter1;
+    iter1 = max_element(v1.begin(), v1.end(), Compare);
+    cout << "max: "; iter1 -> Print();        // 반복자가 가리키는 객체의 멤버는 -> 연산자로 접근
+    cout << "max: "; (*iter1).Print();        // 위와 같다.
+
     return 0;
 
 }
