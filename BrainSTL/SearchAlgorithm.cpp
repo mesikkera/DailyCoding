@@ -1,9 +1,13 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
-#include <boost/asio.hpp>
 
 using namespace std;
+
+bool Pred(int left, int right)
+{
+    return abs(right - left) <= 5;
+}
 
 int main()
 {
@@ -33,5 +37,42 @@ int main()
         cout << "iter - 1 : " << *(iter - 1) << endl;
         cout << "iter + 1 : " << *(iter + 1) << endl;
     }
+
+// search_n() 알고리즘
+    vector<int> v3;
+    v3.push_back(10);
+    v3.push_back(20);
+    v3.push_back(30);
+    v3.push_back(30);
+    v3.push_back(30);
+    v3.push_back(40);
+    v3.push_back(50);
+
+    iter = search_n(v3.begin(), v3.end(), 3, 30);
+    if(iter != v3.end())
+    {
+        cout << "iter : " << *iter << endl;
+        cout << "iter-1 : " << *(iter - 1) << endl;
+        cout << "iter+1 : " << *(iter + 1) << endl;
+    }
+
+// 조건자 버전 search_n() 알고리즘
+    vector<int> v4;
+    v4.push_back(10);
+    v4.push_back(20);
+    v4.push_back(32);
+    v4.push_back(28);
+    v4.push_back(33);
+    v4.push_back(40);
+    v4.push_back(50);
+
+    iter = search_n(v4.begin(), v4.end(), 3, 30, Pred);
+    if(iter != v3.end())
+    {
+        cout << "iter : " << *iter << endl;
+        cout << "iter-1 : " << *(iter - 1) << endl;
+        cout << "iter+1 : " << *(iter + 1) << endl;
+    }
+ 
     return 0;
 }
