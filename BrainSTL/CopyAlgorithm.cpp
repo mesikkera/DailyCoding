@@ -28,5 +28,15 @@ int main()
         cout << v2[i] << " ";
     cout << endl;
 
+    vector<int> v3(5);
+    // 구간 [v1.begin(), v1.end())의 모든 원소를
+    // [iter, v2.end())의 순차열로 마지막 원소부터 복사
+    iter = copy_backward(v1.begin(), v1.end(), v3.end());
+    cout << "v3 첫 원소 : " << *iter << endl;
+    cout << "v3 : ";
+    for(vector<int>::size_type i = 0; i < v3.size(); ++i)
+        cout << v3[i] << " ";
+    cout << endl;
+
     return 0;
 }
