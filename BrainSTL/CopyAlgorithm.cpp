@@ -28,7 +28,7 @@ int main()
         cout << v2[i] << " ";
     cout << endl;
 
-    vector<int> v3(5);
+    vector<int> v3(10);
     // 구간 [v1.begin(), v1.end())의 모든 원소를
     // [iter, v2.end())의 순차열로 마지막 원소부터 복사
     iter = copy_backward(v1.begin(), v1.end(), v3.end());
