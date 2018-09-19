@@ -83,5 +83,31 @@ int main()
         cout << *iter << " ";
     cout << endl;
 
+// remove_copy() 알고리즘
+    vector<int> v3;
+    v3.push_back(10);
+    v3.push_back(20);
+    v3.push_back(30);
+    v3.push_back(40);
+    v3.push_back(50);
+
+    vector<int> v4(5);
+    
+    iter_end = remove_copy(v3.begin(), v3.end(), v4.begin(), 30);
+
+    cout << "v3 : ";
+    for(vector<int>::size_type i = 0; i < v3.size(); ++i)
+        cout << v1[i] << " ";
+    cout << endl;
+
+    cout << "v4 : ";
+    for(vector<int>::size_type i = 0; i < v4.size(); ++i)
+        cout << v4[i] << " ";
+    cout << endl;
+
+    cout << "[v2.begin(), iter_end) : ";
+    for(vector<int>::iterator iter = v4.begin(); iter != iter_end; ++iter)
+        cout << *iter << " ";
+    cout << endl;
     return 0;
 }
