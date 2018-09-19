@@ -3,7 +3,8 @@
         {
             "name": "Mac",
             "includePath": [
-                "${workspaceFolder}/**"
+                "${workspaceFolder}/**",
+                "/System/Library/Frameworks/Kernel.framework/Versions/A/Headers"
             ],
             "defines": [],
             "macFrameworkPath": [
