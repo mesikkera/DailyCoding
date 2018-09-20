@@ -15,6 +15,7 @@
         "memory": "cpp",
         "regex": "cpp",
         "set": "cpp",
-        "stack": "cpp"
+        "stack": "cpp",
+        "algorithm": "cpp"
     }
 }
