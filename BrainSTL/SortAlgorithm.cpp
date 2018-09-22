@@ -78,9 +78,30 @@ int main()
         cout << v2[i] << " ";
     cout << endl;
 
+// partial_sort_copy() 알고리즘
+    vector<int> v3; 
+
+    for(int i = 0; i < 100; ++i)
+        v3.push_back(rand() % 1000);
+
+    cout << "[v3 정렬 전] : ";
+    for(vector<int>::size_type i = 0; i < v3.size(); ++i)
+        cout << v[i] << " ";
+    cout << endl;    
+
+    vector<int> v4(20); // size: 20의 vector 생성
+
+    partial_sort_copy(v3.begin(), v3.end(), v4.begin(), v4.end());
+    cout << "[v4 less]: ";
+    for(vector<int>::size_type i = 0; i < v4.size(); ++i)
+        cout << v4[i] << " ";
+    cout << endl;
+
+    partial_sort_copy(v3.begin(), v3.end(), v4.begin(), v4.end(), greater<int>());
+    cout << "[v4 greater] : ";
+    for(vector<int>::size_type i = 0; i < v4.size(); ++i)
+        cout << v4[i] << " ";
+    cout << endl;
     
-
-
-
     return 0;
 }
