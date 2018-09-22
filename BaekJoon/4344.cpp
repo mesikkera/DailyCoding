@@ -17,76 +17,45 @@ using namespace std;
 
 int main()
 {
-    int c = 0;
-    int numbers = 0;
+    int TestCase = 0;
+    int StudentNumbers = 0;
     int score = 0;
     double average = 0.0;
-    double result[1000] = {};
-    
-    cout << fixed;
-    cout << setprecision(3);
     
     // 테스트 케이스 입력
-    cin >> c;
+    cin >> TestCase;
 
-    for(int i = 0; i < c; i++) {
-        cin >> numbers;
-        int sum = 0;
-        int* scores = new int[numbers];
+    // 각 테스트 케이스별 학생 수와 점수를 입력받아
+    // 평균을 구하고, 평균을 넘는 학생 수의 %를 구하고 출력한다.
+    for(int i = 0; i < TestCase; i++) {
+        cin >> StudentNumbers;
+        int TotalScoreSum = 0;            // 학생 점수의 총합
         
-        for (int j = 0; j < numbers; j++) {
-            cin >> scores[i];
-            sum += scores[i];
+        // 동적 할당을 통한 배열 생성 (학생 점수 입력)
+        int* Scores = new int[StudentNumbers];
+        
+        // 학생 점수 총합
+        for (int j = 0; j < StudentNumbers; j++) {
+            cin >> Scores[j];
+            TotalScoreSum += Scores[j];
         }
-
-        average = (double)sum / (double)numbers;
-
-        int count = 0; 
-        for (int z = 0; z < numbers; z++) {
-            if( scores[z] > average)
-                count++;
-        }    
-        int over_average = 0;
-        over_average = ( count / numbers ) * 100;
         
-        result[i] = over_average;        
+        // 평균 점수
+        average = (double)TotalScoreSum / (double)StudentNumbers;
+        
+        // 평균을 넘는 학생 수 
+        int OverAverageCount = 0; 
+        for (int z = 0; z < StudentNumbers; z++) {
+            if( Scores[z] > average)
+                OverAverageCount+=1;
+        }    
+        
+        // 평균을 넘는 학생의 퍼센트
+        double OverAveragePercentage = 0.0;
+        OverAveragePercentage = ( (double)OverAverageCount / (double)StudentNumbers ) * 100;
+        
+        cout << fixed;
+        cout << setprecision(3);
+        cout << OverAveragePercentage << "\%" << endl;        
     }
 }
-
-#include 
-
-using namespace std;
-
-int main(void)
-{
-	int C,C1;
-	
-	int m[100][1000];
-	float aver[1000];
-	float total[1000] = { 0, };
-	float cnt[1000];
-	cin >> C;
-	cout << fixed;
-	cout.precision(3);
-
-	for (int i = 0; i < C; ++i) {
-		float count = 0.0;
-		cin >> C1;
-		for (int j = 0; j < C1; ++j) {
-			cin >> m[i][j];
-			total[i] += m[i][j];
-		}
-		aver[i] = total[i] / (float)C1;
-		for (int j = 0; j < C1; ++j)
-			if (m[i][j] > aver[i])
-				count++;
-		cnt[i] = count/C1*100;
-	}
-
-	for (int i = 0; i < C; ++i)
-		cout << cnt[i] << "%" << endl;
-
-
-	return 0;
-}
-
