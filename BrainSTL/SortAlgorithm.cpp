@@ -60,5 +60,27 @@ int main()
         cout << v1[i] << " ";
     cout << endl;
 
+// partial_sort() 알고리즘
+    vector<int> v2;
+
+    for(int i = 0; i < 100; ++i)
+        v2.push_back(rand() % 1000);
+    
+    partial_sort(v.begin(), v.begin() + 20, v.end());
+
+    cout << "v2[상위 정렬 20개] : ";
+    for(vector<int>::size_type i = 0; i < 20; ++i)
+        cout << v2[i] << " ";
+    cout << endl;
+
+    cout << "v2[하위 정렬 20개] : "; 
+    for(vector<int>::size_type i = 20; i < 100; ++i)
+        cout << v2[i] << " ";
+    cout << endl;
+
+    
+
+
+
     return 0;
 }
