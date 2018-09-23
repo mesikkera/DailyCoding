@@ -52,9 +52,7 @@ int main()
     cout << "v[힙 정렬] : ";
     for(vector<int>::size_type i = 0; i < v.size(); ++i)
         cout << v[i] << " ";
-    cout << endl;    
-
-
+    cout << endl;
 
     return 0;
 }
