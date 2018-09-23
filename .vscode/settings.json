@@ -16,6 +16,7 @@
         "regex": "cpp",
         "set": "cpp",
         "stack": "cpp",
-        "algorithm": "cpp"
+        "algorithm": "cpp",
+        "ostream": "cpp"
     }
 }
