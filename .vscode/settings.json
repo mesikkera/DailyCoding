@@ -17,6 +17,18 @@
         "set": "cpp",
         "stack": "cpp",
         "algorithm": "cpp",
-        "ostream": "cpp"
+        "ostream": "cpp",
+        "__config": "cpp",
+        "__nullptr": "cpp",
+        "cstddef": "cpp",
+        "exception": "cpp",
+        "new": "cpp",
+        "optional": "cpp",
+        "stdexcept": "cpp",
+        "type_traits": "cpp",
+        "typeinfo": "cpp",
+        "variant": "cpp",
+        "cfenv": "cpp",
+        "iostream": "cpp"
     }
 }
