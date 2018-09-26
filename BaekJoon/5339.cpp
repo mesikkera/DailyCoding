@@ -1,16 +1,16 @@
 #include <iostream>
-
+using namespace std;
 int main()
 {
-	printf("     /~\\\n");
-	printf("    ( oo|\n");
-	printf("    _\\=/_\n");
-	printf("   /  _  \\\n");
-	printf("  //|/.\\|\\\\ \n");
-	printf(" ||  \\ /  ||\n");
-	printf("============\n");
-	printf("|          |\n");
-	printf("|          |\n");
-	printf("|          |\n");
+	cout <<"     /~\\\n";
+	cout <<"    ( oo|\n";
+	cout <<"    _\\=/_\n";
+	cout <<"   /  _  \\\n";
+	cout <<"  //|/.\\|\\\\ \n";
+	cout <<" ||  \\ /  ||\n";
+	cout <<"============\n";
+	cout <<"|          |\n";
+	cout <<"|          |\n";
+	cout <<"|          |\n";
     return 0;
 }
