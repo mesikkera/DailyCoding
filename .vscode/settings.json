@@ -29,6 +29,8 @@
         "typeinfo": "cpp",
         "variant": "cpp",
         "cfenv": "cpp",
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "__bit_reference": "cpp",
+        "iterator": "cpp"
     }
 }
