@@ -22,5 +22,20 @@ int main()
     if(st.empty())              // 스택이 비었는지 확인
         cout << "There is no data in stack." << endl;
 
+// Stack Container
+    stack<int> st1;
+
+    // push()로 원소를 추가하고,
+    // top()으로 가장 늦게 저장된 원소를 참조하고,
+    // pop()으로 원소를 제거한다.
+    st1.push(10);
+    st1.push(20);
+    st1.push(30);
+
+    while(!st1.empty())
+    {
+        cout << st1.top() << endl;
+        st1.pop();
+    }
     return 0;
 }
