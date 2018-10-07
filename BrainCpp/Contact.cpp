@@ -112,6 +112,34 @@ void runOwnerMenu()
     } while (menuNum != 3);
 }
 
+// 연락처 메뉴 실행
+void runContactMenu()
+{
+    int menuNum;
+
+    do {
+        cout << "1. 연락처 추가 입력" << endl;
+        cout << "2. 연락처 목록 조회" << endl;
+        cout << "3. 이전 화면" << endl;
+        cin >> menuNum;
+
+        switch(menuNum)
+        {
+        case 1:
+            addContact();
+            break;
+        case 2:
+            outputContactList();
+            break;
+        case 3:
+            cout << "이전 화면으로 돌아갑니다." << endl;
+            break;
+        default:
+            cout << "잘못 입력했습니다. 다시 해주세요" << endl;
+        }
+    } while(menuNum != 3);
+}
+
 // 조작 메뉴 기능
 void runMainMenu()
 {
