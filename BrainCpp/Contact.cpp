@@ -83,3 +83,31 @@ void outputContactList()
         cout << i << " : " << contacts[i].name << endl;
     }
 }
+
+// 조작 메뉴 기능
+void runMainMenu()
+{
+    int menuNum;
+
+    do {
+        cout << "1. 소유자 관리 기능" << endl;
+        cout << "2. 연락처 관리 기능" << endl;
+        cout << "3. 프로그램 종료" << endl;
+        cin >> menuNum;
+
+        switch(menuNum)
+        {
+        case 1:
+            runOwnerMenu();
+            break;
+        case 2:
+            runContactMenu();
+            break;
+        case 3:
+            cout << "프로그램을 종료합니다." << endl;
+            break;
+        default:
+            cout << "잘못 입력했습니다. 다시 해주세요." << endl;
+        }
+    } while(menuNum != 3)
+}
