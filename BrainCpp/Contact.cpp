@@ -74,3 +74,12 @@ void addContact()
     contactNumber++;
     cout << "입력이 완료 되었습니다." << endl;
 }
+
+// 연락처 목록 조회
+void outputContactList()
+{
+    for(int i = 0; i < contactNumber; i++)
+    {
+        cout << i << " : " << contacts[i].name << endl;
+    }
+}
