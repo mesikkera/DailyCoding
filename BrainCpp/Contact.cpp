@@ -167,3 +167,9 @@ void runMainMenu()
         }
     } while(menuNum != 3);
 }
+
+int main()
+{
+    runMainMenu();
+    return 0;
+}
