@@ -84,6 +84,34 @@ void outputContactList()
     }
 }
 
+// 소유자 메뉴 실행
+void runOwnerMenu()
+{
+    int menuNum;
+
+    do {
+        cout << "1. 소유자 정보 입력" << endl;
+        cout << "2. 소유자 정보 조회" << endl;
+        cout << "3. 이전 화면" << endl;
+        cin >> menuNum;
+
+        switch(menuNum)
+        {
+        case 1:
+            inputOwnerInfo();
+            break;
+        case 2:
+            outputOwnerInfo();
+            break;
+        case 3:
+            cout << "이전 화면으로 돌아 갑니다." << endl;
+            break;
+        default:
+            cout << "잘못 입력했습니다. 다시 해주세요." << endl;
+        }
+    } while (menuNum != 3);
+}
+
 // 조작 메뉴 기능
 void runMainMenu()
 {
@@ -109,5 +137,5 @@ void runMainMenu()
         default:
             cout << "잘못 입력했습니다. 다시 해주세요." << endl;
         }
-    } while(menuNum != 3)
+    } while(menuNum != 3);
 }
