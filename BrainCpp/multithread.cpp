@@ -1,20 +1,21 @@
-#include <string>
-#include <iostream>
-#include <thread> //쓰레드를 위한 헤더파일
-
+#include<iostream>
+#include<thread>
 using namespace std;
-
-// 쓰레드가 실행해야 할 함수를 설정해주세요
-void task1(string msg)
-{
-    cout << "task1 says: " << msg;
+ 
+void proc(int no);
+ 
+int main(){
+    thread thread1(proc, 1);
+    thread thread2(proc, 2);
+ 
+    thread1.join();
+    thread2.join();
+ 
+    return 0;
 }
-
-int main()
-{
-    // 새 쓰레드를 만들어 실행합니다. 현재 쓰레드가 block되지 않습니다.
-    thread t1(task1, "Hello");
-
-    // main이가 새로 만든 쓰레드가 일을 마칠 때까지 기다리게 만듭니다.
-    t1.join();
+ 
+void proc(int no){
+    for(int i = 0; i < 10; i++){
+        cout << "Thread # : " << no << " / Count : " << i << endl;
+    }
 }
