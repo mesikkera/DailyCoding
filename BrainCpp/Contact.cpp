@@ -147,6 +147,16 @@ int removeContactByIndex(int index)
     return 1;
 }
 
+// 개별 연락처 출력
+void printContactInfoByIndex(int index)
+{
+    cout << index << "의 index를 가진 연락처 조회" << endl;
+    cout << "연락처 이름: " << contacts[index].name << endl;
+    cout << "연락처 전화번호: " << contacts[index].phoneNumber << endl;
+    cout << "연락처 이메일: " << contacts[index].email << endl;
+    cout << "연락처 주소: " << contacts[index].address << endl;
+}
+
 // 소유자 메뉴 실행
 void runOwnerMenu()
 {
