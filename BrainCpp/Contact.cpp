@@ -55,6 +55,51 @@ void outputOwnerInfo()
     cout << "소유자 트위터 계정 : " << owner.twitterAccount << endl;
 }
 
+// 소유자 정보 관리 기능
+void editOwnerInfo()
+{
+    int inputNum;
+    
+    cout << "1. 소유자 이름 수정" << endl;
+    cout << "2. 소유자 전화번호 수정" << endl;
+    cout << "3. 소유자 이메일 수정" << endl;
+    cout << "4. 소유자 주소 수정" << endl;
+    cout << "5. 소유자 트위터 계정 수정" << endl;
+    cout << "6. 수정없이 이전 메뉴로" << endl;
+    cin >> inputNum;
+
+    switch(inputNum)
+    {
+    case 1:
+        cin >> owner.name;
+        cout << "소유자의 이름이 수정되었습니다." << endl;
+        break;
+
+    case 2:
+        cin >> owner.phoneNumber;
+        cout << "소유자의 전화번호가 수정되었습니다." << endl;
+        break;
+
+    case 3:
+        cin >> owner.email;
+        cout << "소유자의 이메일이 수정되었습니다." << endl;
+        break;
+
+    case 4: 
+        cin >> owner.address;
+        cout << "소유자의 주소가 수정되었습니다." << endl;
+        break;
+
+    case 5:
+        cin >> owner.twitterAccount;
+        cout << "소유자의 트위터 계정이 수정되었습니다." << endl;
+        break;
+
+    default:
+        cout << "아무것도 수정되지 않았습니다." << endl;
+    }
+}
+    
 // 연락처 정보 관리 기능
 // 연락처 정보 입력
 void addContact()
