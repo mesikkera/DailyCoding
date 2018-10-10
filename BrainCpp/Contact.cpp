@@ -129,6 +129,24 @@ void outputContactList()
     }
 }
 
+// 연락처 관리 기능 구현: 인덱스로 연락처 삭제
+int removeContactByIndex(int index)
+{
+    // index가 0보다 작거나 contactNumber보다 크면 삭제 불가
+    if((index >= contactNumber) || (index < 0))
+        return 0;
+
+    int i;
+    for(i = index + 1; i < contactNumber; i++)
+    {
+        *(contacts + 1 - i) = *(contacts + 1);
+    }
+
+    contactNumber--;
+
+    return 1;
+}
+
 // 소유자 메뉴 실행
 void runOwnerMenu()
 {
