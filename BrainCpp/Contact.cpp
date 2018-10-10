@@ -165,7 +165,8 @@ void runOwnerMenu()
     do {
         cout << "1. 소유자 정보 입력" << endl;
         cout << "2. 소유자 정보 조회" << endl;
-        cout << "3. 이전 화면" << endl;
+        cout << "3. 소유자 정보 수정" << endl;
+        cout << "4. 이전 화면" << endl;
         cin >> menuNum;
 
         switch(menuNum)
@@ -177,6 +178,9 @@ void runOwnerMenu()
             outputOwnerInfo();
             break;
         case 3:
+            editOwnerInfo();
+            break;
+        case 4:
             cout << "이전 화면으로 돌아 갑니다." << endl;
             break;
         default:
@@ -189,11 +193,15 @@ void runOwnerMenu()
 void runContactMenu()
 {
     int menuNum;
+    int index;
+    int result;
 
     do {
         cout << "1. 연락처 추가 입력" << endl;
         cout << "2. 연락처 목록 조회" << endl;
-        cout << "3. 이전 화면" << endl;
+        cout << "3. 연락처 삭제" << endl;
+        cout << "4. 연락처 상세 조회" << endl;
+        cout << "5. 이전 화면" << endl;
         cin >> menuNum;
 
         switch(menuNum)
@@ -205,6 +213,20 @@ void runContactMenu()
             outputContactList();
             break;
         case 3:
+            cout << "삭제할 연락처 index";
+            cin >> index;
+            result = removeContactByIndex(index);
+            if(result == 1)
+                cout << "정상적으로 삭제되었습니다." << endl;
+            else
+                cout << "정상적으로 삭제되지 않았습니다." << endl;
+            break;
+        case 4:
+            cout << "조회할 연락처 index : " ;
+            cin >> index;
+            printContactInfoByIndex(index);
+            break;
+        case 5:
             cout << "이전 화면으로 돌아갑니다." << endl;
             break;
         default:
