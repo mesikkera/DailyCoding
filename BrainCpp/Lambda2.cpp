@@ -19,7 +19,10 @@ int main(void)
 
         // 'count'는 const 개체를 통해 액세스 되고 있으므로 수정할 수 없습니다.
         // [=](int steakWeight){ cout << "eatLambda()::철수는 " << chulsoo.count++ << "번째 " << steakWeight << "g짜리 스테이크를 먹는다." << endl;} (1000);
-
+        
+        // mutable 속성을 사용하면 값으로 전달받아서 캡처하는 [=]일 때도 람다 함수 안에서 외부 변수를 수정할 수 있다.
+        [=](int steakWeight) mutable { cout << "eatLambda()::철수는 " << chulsoo.count++ << "번째 " << steakWeight << "g짜리 스테이크를 먹는다." << endl;} (1000);
+        
         // 람다함수 내부에서 외부 변수를 수정할 수 있게 하려면 [&] 캡처를 사용해야 한다.
         [&](int steakWeight){ cout << "eatLambda()::철수는 " << chulsoo.count++ << "번 째" << steakWeight << "g짜리 스테이크를 먹는다." << endl;} (1000);
     }
