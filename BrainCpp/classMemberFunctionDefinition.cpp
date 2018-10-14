@@ -49,13 +49,13 @@ int main(void)
 {
     Chulsoo chulsoo;
     Younghee younghee;
-    chulsoo.constructor("철수", "남성", "작가", "diligent", 32, true);
-    younghee.constructor("영희", "여성", "주부", "impatient", 32, true);
+    chulsoo.constructor((char*)"철수", (char*)"남성", (char*)"작가", (char*)"diligent", 32, true);
+    younghee.constructor((char*)"영희", (char*)"여성", (char*)"주부", (char*)"impatient", 32, true);
 
-    chulsoo.drive("레스토랑");
-    chulsoo.eat("스테이크");
-    younghee.eat("스테이크");
-    chulsoo.drive("집");
+    chulsoo.drive((char*)"레스토랑");
+    chulsoo.eat((char*)"스테이크");
+    younghee.eat((char*)"스테이크");
+    chulsoo.drive((char*)"집");
     younghee.sleep();
     chulsoo.write();
     chulsoo.read();
