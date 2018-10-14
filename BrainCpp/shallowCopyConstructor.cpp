@@ -18,13 +18,11 @@ public:
     {
         cout << "Chulsoo::Chulsoo() 생성자 완료" << endl;
     }
-    /*
     Chulsoo(const Chulsoo& source)
     {
         this->name = new char[strlen(source.name) + 1];
-        strcpy_s(this->name, strlen(source.name) + 1, source.name);
+        strcpy(this->name, source.name);
     }
-    */
    void introduce();
    ~Chulsoo()
    {
