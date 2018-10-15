@@ -56,8 +56,34 @@ public:
     // 연락처 조회
     void getContact(char* outName, char* outPhoneNumber, char* outEmail, char* outAddress);
     // 연락처 수정
-    void editContact(char* inName, char* inPhoneNuber=NULL, char* inEmail=NULL, char* inAddress=NULL);s
+    void editContact(char* inName, char* inPhoneNuber=NULL, char* inEmail=NULL, char* inAddress=NULL);
  };
+
+
+// 연락처 전체를 관리하는 클래스: Contact
+class Contact
+{
+private:
+    PersonalContact contactInfo[100];       // 100명의 연락처 저장 가능한 배열
+    int numberOfContact;                    // 현재 저장된 연락처 개수
+
+public:
+    // 생성자 - 멤버 초기화를 위해 생성
+    Contact();
+    // 연락처 정보 입력
+    void inputContact(char* name, char* phoneNumber=NULL, char* email=NULL, char* address=NULL);
+    // 연락처 전체 목록 조회
+    void printContactList();
+    // 연락처 상세 조회 - 함수 오버로딩
+    void printContat(int index);
+    void printContact(char* inName);
+    // 연락처 수정
+    void editContactByIndex(int index, char* inName, char* phoneNumber=NULL, char* email=NULL, char* address=NULL);
+    // 연락처 복사
+    void copyContact(int index);
+    // 연락처 제거
+    void removeContactByIndex(int index);
+};
 
 // 전역 변수
 OwnerInfo owner;
