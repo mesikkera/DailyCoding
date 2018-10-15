@@ -37,6 +37,28 @@ public:
      char address[50];          // 주소
  };
 
+ // 클래스: 연락처 정보
+ class PersonalContact
+ {
+private:
+    char name[20];              // 이름
+    char phoneNumber[13];       // 전화번호
+    char email[30];             // 이메일
+    char address[50];           // 주소
+
+public:
+    // 기본 생성자
+    PersonalContact() {}
+    // 복사 생성자
+    PersonalContact(PersonalContact &personal);
+    // 연락처 입력
+    void inputContact(char* inName, char* inPhoneNUmber=NULL, char* inEmail=NULL, char* inAddress=NULL);
+    // 연락처 조회
+    void getContact(char* outName, char* outPhoneNumber, char* outEmail, char* outAddress);
+    // 연락처 수정
+    void editContact(char* inName, char* inPhoneNuber=NULL, char* inEmail=NULL, char* inAddress=NULL);s
+ };
+
 // 전역 변수
 OwnerInfo owner;
 ContactInfo contacts[100];
