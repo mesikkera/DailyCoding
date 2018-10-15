@@ -91,7 +91,34 @@ private:
     char topMenu[3][32];                // 최상위 메뉴 정보
     char ownerMenu[4][32];              // 소유자 메뉴 정보
     char contactMenu[7][32];            // 연락처 메뉴 정보
-}
+    int menuType;                       // 0: 최상위 메뉴, 1: 소유자 메뉴, 2: 연락처 메뉴
+
+public:
+    Menu();                             // 생성자
+    void showMenu();                    // 현재 메뉴 선택 상태를 통해 메뉴 목록 출력
+    void setMenuSelection(int selection);
+    void execute();                     // 선택한 메뉴 실행
+};
+
+// Menu 클래스를 이용하여 조작을 수행하는 클래스: Controller
+class Controller 
+{
+private:
+    Contact contact;
+    Menu menu;
+    Owner owner;
+
+    void inputOwnerInfo();              // 소유자 정보 입력
+    void printOwnerInfo();              // 소유자 정보 출력
+    void editOwnerInfo();               // 소유자 정보 출력
+
+    void addContact();                  // 연락처 정보 입력
+    void printContactList();            // 연락처 전체 목록 조회
+    void printContactDetail();          // 연락처 상세 조회
+    void editContact();                 // 연락처 수정
+    void copyContact();                 // 연락처 복사
+    void removeContact();               // 연락처 삭제
+};
 
 // 전역 변수
 OwnerInfo owner;
