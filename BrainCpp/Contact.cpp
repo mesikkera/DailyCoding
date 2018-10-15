@@ -85,6 +85,14 @@ public:
     void removeContactByIndex(int index);
 };
 
+class Menu 
+{
+private:
+    char topMenu[3][32];                // 최상위 메뉴 정보
+    char ownerMenu[4][32];              // 소유자 메뉴 정보
+    char contactMenu[7][32];            // 연락처 메뉴 정보
+}
+
 // 전역 변수
 OwnerInfo owner;
 ContactInfo contacts[100];
