@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		FD7A555D2174BA00003B73CD /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FD7A555C2174BA00003B73CD /* main.cpp */; };
 		FD7A55652174BD90003B73CD /* Owner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FD7A55642174BD90003B73CD /* Owner.cpp */; };
+		FDBDB0402175999B0054851F /* PersonalContact.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FDBDB03F2175999B0054851F /* PersonalContact.cpp */; };
+		FDBDB0432175B1AD0054851F /* Contact.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FDBDB0422175B1AD0054851F /* Contact.cpp */; };
+		FDBDB0462175BA4F0054851F /* Menu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FDBDB0452175BA4F0054851F /* Menu.cpp */; };
+		FDBDB04B2175D4C40054851F /* Controller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FDBDB04A2175D4C40054851F /* Controller.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,6 +32,14 @@
 		FD7A555C2174BA00003B73CD /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		FD7A55632174BA7E003B73CD /* Owner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Owner.h; sourceTree = "<group>"; };
 		FD7A55642174BD90003B73CD /* Owner.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Owner.cpp; sourceTree = "<group>"; };
+		FDBDB03E217597BB0054851F /* PersonalContact.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PersonalContact.h; sourceTree = "<group>"; };
+		FDBDB03F2175999B0054851F /* PersonalContact.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PersonalContact.cpp; sourceTree = "<group>"; };
+		FDBDB0412175AC8D0054851F /* Contact.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Contact.h; sourceTree = "<group>"; };
+		FDBDB0422175B1AD0054851F /* Contact.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Contact.cpp; sourceTree = "<group>"; };
+		FDBDB0442175B67C0054851F /* Menu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Menu.h; sourceTree = "<group>"; };
+		FDBDB0452175BA4F0054851F /* Menu.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Menu.cpp; sourceTree = "<group>"; };
+		FDBDB0472175D0A60054851F /* Controller.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Controller.h; sourceTree = "<group>"; };
+		FDBDB04A2175D4C40054851F /* Controller.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Controller.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +75,14 @@
 				FD7A555C2174BA00003B73CD /* main.cpp */,
 				FD7A55632174BA7E003B73CD /* Owner.h */,
 				FD7A55642174BD90003B73CD /* Owner.cpp */,
+				FDBDB03E217597BB0054851F /* PersonalContact.h */,
+				FDBDB03F2175999B0054851F /* PersonalContact.cpp */,
+				FDBDB0412175AC8D0054851F /* Contact.h */,
+				FDBDB0422175B1AD0054851F /* Contact.cpp */,
+				FDBDB0442175B67C0054851F /* Menu.h */,
+				FDBDB0452175BA4F0054851F /* Menu.cpp */,
+				FDBDB0472175D0A60054851F /* Controller.h */,
+				FDBDB04A2175D4C40054851F /* Controller.cpp */,
 			);
 			path = Contact;
 			sourceTree = "<group>";
@@ -123,8 +143,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FDBDB0432175B1AD0054851F /* Contact.cpp in Sources */,
+				FDBDB04B2175D4C40054851F /* Controller.cpp in Sources */,
 				FD7A555D2174BA00003B73CD /* main.cpp in Sources */,
 				FD7A55652174BD90003B73CD /* Owner.cpp in Sources */,
+				FDBDB0402175999B0054851F /* PersonalContact.cpp in Sources */,
+				FDBDB0462175BA4F0054851F /* Menu.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
