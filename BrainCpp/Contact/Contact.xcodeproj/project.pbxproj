@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FD12C0C0217D9D64000F72D2 /* freelec-twitcurl_0.02 in Frameworks */ = {isa = PBXBuildFile; fileRef = FD12C0BF217D9D64000F72D2 /* freelec-twitcurl_0.02 */; };
+		FD12C0C2217D9DA6000F72D2 /* twitterTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FD12C0C1217D9DA6000F72D2 /* twitterTest.cpp */; };
 		FD7A555D2174BA00003B73CD /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FD7A555C2174BA00003B73CD /* main.cpp */; };
 		FD7A55652174BD90003B73CD /* Owner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FD7A55642174BD90003B73CD /* Owner.cpp */; };
 		FDBDB0402175999B0054851F /* PersonalContact.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FDBDB03F2175999B0054851F /* PersonalContact.cpp */; };
@@ -28,6 +30,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		FD12C0BF217D9D64000F72D2 /* freelec-twitcurl_0.02 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "freelec-twitcurl_0.02"; path = "Contact/freelec-twitcurl_0.02"; sourceTree = "<group>"; };
+		FD12C0C1217D9DA6000F72D2 /* twitterTest.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = twitterTest.cpp; sourceTree = "<group>"; };
 		FD7A55592174BA00003B73CD /* Contact */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Contact; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD7A555C2174BA00003B73CD /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		FD7A55632174BA7E003B73CD /* Owner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Owner.h; sourceTree = "<group>"; };
@@ -47,17 +51,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD12C0C0217D9D64000F72D2 /* freelec-twitcurl_0.02 in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FD12C0BC217D9D15000F72D2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FD12C0BF217D9D64000F72D2 /* freelec-twitcurl_0.02 */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		FD7A55502174BA00003B73CD = {
 			isa = PBXGroup;
 			children = (
 				FD7A555B2174BA00003B73CD /* Contact */,
 				FD7A555A2174BA00003B73CD /* Products */,
+				FD12C0BC217D9D15000F72D2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -83,6 +97,7 @@
 				FDBDB0452175BA4F0054851F /* Menu.cpp */,
 				FDBDB0472175D0A60054851F /* Controller.h */,
 				FDBDB04A2175D4C40054851F /* Controller.cpp */,
+				FD12C0C1217D9DA6000F72D2 /* twitterTest.cpp */,
 			);
 			path = Contact;
 			sourceTree = "<group>";
@@ -145,6 +160,7 @@
 			files = (
 				FDBDB0432175B1AD0054851F /* Contact.cpp in Sources */,
 				FDBDB04B2175D4C40054851F /* Controller.cpp in Sources */,
+				FD12C0C2217D9DA6000F72D2 /* twitterTest.cpp in Sources */,
 				FD7A555D2174BA00003B73CD /* main.cpp in Sources */,
 				FD7A55652174BD90003B73CD /* Owner.cpp in Sources */,
 				FDBDB0402175999B0054851F /* PersonalContact.cpp in Sources */,
