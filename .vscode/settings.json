@@ -32,6 +32,7 @@
         "iostream": "cpp",
         "__bit_reference": "cpp",
         "iterator": "cpp",
-        "functional": "cpp"
+        "functional": "cpp",
+        "chrono": "cpp"
     }
 }
