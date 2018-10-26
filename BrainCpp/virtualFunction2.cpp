@@ -14,6 +14,7 @@ public:
         this->age = age;
         cout << "Person::Person(name, age) 생성자 호출" << endl;
     }
+    
     virtual ~Person()
     {
         delete[] name;
