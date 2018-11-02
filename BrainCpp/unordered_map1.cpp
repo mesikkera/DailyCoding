@@ -19,5 +19,11 @@ int main()
 	}
 	cout << endl;
 
+	auto bc = um.bucket("B");
+	for(auto i = um.begin(bc); i != um.end(bc); ++i) { 
+		cout << i -> first << ": " << i -> second;
+	}
+	cout << endl;
+
 	return 0;
 }
