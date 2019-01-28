@@ -14,6 +14,16 @@ void error(const char *msg)
 
 int main(int argc, char *argv[])
 {
-    int sockfd, newsockfd, portno;
-    sockelen_t clien;
+    int sockfd, newsockfd, portno, clilen;
+    char buffer[256];
+    struct sockaddr_in serv_addr, cli_addr;
+    int n;
+    if(argc < 2) {
+        fprintf(stderr, "ERROR, no port provided\n");
+        exit(1);
+    }
+    sockfd = socket(AF_INET, SOCK_STREAM, 0);
+    if (sockfd < 0)
+        error("ERROR opening socket");
 }
+
