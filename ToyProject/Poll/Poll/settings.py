@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+# BASE_DIR: 프로젝트 루트 폴더, 설정 파일이나 py파일
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
