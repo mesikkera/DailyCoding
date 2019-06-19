@@ -1,6 +1,6 @@
 from selenium import webdriver
 
-browser = webdriver.Firefox()
+browser = webdriver.Chrome('/Users/mesikkera/Downloads/chromedriver')
 browser.get('http://localhost:8000')
 
-assert 'Djang' in browser.title
+assert 'Django' in browser.title
