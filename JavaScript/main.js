@@ -222,5 +222,7 @@ console.log(str.length);
 console.log(str.charAt(0));
 // 문자열: 프로퍼티, 메소드 ==> 객체
 // . : Object Access Operator
+// wrapper object
+
 
 
