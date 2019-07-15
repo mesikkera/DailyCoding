@@ -1,4 +1,5 @@
 import { rootCertificates } from "tls";
+import { userInfo } from "os";
 
 // 엘리먼트는 React앱의 가장 작은 단위
 const element = <h1>Hello, world</h1>
@@ -44,3 +45,13 @@ class Welcome extends React.Component {
 
 const element = <div />
 const element = <Welcome name="Sara" />;
+
+const element = <div tabIndex="0"></div>
+const element = <img src={user.avatarUrl}></img>;
+
+const element = {
+    <div>
+        <h1>Hello!</h1>
+        <h2>Good to see you here.</h2>
+    </div>
+};
