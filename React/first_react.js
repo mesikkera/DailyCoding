@@ -49,9 +49,36 @@ const element = <Welcome name="Sara" />;
 const element = <div tabIndex="0"></div>
 const element = <img src={user.avatarUrl}></img>;
 
+// React 엘리먼트
+// 엘리먼트는 React앱의 가장 작은 단위.
+// React 엘리먼트는 일반 객체 (Plain Object)
+// React DOM은 React 엘리먼트와 일치하도록 DOM을 업데이트
 const element = {
-    <div>
-        <h1>Hello!</h1>
-        <h2>Good to see you here.</h2>
-    </div>
+    type: 'h1',
+    props: { 
+        className: 'greeting', 
+        children: 'Hello, world!'
+    }
 };
+
+const element = <h1>Hello, world</h1>
+ReactDOM.render(element, document.getElementById('root'));
+
+// REACT 엘리먼트는 불변객체
+// 엘리먼트를 생성한 이후에는 해당 엘리먼트의 자식이나 속성을 변경할 수 없다.
+// 엘리먼트는 하나의 프레임과 같이 특정 시점의 UI를 보여준다.
+
+function tick() {
+    const element = {
+        <div>
+            <h1>Hello, world!</h1>
+            <h2>It is {new Date().toLocaleTimeString()}.</h2>
+        </div>
+    };
+    ReactDOM.render(element, document.getElementById('root'));
+}
+
+setInterval(tick, 1000);
+
+// React Dom은 해당 엘리먼트와 그 자식 엘리먼트를 이전의 엘리먼트와 비교하여
+// DOM을 원하는 상태로 만드는데 필요한 경우에만 DOM을 업데이트 한다.
