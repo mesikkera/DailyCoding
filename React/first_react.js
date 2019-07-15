@@ -82,3 +82,54 @@ setInterval(tick, 1000);
 
 // React Dom은 해당 엘리먼트와 그 자식 엘리먼트를 이전의 엘리먼트와 비교하여
 // DOM을 원하는 상태로 만드는데 필요한 경우에만 DOM을 업데이트 한다.
+
+// Components와 Props
+// 컴포넌트를 정의하는 가장 간단한 방법은 JavaScript함수를 작성하는 것.
+function Welcome(props) {
+    return <h1>Hello, {props.name}</h1>
+}
+
+class Welcome extends React.Component {
+    render() {
+        return <h1>Hello, {this.props.name}</h1>
+    }
+}
+
+// React의 관점에서 볼 때 위 두 가지 유형의 컴포넌트는 동일하다.
+const element = <div />;
+
+// React 엘리먼트는 사용자 정의 컴포넌트로도 나타낼 수 있다.
+const element = <Welcome name="Sara" />;
+
+function Welcome(props) { 
+    return <h1>Hello, {props.name}</h1>;
+}
+
+const element = <Welcome name="Sara" />;
+ReactDOM.render (
+    element,
+    document.getElementById('root')
+);
+
+// 컴포넌트의 이름은 항상 대문자로 시작한다.
+
+// 컴포넌트 합성
+// 컴포넌트는 자신의 출력에 다른 컴포넌트를 참조할 수 있다.
+function Welcome(props) {
+    return <h1>Hello, {props.name}</h1>
+}
+
+function App() {
+    return (
+        <div>
+            <Welcome name="Sara" />
+            <Welcome name="Cahal" />
+            <welcome name="Edite" />
+        </div>
+    );
+}
+
+ReactDOM.render(
+    <App />,
+    document.getElementById('root')
+)
