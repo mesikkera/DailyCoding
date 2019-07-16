@@ -133,3 +133,18 @@ ReactDOM.render(
     <App />,
     document.getElementById('root')
 )
+
+<div>
+    <h1>Counter</h1>
+    <h2 id="number">0</h2>
+    <button id="increase">+</button>
+</div>
+
+var number = 0;
+var elNumber = document.getElementById('number');
+var btnIncrease = document.getElementById('increase');
+
+btnIncrease.onclick = function() {
+    number++;
+    elNumber.innerText = number;
+}
