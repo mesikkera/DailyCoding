@@ -148,3 +148,8 @@ btnIncrease.onclick = function() {
     number++;
     elNumber.innerText = number;
 }
+
+// VirtualDOM을 사용함으로서, 데이터가 바뀌었을 때 더이상 어떻게 업데이트 할 지를 
+// 고려하는게 아니라, 그냥 일단 바뀐 데이터로 그려놓고 비교를 한 다음에, 
+// 바뀐 부분만 찾아서 바꿔준다.
+// VirtualDOM은 DOM 변화를 최소화 시켜주는 역할
