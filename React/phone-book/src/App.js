@@ -8,7 +8,9 @@ class App extends Component {
   render() {
     return (
       <div>
-        <PhoneForm />
+        <PhoneForm 
+          onCreate={this.handleCreate}
+        />
       </div>
     );
   }
