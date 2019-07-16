@@ -19,8 +19,16 @@ class PhoneForm extends Component {
                     placeholder="이름"
                     value={this.state.name}
                     onChange={this.handleChange}
+                    name="name"
                 />
-                <div>{this.state.name}</div>
+                <br></br>
+                <input 
+                    placeholder="전화번호"
+                    value={this.state.phone} 
+                    onChange={this.handleChange}
+                    name="phone"
+                />
+                <div>{this.state.name} {this.state.phone}</div>
             </form>
         );
     }
