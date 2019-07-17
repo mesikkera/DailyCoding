@@ -162,3 +162,15 @@ function BoilingVerdict(props) {
     return <p>The water would not boil.</p>
 }
 
+// Composition vs Inheritance
+// React는 강력한 합성 모델을 가지고 있으며,
+// 상속 대신 합성을 사용하여 컴포넌트간 코드 재사용
+
+function FancyBorder(props) {
+    return (
+        <div className={'FancyBorder FancyBorder-' + props.color}>
+            <props.children}
+        </div>
+    );
+}
+
