@@ -113,3 +113,27 @@ ReactDOM.render(
 // 조건이 flase라면 React는 무시.
 
 // condition ? true : false
+
+
+// 컴포넌트가 렌더링하는 것을 막기
+// 
+
+
+
+// 리스트와 Key
+// map() 함수를 이용해 numbers 배열의 값을 2배로 만든 후 map()에서 반환하는 새 배열을
+// doubled 변수에 할당하고 로그를 확인하는 코드.
+const numbers = [1, 2, 3, 4, 5];
+const doubled = numbers.map((number) => number * 2);
+console.log(doubled);
+
+const numbers = [1, 2, 3, 4, 5];
+const listItems = numbers.map((number) => <li>{number}</li>);
+ReactDOM.render (
+    <ul>{listItem}</ul>,
+    document.getElementById('root')
+);
+
+// key
+const numbers = [1, 2, 3, 4, 5];
+const listItems = numbers.map((number) => <li key={number.toString()}>{number}</li>);
