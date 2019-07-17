@@ -137,3 +137,18 @@ ReactDOM.render (
 // key
 const numbers = [1, 2, 3, 4, 5];
 const listItems = numbers.map((number) => <li key={number.toString()}>{number}</li>);
+
+// Form
+// HTML 폼 엘리먼트는 폼 엘리먼트 자체가 내부 상태를 가지기 때문에, 
+// React의 다른 DOM 엘리먼트와 조금 다르게 동작한다.
+
+// React에서 <textarea>는 value 어트리뷰트를 대신 사용한다. 이렇게하면 <textarea>를 사용하는 
+// 폼은 한 줄 입력을 사용하는 폼과 비슷하게 작성 가능하다.
+class EssayForm extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            value: 'Please write an essay about your favorite DOM element.'
+        }
+    }
+}
