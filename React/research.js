@@ -52,5 +52,64 @@ ReactDOM.render(
 );
 
 // 이벤트 핸들러에 인자 전달하기
-<button onClick={(e) => this.deleteRow(id, e)}>Delete Row</button>
-<button onClick={this.deleteRow.bind(this, id)}>Delete Row</button>
+
+
+// 조건부 렌더링
+// React에서 조건부 렌더링은 JavaScript에서의 조건 처리와 같이 동작한다.
+function Greeting(props) {
+    const isLoggedIn = props.isLoggedIn;
+    if(isLoggedIn) {
+        return <UserGreeting />;
+    }
+    return <GuestGreeting />;
+}
+
+// 엘리먼트 변수
+// 엘리먼트를 저장하기 위해 변수를 사용할 수 있다.
+// 출력의 다른 부분은 변하지 않은 채로 컴포넌트의 일부를 조건부로 렌더링할 수 있다.
+
+import react, { Component } from 'React';
+
+class LoginControl extends React.Component {
+    constructor(props) {
+        super(props);
+        this.handleLoginClick = this.handleLoginClick.bind(this);
+        this.handleLogoutClick = this.handleLogoutClick.bind(this);
+    }
+
+    handleLoginClick() {
+        this.setState({isLoggedIn: true});
+    }
+
+    handleLogoutClick() {
+        this.setState({isLoggedIn: false});
+    }
+
+    render() {
+        const isLoggedIn = this.state.isLoggedIn;
+        let button;
+
+        if (isLoggedIn) {
+            button = <LogoutButton onClick={this.handleogoutClick} />;
+        } else {
+            button = <LoginButton onclick={this.handleLoginClick} />;
+        }
+
+        return (
+            <div>
+                <Greeting isLoggedIn={isLoggedIn} />
+                {button}
+            </div>
+        );
+    }
+}
+
+ReactDOM.render(
+    <LoginControl />,
+    document.getElementById('root')
+);
+
+// && 뒤의 엘리먼트는 조건이 true일 때 출력.
+// 조건이 flase라면 React는 무시.
+
+// condition ? true : false
