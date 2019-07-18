@@ -169,8 +169,18 @@ function BoilingVerdict(props) {
 function FancyBorder(props) {
     return (
         <div className={'FancyBorder FancyBorder-' + props.color}>
-            <props.children}
+            {props.children}
         </div>
     );
 }
+
+
+// 단일 책임 원칙: 하나의 컴포넌트는 한 가지 일을 하는게 이상적
+// 하나의 컴포넌트가 커지게 된다면 이는 보다 작은 하위 컴포넌트로 분리되어야 한다.
+
+// state는 오직 상호작용을 위해, 즉 시간이 지남에 따라 데이터가 바뀌는 것에 사용
+// React는 항상 컴포넌트 계층구조를 따라 아래로 내려가는 단방향 데이트 흐름을 따른다.
+
+// React는 전통적인 양방향 데이터 바인딩(two-way data binding)과 비교하면 더 많은 타이핑을 필요로 하지만
+// 데이트 흐름을 명시적으로 보이게 만들어서 프로그램이 어떻게 동작하는지 파악할 수 있게 도와준다.
 
