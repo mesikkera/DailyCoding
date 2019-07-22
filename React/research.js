@@ -184,3 +184,44 @@ function FancyBorder(props) {
 // React는 전통적인 양방향 데이터 바인딩(two-way data binding)과 비교하면 더 많은 타이핑을 필요로 하지만
 // 데이트 흐름을 명시적으로 보이게 만들어서 프로그램이 어떻게 동작하는지 파악할 수 있게 도와준다.
 
+// 애플리케이션의 모든 상태는 하나의 스토어 안에 하나의 객체 트리 구조로 저장된다.
+console.log(store.getState());
+
+{
+    visibilityFilter: 'SHOW_ALL';
+    todos: [{
+        text: 'Consider using Redux',
+        completed: true,
+    }, {
+        text: 'keep all state in a single tree',
+        completed: false
+    }]
+}
+
+// 상태는 읽기 전용이다.
+// 상태를 변화시키는 유일한 방법은 무슨 일이 벌어지는 지를 묘사하는 액션 객체를 전달하는 방법뿐.
+
+// action type
+export const COMPLETE_TODO = 'COMPLETE_TODO'
+
+// action creators(액션 메서드)
+export function complete({complete, id}) {
+    return {type: COMPLETE_TODO, complete, id};
+}
+
+// 비동기 통신이 필요할 때는 redux-thunk라이브러리나 react-sage 라이브러리를 사용한다.
+
+// Component 폴더
+// component 폴더는 React 컴포넌트로 구성된 폴더이다.
+// 컴포넌트는 컨테이너 컴포넌트와 프레젠테이션 컴포넌트를 구분해서 개발한다.
+// 컨테이너 컴포넌트 (Container component): 여러 개의 프레젠테이션 컴포넌트로 구성
+//                                          데이터나 공통으로 관리해야 하는 객체, 컴포넌트간의 인터렉션 등을 
+
+class TODOList extends Component {
+    render() {
+        const { todos, onClick } = this.props;
+        return (
+
+        );
+    }
+}
