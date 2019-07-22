@@ -217,11 +217,47 @@ export function complete({complete, id}) {
 // 컨테이너 컴포넌트 (Container component): 여러 개의 프레젠테이션 컴포넌트로 구성
 //                                          데이터나 공통으로 관리해야 하는 객체, 컴포넌트간의 인터렉션 등을 
 
-class TODOList extends Component {
-    render() {
-        const { todos, onClick } = this.props;
-        return (
-
-        );
+function visibilityFilter(state = 'SHOW_ALL', action) {
+    if (action.type === 'SET_VISIBILITY_FILTER') {
+        return action.filter 
+    } else {
+        return state
     }
 }
+
+// Redux 는 등가 교환을 가져온다.
+// - 앱의 상태를 평범한 객체와 배열로 만든다.
+// - 시스템 내의 변경사항을 평범한 객체로 만든다.
+// - 변경을 다루는 로직을 순수 함수로 만든다.
+
+// Redux의 아이디어를 Redux 없이도 적용할 수 있다.
+ class Counter extends Component {
+    state = { value: 0 };
+
+    increment = () => {
+        this.setState(prevState => ({
+            value: prevState.value + 1
+        }));
+    };
+
+    decrement = () => {
+        this.setState(prevState => ({
+            value: prevState.value - 1
+        }));
+    };
+
+    render() {
+        return (
+            <div>
+                {this.state.value}
+                <button onClick={this.increment}>+</button>
+                <button onClick={this.decrement}>-</button>
+            </div>
+        )
+    }
+ }
+
+ // Reducer 분리
+ import React, { Component } from 'react';
+
+ const counter = (state = {value:0}, )
