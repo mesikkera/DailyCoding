@@ -260,4 +260,4 @@ function visibilityFilter(state = 'SHOW_ALL', action) {
  // Reducer 분리
  import React, { Component } from 'react';
 
- const counter = (state = {value:0}, )
+ 
