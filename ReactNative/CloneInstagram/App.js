@@ -1,20 +1,20 @@
 /**
- * Sample React Native App
- * https://github.com/facebook/react-native
+ * Instagram Clone
+ * http://www.feelway.com
  *
- * @format
- * @flow
+ * @author: mesikkera
+ * @date: 2019.07.24
  */
 
-import React, {Fragment} from 'react';
+import React, { Fragment } from "react";
 import {
   SafeAreaView,
   StyleSheet,
   ScrollView,
   View,
   Text,
-  StatusBar,
-} from 'react-native';
+  StatusBar
+} from "react-native";
 
 import {
   Header,
