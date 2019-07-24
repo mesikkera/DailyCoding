@@ -24,6 +24,11 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
+const a = () => {
+  return 2;
+};
+
+
 const App = () => {
   return (
     <Fragment>
