@@ -1,6 +1,25 @@
 import React, { Component } from "react";
 import { StyleSheet, Platform, View, Text } from "react-native";
 import { Icon } from "native-base";
+import { createBottomTabNavigator, createAppContainer } from "react-navigation";
+
+// 하단 탭에 들어갈 컴포넌트들
+import HomeTab from "./AppTabNavigator/HomeTab";
+import SearchTab from "./AppTabNavigator/SearchTab";
+import AddMediaTab from "./AppTabNavigator/AddMediaTab";
+import LikesTab from "./AppTabNavigator/LikesTab";
+import ProfileTab from "./AppTabNavigator/ProfileTab";
+
+// 하단 탭 네비게이터 생성
+const AppTabNavigator = createBottomTabNavigator({
+  HomeTab: { screen: HomeTab },
+  SearchTab: { screen: SearchTab },
+  AddMediaTab: { screen: AddMediaTab },
+  LikesTab: { screen: LikesTab },
+  ProfileTab: { screen: ProfileTab }
+});
+
+const AppTabContainet = createAppContainer(AppTabNavigator);
 
 export default class MainScreen extends Component {
   //navigationOPtions 코드 추가
@@ -16,6 +35,10 @@ export default class MainScreen extends Component {
         <Text>MainScreen</Text>
       </View>
     );
+  }
+
+  render() {
+    return <AppTabContainet />;
   }
 }
 
