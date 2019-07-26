@@ -11,54 +11,65 @@ import {
   Icon
 } from "native-base";
 
-export default class CardComponent extends Component {
+export default class CardCompnent extends Component {
   render() {
+    const { data } = this.props; // 피드 항목 데이터
+    const { image } = JSON.parse(data.json_metadata); // json_metadata에서 이미지 url을 파싱
     return (
       <Card>
         <CardItem>
           <Left>
             <Thumbnail
               source={{
-                uri:
-                  "https://scontent-gmp1-1.xx.fbcdn.net/v/t1.0-1/p320x320/1390634_638637912847458_869916414_n.jpg?_nc_cat=105&_nc_oc=AQkVpOOh3EJOOFrluL8B8HvPkQLaZHODp3A-SSeDiry9Koyx5tycQ53rvtX4qtzjoLc&_nc_ht=scontent-gmp1-1.xx&oh=37c644078bbea929ba83beff9168da71&oe=5DA8A878"
+                uri: `https://steemitimages.com/u/${data.author}/avatar`
               }}
             />
             <Body>
-              <Text>mesikkera</Text>
-              <Text note>Jul 25, 2019</Text>
+              <Text>{data.author}</Text>
+              <Text note>{new Date(data.created).toDateString()}</Text>
             </Body>
           </Left>
         </CardItem>
-        <CardItem cardBody>
-          <Image
-            source={{
-              uri:
-                "https://scontent-gmp1-1.xx.fbcdn.net/v/t1.0-9/31349717_2131985657077337_1594449580064243712_n.jpg?_nc_cat=104&_nc_oc=AQlwOH-A36ImmDpLS8fiNhogMYQgGuiRFfgT8t86XcDAz6g8dYCfcJVs8j655MQVRNY&_nc_ht=scontent-gmp1-1.xx&oh=2967dbae5045e9e8d229cd721dd73395&oe=5DAE5925"
-            }}
-            style={{ height: 200, width: null, flex: 1 }}
-          />
+        {image && image.length ? (
+          <CardItem cardBody>
+            <Image
+              source={{ uri: image[0] }}
+              style={{ height: 200, width: null, flex: 1 }}
+            />
+          </CardItem>
+        ) : null}
+        <CardItem style={{ height: 20 }}>
+          <Text>{data.active_votes.length} likes</Text>
+        </CardItem>
+        <CardItem>
+          <Text style={{ fontWeight: "900" }}>{data.title}</Text>
+        </CardItem>
+        <CardItem>
+          <Text>{data.body.replace(/\n/g, " ").slice(0, 200)}</Text>
         </CardItem>
         <CardItem style={{ height: 45 }}>
           <Left>
             <Button transparent>
-              <Icon name="ios-heart" style={{ color: "black" }} />
+              <Icon
+                name="ios-heart"
+                style={{ color: "black", marginRight: 5 }}
+              />
+              <Text>{data.active_votes.length}</Text>
             </Button>
             <Button transparent>
-              <Icon name="ios-chatbubbles" style={{ color: "black" }} />
+              <Icon
+                name="ios-chatbubbles"
+                style={{ color: "black", marginRight: 5 }}
+              />
+              <Text>{data.children}</Text>
             </Button>
             <Button transparent>
               <Icon name="ios-send" style={{ color: "black" }} />
             </Button>
           </Left>
-        </CardItem>
-        <CardItem style={{ height: 20 }}>
-          <Text>101 likes</Text>
-        </CardItem>
-        <CardItem>
-          <Text>
-            <Text style={{ fontWeight: "900" }}>mesikkera </Text>
-            리엑트 네이티브로 구현하는 필스타그램
-          </Text>
+          <Right>
+            <Text>{data.pending_payout_value}</Text>
+          </Right>
         </CardItem>
       </Card>
     );
