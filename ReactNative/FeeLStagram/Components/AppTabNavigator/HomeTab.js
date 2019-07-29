@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet } from "react-native";
-import { Container, Content, Icon } from "native-base";
+import { View, Text, StyleSheet, ScrollView } from "react-native";
+import { Container, Content, Icon, Thumbnail } from "native-base";
 import CardComponent from "../CardComponent"; // 카드 컴포넌트 추가
 
 export default class HomeTab extends Component {
@@ -44,8 +44,29 @@ export default class HomeTab extends Component {
     return (
       <Container style={style.container}>
         <Content>
+          {/* 여기부터 스토리 헤더 시작 */}
+          <View style={{ height: 100 }}>
+            <View
+              style={{
+                flex: 1,
+                flexDirection: "row",
+                justifyContent: "space-between",
+                alignItems: "center",
+                paddingHorizontal: 7
+              }}
+            >
+              <Text style={{ fontWeight: "bold" }}>Stories</Text>
+
+              <View style={{ flexDirection: "row", alignItems: "center" }}>
+                <Icon name="md-play" style={{ fontSize: 14 }} />
+                <Text style={{ fontWeight: "bold" }}> Watch All</Text>
+              </View>
+            </View>
+          </View>
+          {/* 여기까지 스토리 헤더 끝 */}
+
           {this.state.feeds.map(feed => (
-            <CardComponent data={feed} />
+            <CardComponent data={feed} key={feed.url} />
           ))}
         </Content>
       </Container>
