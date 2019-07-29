@@ -49,9 +49,7 @@ const AppTabContainet = createAppContainer(AppTabNavigator);
 export default class MainScreen extends Component {
   //navigationOPtions 코드 추가
   static navigationOptions = {
-    headerLeft: <Icon name="ios-camera" style={{ paddingLeft: 10 }} />,
-    title: "FeeLstagram",
-    headerRight: <Icon name="ios-send" style={{ paddingRight: 10 }} />
+    header: null
   };
 
   render() {

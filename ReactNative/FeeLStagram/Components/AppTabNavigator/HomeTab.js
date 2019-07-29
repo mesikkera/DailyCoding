@@ -1,6 +1,15 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet, ScrollView } from "react-native";
-import { Container, Content, Icon, Thumbnail } from "native-base";
+import {
+  Container,
+  Content,
+  Icon,
+  Thumbnail,
+  Header,
+  Left,
+  Right,
+  Body
+} from "native-base";
 import CardComponent from "../CardComponent"; // 카드 컴포넌트 추가
 
 export default class HomeTab extends Component {
@@ -24,13 +33,21 @@ export default class HomeTab extends Component {
   }
 
   state = {
-    feeds: []
+    feeds: [],
+    followings: []
   };
 
   componentWillMount() {
     this.fetchFeeds().then(feeds => {
       this.setState({
         feeds
+      });
+    });
+
+    // 팔로잉 친구 가져오기
+    this.fetchFollowings().then(followings => {
+      this.setState({
+        followings
       });
     });
   }
@@ -40,9 +57,38 @@ export default class HomeTab extends Component {
       <Icon name="ios-home" style={{ color: tintColor }} />
     )
   };
+
+  // 팔로잉 친구 가져오기
+  fetchFollowings() {
+    const data = {
+      id: 2,
+      jsonrpc: "2.0",
+      method: "call",
+      params: ["follow_api", "get_following", ["anpigon", "", "blog", 10]]
+    };
+
+    return fetch("https://api.steemit.com", {
+      method: "POST",
+      body: JSON.stringify(data)
+    })
+      .then(res => res.json())
+      .then(res => res.result.map(({ following }) => following));
+  }
+
   render() {
     return (
       <Container style={style.container}>
+        <Header>
+          <Left>
+            <Icon name="ios-camera" style={{ paddingLeft: 10 }} />
+          </Left>
+          <Body>
+            <Text>FeeLStagram</Text>
+          </Body>
+          <Right>
+            <Icon name="ios-send" style={{ paddingRight: 10 }} />
+          </Right>
+        </Header>
         <Content>
           {/* 여기부터 스토리 헤더 시작 */}
           <View style={{ height: 100 }}>
@@ -73,16 +119,18 @@ export default class HomeTab extends Component {
                   paddingEnd: 5
                 }}
               >
-                <Thumbnail
-                  style={{
-                    marginHorizontal: 5,
-                    borderColor: "pink",
-                    borderWidth: 2
-                  }}
-                  source={{
-                    uri: "https://steemitimages.com/u/newbijohn/avatar"
-                  }}
-                />
+                {this.state.followings.map(following => (
+                  <Thumbnail
+                    style={{
+                      marginHorizontal: 5,
+                      borderColor: "pink",
+                      borderWidth: 2
+                    }}
+                    source={{
+                      uri: "https://steemitimages.com/u/&{following}/avatar"
+                    }}
+                  />
+                ))}
               </ScrollView>
             </View>
           </View>
