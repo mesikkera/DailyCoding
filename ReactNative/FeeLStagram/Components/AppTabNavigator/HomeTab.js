@@ -62,6 +62,29 @@ export default class HomeTab extends Component {
                 <Text style={{ fontWeight: "bold" }}> Watch All</Text>
               </View>
             </View>
+
+            <View style={{ flex: 3 }}>
+              <ScrollView
+                horizontal={true}
+                showsHorizontalScrollIndicator={false}
+                contentContainerStyle={{
+                  alignItems: "center",
+                  paddingStart: 5,
+                  paddingEnd: 5
+                }}
+              >
+                <Thumbnail
+                  style={{
+                    marginHorizontal: 5,
+                    borderColor: "pink",
+                    borderWidth: 2
+                  }}
+                  source={{
+                    uri: "https://steemitimages.com/u/newbijohn/avatar"
+                  }}
+                />
+              </ScrollView>
+            </View>
           </View>
           {/* 여기까지 스토리 헤더 끝 */}
 
