@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { View, Image, Text, StyleSheet } from "react-native";
+import React, { Component } from 'react';
+import { View, Image, Text, StyleSheet } from 'react-native';
 import {
   Card,
   CardItem,
@@ -8,8 +8,8 @@ import {
   Left,
   Right,
   Button,
-  Icon
-} from "native-base";
+  Icon,
+} from 'native-base';
 
 export default class CardCompnent extends Component {
   render() {
@@ -21,7 +21,7 @@ export default class CardCompnent extends Component {
           <Left>
             <Thumbnail
               source={{
-                uri: `https://steemitimages.com/u/${data.author}/avatar`
+                uri: `https://steemitimages.com/u/${data.author}/avatar`,
               }}
             />
             <Body>
@@ -42,29 +42,29 @@ export default class CardCompnent extends Component {
           <Text>{data.active_votes.length} likes</Text>
         </CardItem>
         <CardItem>
-          <Text style={{ fontWeight: "900" }}>{data.title}</Text>
+          <Text style={{ fontWeight: '900' }}>{data.title}</Text>
         </CardItem>
         <CardItem>
-          <Text>{data.body.replace(/\n/g, " ").slice(0, 200)}</Text>
+          <Text>{data.body.replace(/\n/g, ' ').slice(0, 200)}</Text>
         </CardItem>
         <CardItem style={{ height: 45 }}>
           <Left>
             <Button transparent>
               <Icon
                 name="ios-heart"
-                style={{ color: "black", marginRight: 5 }}
+                style={{ color: 'black', marginRight: 5 }}
               />
               <Text>{data.active_votes.length}</Text>
             </Button>
             <Button transparent>
               <Icon
                 name="ios-chatbubbles"
-                style={{ color: "black", marginRight: 5 }}
+                style={{ color: 'black', marginRight: 5 }}
               />
               <Text>{data.children}</Text>
             </Button>
             <Button transparent>
-              <Icon name="ios-send" style={{ color: "black" }} />
+              <Icon name="ios-send" style={{ color: 'black' }} />
             </Button>
           </Left>
           <Right>
@@ -79,7 +79,7 @@ export default class CardCompnent extends Component {
 const style = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center"
-  }
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 });
