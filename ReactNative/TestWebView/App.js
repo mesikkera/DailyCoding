@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-// import { StyleSheet, Text, View } from "react-native";
-import { WebView } from "react-native-webview";
+import { WebView } from "react-native";
 
-export default class App extends Component {
+export  class default App extends Component {
   render() {
     return (
       <WebView
-        source={{ uri: "http://www.feelway.com/m/" }}
+        source={{ uri: "http://www.feelway.com/m" }}
+        style={{ marginTop: 20 }}
       />
     );
   }
