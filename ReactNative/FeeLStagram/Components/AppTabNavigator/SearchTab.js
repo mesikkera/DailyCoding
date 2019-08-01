@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet } from "react-native";
-import { Icon } from "native-base";
+import { Icon, Content, Container, Header } from "native-base";
+import { WebView } from "react-native-webview";
 
 export default class ProfileTab extends Component {
   static navigationOptions = {
@@ -10,9 +11,15 @@ export default class ProfileTab extends Component {
   };
   render() {
     return (
-      <View style={style.container}>
-        <Text>ProfileTab</Text>
-      </View>
+      <Container style={{}}>
+        <Header />
+        <WebView
+          source={{
+            uri: "http://www.feelway.com/m/index.php"
+          }}
+          style={{ marginTop: 20 }}
+        />
+      </Container>
     );
   }
 }
