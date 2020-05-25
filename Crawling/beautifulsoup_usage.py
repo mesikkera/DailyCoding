@@ -16,3 +16,5 @@ bs_obj = bs4.BeautifulSoup(html_str, 'html.parser')
 
 ul = bs_obj.find("ul")
 print(ul)
+
+# .findAll(): 조건에 해당하는 모든 요소를 리스트 [] 형태로 추출해주는 기능
