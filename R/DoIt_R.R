@@ -213,3 +213,42 @@ mean(audi$cty)
 mean(toyota$cty)
 hwy <- mpg %>% filter(manufacturer %in% c('chevrolet', 'ford', 'honda'))
 mean(hwy$hwy)
+
+# Chap06-3. 필요한 변수만 추출하기
+# select(): 데이터에 들어있는 수 많은 변수 중 일부 변수만 추출해 활용하고자 할 때 사용
+
+exam
+library(dplyr)
+exam %>% select(math)
+exam %>% select(english)
+exam %>% select(class, math, english)
+exam %>% select(-math)
+exam %>% select(-math, -english)
+exam %>% filter(class == 1) %>% select(english)
+exam %>% 
+    filter(class == 1) %>% 
+    select(english)
+exam %>% 
+    select(id, math) %>% 
+    head
+
+exam %>% 
+    select(id, math) %>% 
+    head(10)
+mpg
+summary(mpg)
+?mpg
+??mpg
+
+mpg <- as.data.frame(ggplot2::mpg)
+summary(mpg)
+?mpg
+mpg %>% select(class, cty)
+class_cty <- mpg %>% select(class, cty)
+class_cty
+suv_cty <- mpg %>% filter(class == 'suv') %>% select(cty)
+suv_cty
+compact_cty <- mpg %>% filter(class == 'compact') %>% select(cty)
+compact_cty
+mean(suv_cty$cty)
+mean(compact_cty$cty)
