@@ -252,3 +252,13 @@ compact_cty <- mpg %>% filter(class == 'compact') %>% select(cty)
 compact_cty
 mean(suv_cty$cty)
 mean(compact_cty$cty)
+
+# Chap06-4. 순서대로 정렬하기
+# arrange(): 데이터를 원하는 순서대로 정렬
+library(dplyr)
+
+exam %>% arrange(math)
+exam %>% arrange(desc(math))
+exam %>% arrange(class, math)
+mpg
+mpg %>% filter(mpg$manufacturer == 'audi') %>% arrange(desc(hwy)) %>% head(5)
