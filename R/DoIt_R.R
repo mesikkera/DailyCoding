@@ -287,3 +287,64 @@ new_mpg %>%
     mutate(mean_fuel_efficenct = (cty+hwy)/2) %>% 
     arrange(desc(mean_fuel_efficency)) %>% 
     head(3)
+mpg %>% 
+    mutate(mean_fuel_efficency = (cty+hwy)/2) %>% 
+    arrange(desc(mean_fuel_efficency)) %>% 
+    head(3)
+
+# Chap06-06. 집단별로 요약하기
+# group_by(): 집단별 평균이나 집단별 빈도처럼 각 집단을 요약한 값을 구할 때 사용
+
+exam %>% summarise(mean_math = mean(math))
+exam %>% 
+    group_by(class) %>% 
+    summarise(mean_math = mean(math))
+exam %>% 
+    group_by(class) %>% 
+    summarise(mean_math = mean(math),
+              sum_math = sum(math),
+              median_math = median(math), 
+              n = n())
+
+# summarise()에 자주 사용하는 요약 통계량 함수
+# 함수          의미
+# mean()        평균
+# sd()          표준편차
+# sum()         합계
+# median()      중앙값
+# min()         최솟값
+# max()         최댓값
+# n()           빈도
+
+mpg %>% 
+    group_by(manufacturer, drv) %>% 
+    summarise(mean_cty = mean(cty)) %>% 
+    head(10)
+
+mpg %>% 
+    group_by(manufacturer) %>% 
+    filter(class == "suv") %>% 
+    mutate(total = (cty + hwy)/2) %>% 
+    summarise(mean_total = mean(total)) %>% 
+    arrange(desc(mean_total)) %>% 
+    head(5)
+
+mpg %>% 
+    group_by(class) %>% 
+    summarise(mean_cty = mean(cty))
+
+mpg %>% 
+    group_by(class) %>% 
+    summarise(mean_cty = mean(cty)) %>% 
+    arrange(desc(mean_cty))
+
+mpg %>% 
+    group_by(manufacturer) %>% 
+    summarise(mean_hwy = mean(hwy)) %>% 
+    arrange(desc(mean_hwy)) %>% 
+    head(3)
+
+mpg %>% 
+    group_by(manufacturer) %>% 
+    filter(class == "compact") %>% 
+    n()
