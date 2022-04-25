@@ -262,3 +262,28 @@ exam %>% arrange(desc(math))
 exam %>% arrange(class, math)
 mpg
 mpg %>% filter(mpg$manufacturer == 'audi') %>% arrange(desc(hwy)) %>% head(5)
+
+# Chap06-5. 파생변수 추가하기
+# mutate(): 기존 데이터에 파생변수를 만들어 추가
+
+exam %>% mutate(total = math + english + science) %>% head
+exam %>% mutate(total = math + english + science) %>% arrange(desc(total)) %>% head(10)
+
+exam %>% mutate(total = math + english + science, mean = (math + english + science)/3) %>% head
+exam %>% mutate(total = math + english + science, mean = (math + english + science)/3) %>% arrange(desc(total)) %>% head(10)
+
+exam %>% 
+    mutate(test = ifelse(science >= 60, "Pass", "Fail")) %>% 
+    head
+exam %>% 
+    mutate(total = math + english + science) %>% 
+    arrange(total) %>% 
+    head
+
+new_mpg <- mpg
+new_mpg %>% mutate(fuel_efficiency = cty + hwy) %>% head(10)
+new_mpg %>% mutate(mean_fuel_efficency = (cty+hwy)/2)
+new_mpg %>% 
+    mutate(mean_fuel_efficenct = (cty+hwy)/2) %>% 
+    arrange(desc(mean_fuel_efficency)) %>% 
+    head(3)
