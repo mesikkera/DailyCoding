@@ -6,6 +6,7 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
+    ''' This is a migration file. '''
 
     dependencies = [
         ('pybo', '0001_initial'),
