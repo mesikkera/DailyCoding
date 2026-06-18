@@ -40,7 +40,15 @@
 *.pyc
 *_pb2.py
 __pycache__/
+.pytest_cache/
+.venv/
 twisted/
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
 # Sublime
 *.sublime-project
