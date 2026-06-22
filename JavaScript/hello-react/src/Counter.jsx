@@ -28,4 +28,17 @@ class Counter extends Component {
     ComponentWillUpdate(nextProps, nextState) {
         
     }
-};
+
+    render() {
+        return (
+            <div>
+                <h1>{this.state.number}</h1>
+                <button onClick={() => this.setState({ number: this.state.number + 1 })}>
+                    +1
+                </button>
+            </div>
+        );
+    }
+}
+
+export default Counter;

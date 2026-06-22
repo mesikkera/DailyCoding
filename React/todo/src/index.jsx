@@ -1,7 +1,7 @@
 import React from 'react';
 import configureStore from './store/index';
 import { Provider } from 'react-redux';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import reducer from './reducer/index';
 import App from './component/App'
 import './index.css';
@@ -14,13 +14,14 @@ const store = configureStore(reducer,{
 	]
 });
 
+const root = createRoot(document.getElementById('root'));
+
 const render = () => {
-  ReactDOM.render(
-  	<Provider store={store}>
-	    <App/>
-    </Provider>,
-    document.getElementById('root')
-  )
+  root.render(
+    <Provider store={store}>
+      <App />
+    </Provider>
+  );
 };
 
 store.subscribe(render);
