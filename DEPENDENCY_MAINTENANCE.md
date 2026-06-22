@@ -24,18 +24,16 @@ and lockfiles.
 - Stale `yarn.lock` files were removed from projects that now use npm
   `package-lock.json`, so GitHub Dependabot does not scan duplicate old
   dependency graphs.
+- Obsolete React Native study projects were removed from the repository. Their
+  historical contents remain available from Git history if needed.
 
 ## Why Not Use `npm audit fix --force` Everywhere?
 
-Several projects were or still are based on old framework versions:
-
-- `react-native@0.60.x`
-- old Expo SDK 33 React Native dependencies
-
-For these projects, `npm audit fix --force` would upgrade core tooling such as
-`react-native`, Expo, `eslint`, or Metro to much newer major versions. Those
-upgrades are breaking changes and should be handled project by project with
-runtime verification on the native targets.
+Several old projects were based on framework versions that require major
+migration rather than blind `npm audit fix --force`, such as
+`react-scripts@3.x`, `jest@24.x`, `react-native@0.60.x`, and Expo SDK 33.
+The web projects were migrated to current npm dependency graphs. The old React
+Native study projects were removed instead of migrated.
 
 ## Projects Requiring Project-Level Upgrade Work
 
@@ -51,32 +49,9 @@ builds where applicable, and `npm audit --audit-level=low`:
 - `React/todo`
 - `React`
 
-The following React Native and Expo project groups still need dedicated native
-migration passes:
-
-- `ReactNative/AwesomeProject`
-- `ReactNative/FeeLStagram`
-- `ReactNative/FeeLWebViewTest`
-- `ReactNative/FirstProject`
-- `ReactNative/FunckingWeather`
-- `ReactNative/TestProject`
-- `ReactNative/TestWebView`
-- `ReactNative/test`
-
-Current npm-auditable React Native / Expo projects still report vulnerabilities
-because their direct framework dependencies are old:
-
-- `ReactNative/FeeLStagram`: `react-native@0.60.4`, `native-base@2.x`,
-  `react-native-webview@5.x`
-- `ReactNative/FeeLWebViewTest`: `react-native@0.60.4`
-- `ReactNative/FunckingWeather`: Expo SDK 33
-- `ReactNative/TestWebView`: `react-native@0.60.4`
-- `ReactNative/test`: `react-native@0.60.3`
-
-These should not be fixed with a blind package-only bump. A safe fix requires
-running the React Native or Expo upgrade path, updating native iOS/Android
-project files, reinstalling pods where relevant, and smoke testing on a target
-simulator or device.
+If a deleted React Native example is needed again, restore it from Git history
+and migrate it as a fresh native project instead of reintroducing the old
+dependency graph unchanged.
 
 ## Recommended Cleanup Strategy
 
