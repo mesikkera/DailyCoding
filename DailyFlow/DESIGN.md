@@ -1,6 +1,7 @@
 # Design
 
 ## Source of truth
+
 - Status: Draft
 - Last refreshed: 2026-06-23
 - Primary product surfaces:
@@ -15,6 +16,7 @@
   - `.omx/context/todo-app-planning-20260622T223859Z.md`: deep interview context and product requirements.
 
 ## Brand
+
 - Personality:
   - Calm, organized, personal, reliable, and native-app-like.
   - Inspired by Apple Calendar and Apple Reminders: restrained, readable, spacious, and polished.
@@ -30,6 +32,7 @@
   - Hiding important counts behind multiple clicks.
 
 ## Product goals
+
 - Goals:
   - Replace manual Notion-based daily checklist counting.
   - Make today's planned work, progress, and achievement rate visible at a glance.
@@ -55,6 +58,7 @@
   - The UI feels clean enough for daily use, not tiring or cluttered.
 
 ## Personas and jobs
+
 - Primary personas:
   - Individual user managing personal life, work, self-development, and daily routines.
 - User jobs:
@@ -73,6 +77,7 @@
   - Multi-device use through a synced account.
 
 ## Information architecture
+
 - Primary navigation:
   - Today
   - Calendar
@@ -105,6 +110,7 @@
     5. South Korean holidays
 
 ## Design principles
+
 - Principle 1: Daily clarity before feature density.
   - The Today Board must make plan, progress, and completion rate obvious without scanning many panels.
 - Principle 2: Automatic accounting must be visible and trustworthy.
@@ -119,6 +125,7 @@
   - Browser push is prioritized first, while other notification channels remain future extensions.
 
 ## Visual language
+
 - Color:
   - Base: warm or cool near-white backgrounds, soft gray dividers, high-contrast text.
   - Accent: a restrained primary blue inspired by Apple system blue.
@@ -147,6 +154,7 @@
   - Icons support labels; they should not replace important text.
 
 ## Components
+
 - Existing components to reuse:
   - No production design system identified yet.
   - Existing `React/todo` can be treated as reference code only, not a design source of truth.
@@ -173,6 +181,7 @@
   - Future implementation should centralize colors, spacing, radius, typography, and status/category tokens.
 
 ## Accessibility
+
 - Target standard:
   - Aim for WCAG 2.2 AA for contrast, keyboard access, labels, and focus visibility.
 - Keyboard/focus behavior:
@@ -189,6 +198,7 @@
   - Avoid flashing or high-intensity animations.
 
 ## Responsive behavior
+
 - Supported breakpoints/devices:
   - Desktop web.
   - Tablet web.
@@ -205,6 +215,7 @@
   - Touch targets should be comfortably sized.
 
 ## Interaction states
+
 - Loading:
   - Skeleton cards for summary metrics and task lanes.
 - Empty:
@@ -226,6 +237,7 @@
   - Preserve enough local metadata to explain sync state when needed.
 
 ## Content voice
+
 - Tone:
   - Calm, direct, encouraging, and not overly playful.
 - Terminology:
@@ -240,6 +252,7 @@
   - Avoid vague labels like “처리” when a specific state change is intended.
 
 ## Implementation constraints
+
 - Framework/styling system:
   - Not decided yet. Product design should not assume a specific framework.
   - BaaS decision: Firebase for initial implementation. See `docs/decisions/0001-baas-firebase.md`.
@@ -259,6 +272,7 @@
   - Acceptance tests should cover achievement-rate calculation and task state transitions.
 
 ## Open questions
+
 - [x] Today Board default grouping: status-first Kanban (`planned / in progress / on hold / completed`), with category shown as filters, chips, colors, or card metadata. / owner: user / resolved: 2026-06-23.
 - [x] Task priority levels: high / normal / low. / owner: user / resolved: 2026-06-23.
 - [x] Calendar events do not influence daily achievement rate; only tasks are counted. / owner: user / resolved: 2026-06-23.
