@@ -156,7 +156,7 @@
 ## Components
 
 - Existing components to reuse:
-  - No production design system identified yet.
+  - DailyFlow now has initial shared UI primitives: `Button`, `Card`, `Badge`, `PageHeader`, and `PlaceholderPanel`.
   - Existing `React/todo` can be treated as reference code only, not a design source of truth.
 - New/changed components:
   - App shell/navigation.
@@ -254,7 +254,8 @@
 ## Implementation constraints
 
 - Framework/styling system:
-  - Not decided yet. Product design should not assume a specific framework.
+  - Initial web app scaffold: Vite + React + TypeScript.
+  - Styling baseline: CSS design tokens and shared UI primitives under `src/components/ui`.
   - BaaS decision: Firebase for initial implementation. See `docs/decisions/0001-baas-firebase.md`.
   - Firestore data model draft: `docs/technical/firestore-data-model.md`.
 - Design-token constraints:

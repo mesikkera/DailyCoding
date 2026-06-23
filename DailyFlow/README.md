@@ -4,7 +4,7 @@ DailyFlow is a personal productivity app for managing daily tasks, routines, cal
 
 ## Current status
 
-Phase 0 scaffold complete: Vite + React + TypeScript app shell with planning/design documents.
+Phase 1 product shell complete: Vite + React + TypeScript app shell, design tokens, shared UI primitives, and placeholder product surfaces.
 
 ## Key documents
 

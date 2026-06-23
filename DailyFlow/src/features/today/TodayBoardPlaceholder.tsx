@@ -1,3 +1,9 @@
+import type { ReactNode } from 'react';
+
+import { Badge } from '../../components/ui/Badge';
+import { Button } from '../../components/ui/Button';
+import { Card } from '../../components/ui/Card';
+import { PageHeader } from '../../components/ui/PageHeader';
 import { calculateAchievementSummary, type TaskStatus } from './achievement';
 
 interface MockTask {
@@ -39,12 +45,14 @@ const mockTasks: MockTask[] = [
   },
 ];
 
-const lanes: Array<{ label: string; status: TaskStatus }> = [
-  { label: '예정', status: 'planned' },
-  { label: '진행중', status: 'in_progress' },
-  { label: '보류', status: 'on_hold' },
-  { label: '완료', status: 'completed' },
+const lanes: Array<{ label: string; status: TaskStatus; tone: BadgeTone }> = [
+  { label: '예정', status: 'planned', tone: 'primary' },
+  { label: '진행중', status: 'in_progress', tone: 'warning' },
+  { label: '보류', status: 'on_hold', tone: 'muted' },
+  { label: '완료', status: 'completed', tone: 'success' },
 ];
+
+type BadgeTone = 'primary' | 'warning' | 'muted' | 'success';
 
 export function TodayBoardPlaceholder() {
   const summary = calculateAchievementSummary(mockTasks);
@@ -52,34 +60,22 @@ export function TodayBoardPlaceholder() {
 
   return (
     <section className="today-board" aria-labelledby="today-heading">
-      <header className="today-header">
-        <div>
-          <p className="eyebrow">Today Board</p>
-          <h1 id="today-heading">오늘의 흐름</h1>
-          <p className="muted">
-            상태 중심 칸반으로 오늘의 계획과 달성률을 봅니다.
-          </p>
-        </div>
-        <button className="primary-action" type="button">
-          + 할 일 추가
-        </button>
-      </header>
+      <PageHeader
+        action={<Button>+ 할 일 추가</Button>}
+        description="상태 중심 칸반으로 오늘의 계획과 달성률을 봅니다."
+        eyebrow="Today Board"
+        title="오늘의 흐름"
+      />
 
       <div className="summary-grid" aria-label="오늘 요약">
-        <article className="summary-card hero-card">
-          <span>달성률</span>
-          <strong>{percentage}%</strong>
-          <small>
-            완료 {summary.completedCount} / 대상 {summary.denominatorCount}
-          </small>
-        </article>
+        <SummaryCard hero label="달성률" value={`${percentage}%`}>
+          완료 {summary.completedCount} / 대상 {summary.denominatorCount}
+        </SummaryCard>
         <SummaryCard label="예정" value={summary.plannedCount} />
         <SummaryCard label="진행중" value={summary.inProgressCount} />
-        <SummaryCard
-          label="보류"
-          value={summary.onHoldCount}
-          note="달성률 제외"
-        />
+        <SummaryCard label="보류" value={summary.onHoldCount}>
+          달성률 제외
+        </SummaryCard>
         <SummaryCard label="완료" value={summary.completedCount} />
       </div>
 
@@ -88,25 +84,25 @@ export function TodayBoardPlaceholder() {
           const tasks = mockTasks.filter((task) => task.status === lane.status);
 
           return (
-            <section className="kanban-lane" key={lane.status}>
+            <Card as="section" className="kanban-lane" key={lane.status}>
               <header>
                 <h2>{lane.label}</h2>
-                <span>{tasks.length}</span>
+                <Badge tone={lane.tone}>{tasks.length}</Badge>
               </header>
               <div className="task-list">
                 {tasks.map((task) => (
-                  <article className="task-card" key={task.id}>
+                  <Card as="article" className="task-card" key={task.id}>
                     <div className="task-card-header">
-                      <span className={`priority priority-${task.priority}`}>
+                      <Badge tone={`priority-${task.priority}`}>
                         {priorityLabel(task.priority)}
-                      </span>
-                      <span className="category-chip">{task.category}</span>
+                      </Badge>
+                      <Badge>{task.category}</Badge>
                     </div>
                     <h3>{task.title}</h3>
-                  </article>
+                  </Card>
                 ))}
               </div>
-            </section>
+            </Card>
           );
         })}
       </div>
@@ -115,20 +111,22 @@ export function TodayBoardPlaceholder() {
 }
 
 function SummaryCard({
+  children,
+  hero = false,
   label,
   value,
-  note,
 }: {
+  children?: ReactNode;
+  hero?: boolean;
   label: string;
-  value: number;
-  note?: string;
+  value: number | string;
 }) {
   return (
-    <article className="summary-card">
+    <Card className="summary-card" tone={hero ? 'hero' : 'default'}>
       <span>{label}</span>
       <strong>{value}</strong>
-      {note ? <small>{note}</small> : null}
-    </article>
+      {children ? <small>{children}</small> : null}
+    </Card>
   );
 }
 
