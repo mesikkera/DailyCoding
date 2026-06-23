@@ -231,6 +231,7 @@
   - Users must be able to view and edit tasks offline.
   - Offline changes should queue locally and sync when the device returns online.
   - UI should clearly show unsynced changes and sync/conflict status.
+  - The Today Board shows online/offline state, pending local task changes, and last synced time at task-card level.
 - Conflict resolution:
   - Default rule: last modified version wins.
   - Show conflict/recovery UI only when automatic resolution is risky or fails.

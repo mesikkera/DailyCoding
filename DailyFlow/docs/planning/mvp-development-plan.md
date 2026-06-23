@@ -170,6 +170,8 @@ Verification:
 
 Goal: satisfy the offline-first task requirement before adding more feature surfaces.
 
+Status: complete in the first local/PWA slice. Firestore persistent cache is enabled at app initialization, Today Board edits are marked as pending local changes, and the UI exposes online/offline and sync states. A later Firebase-backed integration pass should replace the current demo "sync complete" control with real write acknowledgement handling.
+
 Deliverables:
 
 - Firestore persistent cache enabled for trusted web sessions.

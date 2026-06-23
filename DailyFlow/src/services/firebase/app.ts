@@ -1,6 +1,12 @@
 import { getApps, initializeApp, type FirebaseApp } from 'firebase/app';
 import { getAuth, type Auth } from 'firebase/auth';
-import { getFirestore, type Firestore } from 'firebase/firestore';
+import {
+  getFirestore,
+  initializeFirestore,
+  persistentLocalCache,
+  persistentMultipleTabManager,
+  type Firestore,
+} from 'firebase/firestore';
 
 export interface DailyFlowFirebaseConfig {
   apiKey: string;
@@ -40,6 +46,18 @@ export function initializeDailyFlowFirebase(
   return {
     app,
     auth: getAuth(app),
-    db: getFirestore(app),
+    db: initializeDailyFlowFirestore(app),
   };
+}
+
+function initializeDailyFlowFirestore(app: FirebaseApp) {
+  try {
+    return initializeFirestore(app, {
+      localCache: persistentLocalCache({
+        tabManager: persistentMultipleTabManager(),
+      }),
+    });
+  } catch {
+    return getFirestore(app);
+  }
 }

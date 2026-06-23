@@ -4,7 +4,7 @@ DailyFlow is a personal productivity app for managing daily tasks, routines, cal
 
 ## Current status
 
-Phase 3 Today Board core complete: task domain model, Firestore task repository, interactive status-first Today Board, auth bootstrap, design tokens, and placeholder product surfaces.
+Phase 4 offline task behavior complete: task domain model, Firestore task repository, interactive status-first Today Board, auth bootstrap, design tokens, offline/online status display, and pending sync indicators.
 
 ## Key documents
 

@@ -5,8 +5,12 @@ import { Badge } from '../../components/ui/Badge';
 import { Button } from '../../components/ui/Button';
 import { Card } from '../../components/ui/Card';
 import { PageHeader } from '../../components/ui/PageHeader';
+import { SyncStatusBanner } from '../sync/SyncStatusBanner';
+import { useOnlineStatus } from '../sync/useOnlineStatus';
 import {
+  countPendingTasks,
   createLocalTask,
+  markTaskSynced,
   softDeleteTask,
   transitionTaskStatus,
   visibleTasks,
@@ -63,10 +67,12 @@ const lanes: Array<{ label: string; status: TaskStatus; tone: BadgeTone }> = [
 type BadgeTone = 'primary' | 'warning' | 'muted' | 'success';
 
 export function TodayBoardPlaceholder() {
+  const isOnline = useOnlineStatus();
   const [tasks, setTasks] = useState<DailyFlowTask[]>(initialTasks);
   const activeTasks = useMemo(() => visibleTasks(tasks), [tasks]);
   const summary = calculateAchievementSummary(activeTasks);
   const percentage = Math.round(summary.achievementRate * 100);
+  const pendingCount = countPendingTasks(activeTasks);
 
   const addTask = () => {
     setTasks((currentTasks) => [
@@ -96,6 +102,18 @@ export function TodayBoardPlaceholder() {
     );
   };
 
+  const markPendingTasksSynced = () => {
+    if (!isOnline) {
+      return;
+    }
+
+    setTasks((currentTasks) =>
+      currentTasks.map((task) => {
+        return task.syncState === 'pending' ? markTaskSynced(task) : task;
+      }),
+    );
+  };
+
   return (
     <section className="today-board" aria-labelledby="today-heading">
       <PageHeader
@@ -103,6 +121,12 @@ export function TodayBoardPlaceholder() {
         description="상태 중심 칸반으로 오늘의 계획과 달성률을 봅니다."
         eyebrow="Today Board"
         title="오늘의 흐름"
+      />
+
+      <SyncStatusBanner
+        isOnline={isOnline}
+        onMarkSynced={markPendingTasksSynced}
+        pendingCount={pendingCount}
       />
 
       <div className="summary-grid" aria-label="오늘 요약">
@@ -169,6 +193,16 @@ function TaskCard({
         <Badge>{task.categoryName}</Badge>
       </div>
       <h3>{task.title}</h3>
+      <div className="task-card-meta">
+        <Badge tone={syncBadgeTone(task.syncState)}>
+          {syncLabel(task.syncState)}
+        </Badge>
+        {task.lastSyncedAt ? (
+          <small>마지막 동기화 {formatTime(task.lastSyncedAt)}</small>
+        ) : (
+          <small>로컬 변경 저장됨</small>
+        )}
+      </div>
       <div className="task-actions" aria-label={`${task.title} 상태 변경`}>
         {lanes.map((lane) => (
           <button
@@ -246,12 +280,43 @@ function createSeedTask({
     scheduledDate: today,
   });
 
-  return transitionTaskStatus(
-    {
-      ...task,
-      id,
-      sortOrder,
-    },
-    status,
+  return markTaskSynced(
+    transitionTaskStatus(
+      {
+        ...task,
+        id,
+        sortOrder,
+      },
+      status,
+    ),
   );
+}
+
+function syncLabel(syncState: DailyFlowTask['syncState']) {
+  switch (syncState) {
+    case 'synced':
+      return '동기화됨';
+    case 'pending':
+      return '동기화 대기';
+    case 'error':
+      return '동기화 오류';
+  }
+}
+
+function syncBadgeTone(syncState: DailyFlowTask['syncState']) {
+  switch (syncState) {
+    case 'synced':
+      return 'success';
+    case 'pending':
+      return 'warning';
+    case 'error':
+      return 'muted';
+  }
+}
+
+function formatTime(isoDate: string) {
+  return new Intl.DateTimeFormat('ko-KR', {
+    hour: '2-digit',
+    minute: '2-digit',
+  }).format(new Date(isoDate));
 }

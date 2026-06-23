@@ -1,5 +1,6 @@
 export type TaskStatus = 'planned' | 'in_progress' | 'on_hold' | 'completed';
 export type TaskPriority = 'high' | 'normal' | 'low';
+export type TaskSyncState = 'synced' | 'pending' | 'error';
 
 export interface DailyFlowTask {
   id: string;
@@ -19,6 +20,9 @@ export interface DailyFlowTask {
   updatedAt: string;
   clientUpdatedAt: string;
   deletedAt: string | null;
+  syncState: TaskSyncState;
+  lastSyncedAt: string | null;
+  syncError: string | null;
   schemaVersion: 1;
 }
 
@@ -52,6 +56,9 @@ export function createLocalTask(input: CreateTaskInput): DailyFlowTask {
     updatedAt: now,
     clientUpdatedAt: now,
     deletedAt: null,
+    syncState: 'pending',
+    lastSyncedAt: null,
+    syncError: null,
     schemaVersion: 1,
   };
 }
@@ -68,6 +75,8 @@ export function transitionTaskStatus(
     completedAt: status === 'completed' ? (task.completedAt ?? now) : null,
     updatedAt: now,
     clientUpdatedAt: now,
+    syncState: 'pending',
+    syncError: null,
   };
 }
 
@@ -79,9 +88,37 @@ export function softDeleteTask(task: DailyFlowTask): DailyFlowTask {
     deletedAt: now,
     updatedAt: now,
     clientUpdatedAt: now,
+    syncState: 'pending',
+    syncError: null,
   };
 }
 
 export function visibleTasks(tasks: DailyFlowTask[]) {
   return tasks.filter((task) => task.deletedAt === null);
+}
+
+export function markTaskSynced(task: DailyFlowTask): DailyFlowTask {
+  const now = new Date().toISOString();
+
+  return {
+    ...task,
+    syncState: 'synced',
+    lastSyncedAt: now,
+    syncError: null,
+  };
+}
+
+export function markTaskSyncError(
+  task: DailyFlowTask,
+  syncError: string,
+): DailyFlowTask {
+  return {
+    ...task,
+    syncState: 'error',
+    syncError,
+  };
+}
+
+export function countPendingTasks(tasks: DailyFlowTask[]) {
+  return tasks.filter((task) => task.syncState === 'pending').length;
 }
