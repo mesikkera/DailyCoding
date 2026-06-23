@@ -54,15 +54,13 @@ export function App() {
             </a>
           ))}
         </nav>
-      </aside>
-
-      <main className="main-surface">
         <AuthPanel
           authService={authService}
           bootstrapWriter={bootstrapWriter}
         />
-        {renderRoute(activeRoute)}
-      </main>
+      </aside>
+
+      <main className="main-surface">{renderRoute(activeRoute)}</main>
     </div>
   );
 }

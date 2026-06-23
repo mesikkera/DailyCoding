@@ -9,7 +9,7 @@ describe('TodayBoardPlaceholder', () => {
     const user = userEvent.setup();
     render(<TodayBoardPlaceholder />);
 
-    await user.click(screen.getByRole('button', { name: '+ 할 일 추가' }));
+    await user.click(screen.getByRole('button', { name: '새 할 일' }));
 
     expect(screen.getByText('새 할 일 5')).toBeInTheDocument();
     expect(laneCount('예정')).toHaveTextContent('2');
@@ -31,7 +31,7 @@ describe('TodayBoardPlaceholder', () => {
     const user = userEvent.setup();
     render(<TodayBoardPlaceholder />);
 
-    await user.click(screen.getByRole('button', { name: '+ 할 일 추가' }));
+    await user.click(screen.getByRole('button', { name: '새 할 일' }));
     await user.click(screen.getByRole('button', { name: '동기화 완료 처리' }));
 
     expect(screen.getByText('동기화 완료')).toBeInTheDocument();

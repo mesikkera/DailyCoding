@@ -15,11 +15,9 @@ describe('App', () => {
     expect(
       screen.getByRole('link', { name: 'DailyFlow Today' }),
     ).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: '오늘' })).toBeInTheDocument();
     expect(
-      screen.getByRole('heading', { name: '오늘의 흐름' }),
-    ).toBeInTheDocument();
-    expect(
-      screen.getByRole('button', { name: '+ 할 일 추가' }),
+      screen.getByRole('button', { name: '새 할 일' }),
     ).toBeInTheDocument();
   });
 

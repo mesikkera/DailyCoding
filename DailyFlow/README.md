@@ -4,7 +4,7 @@ DailyFlow is a personal productivity app for managing daily tasks, routines, cal
 
 ## Current status
 
-Phase 9 hardening started: user-scoped Firestore rules draft, security notes, and Vite manual chunking for release-build readiness.
+Visual realignment in progress: Today Board has been simplified toward an Apple Reminders/Calendar-inspired layout with a calmer sidebar, compact account area, achievement ring, and softer task cards.
 
 ## Key documents
 

@@ -3,7 +3,7 @@
 ## Source of truth
 
 - Status: Draft
-- Last refreshed: 2026-06-23
+- Last refreshed: 2026-06-24
 - Primary product surfaces:
   - Today Board: primary home surface for daily planning, task state management, carry-over, recurring tasks, and daily achievement rate.
   - Calendar: week-first schedule and productivity view with day/week/month modes and South Korean holidays.
@@ -14,6 +14,7 @@
   - `DEPENDENCY_MAINTENANCE.md`: obsolete React Native examples were removed; future native work should not restore old dependency graphs unchanged.
   - `React/todo/package.json`: existing learning todo app uses Vite + React 18, but current product direction is broader than that demo.
   - `.omx/context/todo-app-planning-20260622T223859Z.md`: deep interview context and product requirements.
+  - `src/features/today/TodayBoardPlaceholder.tsx` and `src/styles.css`: first implementation was functional but visually too dashboard-like; 2026-06-24 pass shifts Today toward an Apple Reminders/Calendar-inspired surface.
 
 ## Brand
 
@@ -117,6 +118,7 @@
   - Counts, denominators, exclusions, and carry-over behavior should be understandable.
 - Principle 3: Native-feeling restraint.
   - Use spacing, typography, subtle surfaces, and semantic color rather than heavy decoration.
+  - Avoid dense metric grids as the first impression; prefer one clear daily summary plus compact supporting metrics.
 - Principle 4: Future expansion without MVP overload.
   - Leave conceptual room for native apps and collaboration, but do not crowd the MVP UI with those features.
 - Tradeoffs:

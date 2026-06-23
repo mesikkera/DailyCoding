@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import type { CSSProperties } from 'react';
 import { useMemo, useState } from 'react';
 
 import { Badge } from '../../components/ui/Badge';
@@ -130,11 +130,36 @@ export function TodayBoardPlaceholder() {
   return (
     <section className="today-board" aria-labelledby="today-heading">
       <PageHeader
-        action={<Button onClick={addTask}>+ 할 일 추가</Button>}
-        description="상태 중심 칸반으로 오늘의 계획과 달성률을 봅니다."
-        eyebrow="Today Board"
-        title="오늘의 흐름"
+        action={<Button onClick={addTask}>새 할 일</Button>}
+        description="오늘 처리할 일만 차분하게 정리하고, 완료율은 자동으로 계산합니다."
+        eyebrow={formatFullDate(today)}
+        title="오늘"
       />
+
+      <div className="today-dashboard">
+        <Card className="today-hero-card">
+          <div
+            aria-label={`오늘 달성률 ${percentage}%`}
+            className="achievement-ring"
+            style={{ '--achievement': `${percentage}%` } as CSSProperties}
+          >
+            <span>{percentage}%</span>
+          </div>
+          <div className="today-hero-copy">
+            <p>오늘의 달성률</p>
+            <strong>
+              완료 {summary.completedCount} / 대상 {summary.denominatorCount}
+            </strong>
+            <span>보류 {summary.onHoldCount}개는 달성률에서 제외됩니다.</span>
+          </div>
+        </Card>
+
+        <div className="today-metric-strip" aria-label="오늘 상태 요약">
+          <MetricPill label="예정" value={summary.plannedCount} />
+          <MetricPill label="진행중" value={summary.inProgressCount} />
+          <MetricPill label="완료" value={summary.completedCount} />
+        </div>
+      </div>
 
       <SyncStatusBanner
         isOnline={isOnline}
@@ -142,16 +167,16 @@ export function TodayBoardPlaceholder() {
         pendingCount={pendingCount}
       />
 
-      <div className="summary-grid" aria-label="오늘 요약">
-        <SummaryCard hero label="달성률" value={`${percentage}%`}>
-          완료 {summary.completedCount} / 대상 {summary.denominatorCount}
-        </SummaryCard>
-        <SummaryCard label="예정" value={summary.plannedCount} />
-        <SummaryCard label="진행중" value={summary.inProgressCount} />
-        <SummaryCard label="보류" value={summary.onHoldCount}>
-          달성률 제외
-        </SummaryCard>
-        <SummaryCard label="완료" value={summary.completedCount} />
+      <div className="board-section-header">
+        <div>
+          <h2>상태 보드</h2>
+          <p>예정에서 완료까지, 필요한 상태만 부드럽게 이동합니다.</p>
+        </div>
+        <div className="category-preview" aria-label="오늘 카테고리">
+          <span>생활</span>
+          <span>업무</span>
+          <span>자기 계발</span>
+        </div>
       </div>
 
       <div className="kanban-grid" aria-label="오늘 상태 칸반">
@@ -200,15 +225,32 @@ function TaskCard({
   onStatusChange: (taskId: string, status: TaskStatus) => void;
   task: DailyFlowTask;
 }) {
+  const isCompleted = task.status === 'completed';
+
   return (
-    <Card as="article" className="task-card">
-      <div className="task-card-header">
-        <Badge tone={`priority-${task.priority}`}>
-          {priorityLabel(task.priority)}
-        </Badge>
-        <Badge>{task.categoryName}</Badge>
+    <Card
+      as="article"
+      className={`task-card ${isCompleted ? 'task-card-completed' : ''}`}
+    >
+      <div className="task-card-main">
+        <button
+          aria-label={`${task.title} 완료`}
+          className="completion-control"
+          onClick={() => onStatusChange(task.id, 'completed')}
+          type="button"
+        >
+          {isCompleted ? '✓' : ''}
+        </button>
+        <div>
+          <h3>{task.title}</h3>
+          <div className="task-card-header">
+            <Badge tone={`priority-${task.priority}`}>
+              {priorityLabel(task.priority)}
+            </Badge>
+            <Badge>{task.categoryName}</Badge>
+          </div>
+        </div>
       </div>
-      <h3>{task.title}</h3>
       <div className="task-card-meta">
         <Badge tone={syncBadgeTone(task.syncState)}>
           {syncLabel(task.syncState)}
@@ -250,23 +292,12 @@ function TaskCard({
   );
 }
 
-function SummaryCard({
-  children,
-  hero = false,
-  label,
-  value,
-}: {
-  children?: ReactNode;
-  hero?: boolean;
-  label: string;
-  value: number | string;
-}) {
+function MetricPill({ label, value }: { label: string; value: number }) {
   return (
-    <Card className="summary-card" tone={hero ? 'hero' : 'default'}>
+    <div className="metric-pill">
       <span>{label}</span>
       <strong>{value}</strong>
-      {children ? <small>{children}</small> : null}
-    </Card>
+    </div>
   );
 }
 
@@ -349,4 +380,12 @@ function nextDate(date: string) {
   nextDay.setUTCDate(nextDay.getUTCDate() + 1);
 
   return nextDay.toISOString().slice(0, 10);
+}
+
+function formatFullDate(date: string) {
+  return new Intl.DateTimeFormat('ko-KR', {
+    month: 'long',
+    day: 'numeric',
+    weekday: 'long',
+  }).format(new Date(`${date}T00:00:00.000Z`));
 }
