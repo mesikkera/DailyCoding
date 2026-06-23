@@ -4,7 +4,7 @@ DailyFlow is a personal productivity app for managing daily tasks, routines, cal
 
 ## Current status
 
-Phase 6 calendar MVP slice complete: week-first calendar route, day/week/month toggles, local event creation with reminders, Korean fixed-date holiday labels, and daily achievement/task distribution indicators.
+Phase 7 statistics MVP slice complete: daily task-only achievement stats, weekly/monthly average summaries, and clear exclusion of on-hold tasks and calendar events.
 
 ## Key documents
 

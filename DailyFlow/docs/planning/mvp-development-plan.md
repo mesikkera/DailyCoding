@@ -256,6 +256,8 @@ Verification:
 
 Goal: make progress visible beyond one day.
 
+Status: first route/domain slice complete. The stats route shows daily rows, weekly and monthly average summaries, and a canonical daily stats payload helper that excludes on-hold tasks and calendar events from the denominator.
+
 Deliverables:
 
 - Daily stats document update strategy.
