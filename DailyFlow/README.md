@@ -12,6 +12,7 @@ Planning and design phase.
 - `docs/planning/interview-context.md` — interview/context log that led to the current requirements.
 - `docs/decisions/0001-baas-firebase.md` — BaaS decision record: Firebase selected over Supabase for the initial implementation.
 - `docs/technical/firestore-data-model.md` — draft Firestore data model.
+- `docs/planning/mvp-development-plan.md` — phased MVP implementation plan and acceptance criteria.
 
 ## Product direction
 
