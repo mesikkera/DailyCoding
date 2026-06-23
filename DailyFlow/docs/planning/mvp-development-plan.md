@@ -225,6 +225,8 @@ Verification:
 
 Goal: provide week-first schedule and productivity context.
 
+Status: first interactive calendar slice complete. The route defaults to week view, supports day/week/month toggles, can add local events with reminder metadata, shows fixed-date Korean holiday labels, and displays daily achievement/task distribution placeholders.
+
 Deliverables:
 
 - Calendar route.

@@ -4,7 +4,7 @@ DailyFlow is a personal productivity app for managing daily tasks, routines, cal
 
 ## Current status
 
-Phase 5 carry-over and recurring routine model complete: interactive Today Board supports tomorrow carry-over, tasks include recurrence metadata, and daily rule generation prevents duplicate routine tasks.
+Phase 6 calendar MVP slice complete: week-first calendar route, day/week/month toggles, local event creation with reminders, Korean fixed-date holiday labels, and daily achievement/task distribution indicators.
 
 ## Key documents
 
