@@ -4,7 +4,7 @@ DailyFlow is a personal productivity app for managing daily tasks, routines, cal
 
 ## Current status
 
-Phase 8 browser push preparation complete: notification permission UI, browser push enable/disable controls, test-notification path, and Firestore subscription storage model.
+Phase 9 hardening started: user-scoped Firestore rules draft, security notes, and Vite manual chunking for release-build readiness.
 
 ## Key documents
 
@@ -13,6 +13,7 @@ Phase 8 browser push preparation complete: notification permission UI, browser p
 - `docs/planning/mvp-development-plan.md` — phased MVP implementation plan and acceptance criteria.
 - `docs/decisions/0001-baas-firebase.md` — BaaS decision record: Firebase selected over Supabase for the initial implementation.
 - `docs/technical/firestore-data-model.md` — draft Firestore data model.
+- `docs/technical/security-rules.md` — MVP Firestore security rules notes.
 
 ## Product direction
 

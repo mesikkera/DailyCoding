@@ -312,6 +312,8 @@ Verification:
 
 Goal: make the MVP safe to use daily.
 
+Status: started. Added a user-scoped Firestore rules draft, security documentation, and Vite manual chunking/size threshold so release builds separate Firebase SDK weight from app code. Emulator rule tests and field-level validation remain before public beta.
+
 Deliverables:
 
 - Security rules for user-scoped data.
