@@ -5,25 +5,25 @@ import { describe, expect, it } from 'vitest';
 import { TodayBoardPlaceholder } from './TodayBoardPlaceholder';
 
 describe('TodayBoardPlaceholder', () => {
-  it('adds a planned task and updates planned count', async () => {
+  it("adds a task to today's task category and updates category progress", async () => {
     const user = userEvent.setup();
     render(<TodayBoardPlaceholder />);
 
     await user.click(screen.getByRole('button', { name: '새 할 일' }));
 
     expect(screen.getByText('새 할 일 5')).toBeInTheDocument();
-    expect(laneCount('예정')).toHaveTextContent('2');
+    expect(categoryProgress('오늘의 할 일')).toHaveTextContent('0/1');
     expect(screen.getByText('동기화 대기 1개')).toBeInTheDocument();
   });
 
-  it('moves a task to completed and updates achievement rate', async () => {
+  it('completes a task and updates total and category achievement rates', async () => {
     const user = userEvent.setup();
     render(<TodayBoardPlaceholder />);
 
     const taskActions = screen.getByLabelText('아침 루틴 정리 상태 변경');
     await user.click(within(taskActions).getByRole('button', { name: '완료' }));
 
-    expect(laneCount('완료')).toHaveTextContent('2');
+    expect(categoryProgress('오늘의 생활')).toHaveTextContent('1/1');
     expect(screen.getByText('67%')).toBeInTheDocument();
   });
 
@@ -49,10 +49,10 @@ describe('TodayBoardPlaceholder', () => {
     expect(
       screen.queryByText('장기 보류 아이디어 정리'),
     ).not.toBeInTheDocument();
-    expect(laneCount('보류')).toHaveTextContent('0');
+    expect(categoryProgress('오늘의 할 일')).toHaveTextContent('0/0');
   });
 
-  it('carries a task over to tomorrow and removes it from today lanes', async () => {
+  it("carries a task over to tomorrow and removes it from today's category", async () => {
     const user = userEvent.setup();
     render(<TodayBoardPlaceholder />);
 
@@ -62,18 +62,18 @@ describe('TodayBoardPlaceholder', () => {
     );
 
     expect(screen.queryByText('아침 루틴 정리')).not.toBeInTheDocument();
-    expect(laneCount('예정')).toHaveTextContent('0');
+    expect(categoryProgress('오늘의 생활')).toHaveTextContent('0/0');
     expect(screen.getByText('동기화 대기 1개')).toBeInTheDocument();
   });
 });
 
-function laneCount(label: string) {
+function categoryProgress(label: string) {
   const heading = screen.getByRole('heading', { name: label });
   const lane = heading.closest('section');
 
   if (!lane) {
-    throw new Error(`Lane not found: ${label}`);
+    throw new Error(`Category lane not found: ${label}`);
   }
 
-  return within(lane).getByText(/^\d+$/);
+  return within(lane).getByText(/^\d+\/\d+$/);
 }

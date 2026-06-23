@@ -2,7 +2,7 @@
 
 ## Source of truth
 
-- Status: Draft
+- Status: Active
 - Last refreshed: 2026-06-24
 - Primary product surfaces:
   - Today Board: primary home surface for daily planning, task state management, carry-over, recurring tasks, and daily achievement rate.
@@ -207,7 +207,7 @@
   - Mobile web.
   - Future native iOS/Android should be considered conceptually, but not implemented from this design doc yet.
 - Layout adaptations:
-  - Desktop Today Board: summary header plus four status-first Kanban lanes: planned, in progress, on hold, completed.
+  - Desktop Today Board: summary header plus configurable category lanes for the selected date; task status is handled inside each card and no longer defines the main board columns.
   - Tablet: fewer columns or horizontally scrollable lanes.
   - Mobile: segmented status tabs or stacked lanes; summary remains sticky or near top.
   - Calendar desktop/tablet: week grid is primary.
@@ -278,7 +278,7 @@
 
 ## Open questions
 
-- [x] Today Board default grouping: status-first Kanban (`planned / in progress / on hold / completed`), with category shown as filters, chips, colors, or card metadata. / owner: user / resolved: 2026-06-23.
+- [x] Today Board default grouping: date-first category Kanban. Each date has configurable category lanes such as 오늘의 생활, 오늘의 할 일, 오늘의 자기 계발, 오늘의 업무; task status is card metadata/actions, not the primary board grouping. / owner: user / corrected: 2026-06-24.
 - [x] Task priority levels: high / normal / low. / owner: user / resolved: 2026-06-23.
 - [x] Calendar events do not influence daily achievement rate; only tasks are counted. / owner: user / resolved: 2026-06-23.
 - [x] Statistics MVP includes daily achievement, weekly average, and monthly average. / owner: user / resolved: 2026-06-23.

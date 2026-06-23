@@ -1156,3 +1156,39 @@ body {
     flex-direction: column;
   }
 }
+
+.category-lane {
+  position: relative;
+  overflow: hidden;
+}
+
+.category-lane::before {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 4px;
+  content: '';
+  opacity: 0.9;
+}
+
+.category-lane-blue::before {
+  background: #007aff;
+}
+
+.category-lane-purple::before {
+  background: #af52de;
+}
+
+.category-lane-green::before {
+  background: #34c759;
+}
+
+.category-lane-orange::before {
+  background: #ff9f0a;
+}
+
+.category-lane header small {
+  display: block;
+  margin-top: 3px;
+  color: var(--color-text-secondary);
+  font-size: 0.78rem;
+}

@@ -18,7 +18,7 @@ Visual realignment in progress: Today Board has been simplified toward an Apple 
 ## Product direction
 
 - Today Board first.
-- Status-first Kanban: planned, in progress, on hold, completed.
+- Date-first category Kanban: each date contains configurable category lanes such as 오늘의 생활, 오늘의 할 일, 오늘의 자기 계발, 오늘의 업무.
 - Configurable categories.
 - Automatic daily achievement rate.
 - Calendar events separate from tasks.

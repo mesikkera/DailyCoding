@@ -58,14 +58,12 @@ const initialTasks: DailyFlowTask[] = [
   }),
 ];
 
-const lanes: Array<{ label: string; status: TaskStatus; tone: BadgeTone }> = [
-  { label: '예정', status: 'planned', tone: 'primary' },
-  { label: '진행중', status: 'in_progress', tone: 'warning' },
-  { label: '보류', status: 'on_hold', tone: 'muted' },
-  { label: '완료', status: 'completed', tone: 'success' },
+const categories: Array<{ name: string; accent: string }> = [
+  { name: '오늘의 생활', accent: 'blue' },
+  { name: '오늘의 할 일', accent: 'purple' },
+  { name: '오늘의 자기 계발', accent: 'green' },
+  { name: '오늘의 업무', accent: 'orange' },
 ];
-
-type BadgeTone = 'primary' | 'warning' | 'muted' | 'success';
 
 export function TodayBoardPlaceholder() {
   const isOnline = useOnlineStatus();
@@ -154,10 +152,10 @@ export function TodayBoardPlaceholder() {
           </div>
         </Card>
 
-        <div className="today-metric-strip" aria-label="오늘 상태 요약">
-          <MetricPill label="예정" value={summary.plannedCount} />
-          <MetricPill label="진행중" value={summary.inProgressCount} />
+        <div className="today-metric-strip" aria-label="오늘 카테고리 요약">
+          <MetricPill label="전체 계획" value={summary.denominatorCount} />
           <MetricPill label="완료" value={summary.completedCount} />
+          <MetricPill label="보류" value={summary.onHoldCount} />
         </div>
       </div>
 
@@ -169,27 +167,44 @@ export function TodayBoardPlaceholder() {
 
       <div className="board-section-header">
         <div>
-          <h2>상태 보드</h2>
-          <p>예정에서 완료까지, 필요한 상태만 부드럽게 이동합니다.</p>
+          <h2>카테고리별 오늘 보드</h2>
+          <p>
+            날짜별 하루 안에서 생활, 할 일, 자기 계발, 업무를 나누어 관리합니다.
+          </p>
         </div>
         <div className="category-preview" aria-label="오늘 카테고리">
           <span>생활</span>
-          <span>업무</span>
+          <span>할 일</span>
           <span>자기 계발</span>
+          <span>업무</span>
         </div>
       </div>
 
-      <div className="kanban-grid" aria-label="오늘 상태 칸반">
-        {lanes.map((lane) => {
+      <div
+        className="kanban-grid category-kanban-grid"
+        aria-label="오늘 카테고리 칸반"
+      >
+        {categories.map((category) => {
           const laneTasks = activeTasks
-            .filter((task) => task.status === lane.status)
+            .filter((task) => task.categoryName === category.name)
             .sort((a, b) => a.sortOrder - b.sortOrder);
+          const laneSummary = calculateAchievementSummary(laneTasks);
+          const lanePercentage = Math.round(laneSummary.achievementRate * 100);
 
           return (
-            <Card as="section" className="kanban-lane" key={lane.status}>
+            <Card
+              as="section"
+              className={`kanban-lane category-lane category-lane-${category.accent}`}
+              key={category.name}
+            >
               <header>
-                <h2>{lane.label}</h2>
-                <Badge tone={lane.tone}>{laneTasks.length}</Badge>
+                <div>
+                  <h2>{category.name}</h2>
+                  <small>달성률 {lanePercentage}%</small>
+                </div>
+                <Badge tone="primary">
+                  {laneSummary.completedCount}/{laneSummary.denominatorCount}
+                </Badge>
               </header>
               <div className="task-list">
                 {laneTasks.length > 0 ? (
@@ -203,7 +218,7 @@ export function TodayBoardPlaceholder() {
                     />
                   ))
                 ) : (
-                  <p className="empty-lane">아직 항목이 없습니다.</p>
+                  <p className="empty-lane">이 카테고리에 할 일이 없습니다.</p>
                 )}
               </div>
             </Card>
@@ -262,17 +277,30 @@ function TaskCard({
         )}
       </div>
       <div className="task-actions" aria-label={`${task.title} 상태 변경`}>
-        {lanes.map((lane) => (
-          <button
-            aria-pressed={task.status === lane.status}
-            className="task-action"
-            key={lane.status}
-            onClick={() => onStatusChange(task.id, lane.status)}
-            type="button"
-          >
-            {lane.label}
-          </button>
-        ))}
+        <button
+          aria-pressed={task.status === 'in_progress'}
+          className="task-action"
+          onClick={() => onStatusChange(task.id, 'in_progress')}
+          type="button"
+        >
+          진행중
+        </button>
+        <button
+          aria-pressed={task.status === 'on_hold'}
+          className="task-action"
+          onClick={() => onStatusChange(task.id, 'on_hold')}
+          type="button"
+        >
+          보류
+        </button>
+        <button
+          aria-pressed={task.status === 'completed'}
+          className="task-action"
+          onClick={() => onStatusChange(task.id, 'completed')}
+          type="button"
+        >
+          완료
+        </button>
         <button
           className="task-action"
           onClick={() => onCarryOver(task.id)}

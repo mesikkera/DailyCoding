@@ -144,7 +144,7 @@ Deliverables:
   - normal
   - low
 - Category assignment.
-- Status-first Kanban Today Board.
+- Date-first category Kanban Today Board.
 - Category filter/chip display.
 - Daily count and achievement-rate calculation.
 
@@ -458,7 +458,7 @@ Each commit should leave the project buildable and testable.
 MVP is done when:
 
 - A user can sign in.
-- A user can manage today's tasks on a status-first Kanban board.
+- A user can manage today's tasks on a category-first daily Kanban board.
 - Counts and achievement rate update automatically.
 - On-hold tasks and events are excluded from achievement.
 - A user can carry tasks to another date.
