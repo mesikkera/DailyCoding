@@ -1,4 +1,6 @@
-export type TaskStatus = 'planned' | 'in_progress' | 'on_hold' | 'completed';
+import type { TaskStatus } from '../tasks/task';
+
+export type { TaskStatus };
 
 export interface AchievementInput {
   status: TaskStatus;

@@ -12,7 +12,9 @@ describe('App', () => {
   it('renders the DailyFlow Today Board shell by default', () => {
     render(<App />);
 
-    expect(screen.getByText('DailyFlow')).toBeInTheDocument();
+    expect(
+      screen.getByRole('link', { name: 'DailyFlow Today' }),
+    ).toBeInTheDocument();
     expect(
       screen.getByRole('heading', { name: '오늘의 흐름' }),
     ).toBeInTheDocument();

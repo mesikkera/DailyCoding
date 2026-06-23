@@ -1,48 +1,56 @@
 import type { ReactNode } from 'react';
+import { useMemo, useState } from 'react';
 
 import { Badge } from '../../components/ui/Badge';
 import { Button } from '../../components/ui/Button';
 import { Card } from '../../components/ui/Card';
 import { PageHeader } from '../../components/ui/PageHeader';
-import { calculateAchievementSummary, type TaskStatus } from './achievement';
+import {
+  createLocalTask,
+  softDeleteTask,
+  transitionTaskStatus,
+  visibleTasks,
+  type DailyFlowTask,
+  type TaskPriority,
+  type TaskStatus,
+} from '../tasks/task';
+import { calculateAchievementSummary } from './achievement';
 
-interface MockTask {
-  id: string;
-  title: string;
-  category: string;
-  priority: 'high' | 'normal' | 'low';
-  status: TaskStatus;
-}
+const today = new Date().toISOString().slice(0, 10);
 
-const mockTasks: MockTask[] = [
-  {
+const initialTasks: DailyFlowTask[] = [
+  createSeedTask({
     id: 'task-1',
     title: '아침 루틴 정리',
-    category: '오늘의 생활',
+    categoryName: '오늘의 생활',
     priority: 'normal',
     status: 'planned',
-  },
-  {
+    sortOrder: 10,
+  }),
+  createSeedTask({
     id: 'task-2',
     title: 'DailyFlow 설계 문서 검토',
-    category: '오늘의 업무',
+    categoryName: '오늘의 업무',
     priority: 'high',
     status: 'in_progress',
-  },
-  {
+    sortOrder: 20,
+  }),
+  createSeedTask({
     id: 'task-3',
     title: '운동 30분',
-    category: '오늘의 자기 계발',
+    categoryName: '오늘의 자기 계발',
     priority: 'normal',
     status: 'completed',
-  },
-  {
+    sortOrder: 30,
+  }),
+  createSeedTask({
     id: 'task-4',
     title: '장기 보류 아이디어 정리',
-    category: '오늘의 할 일',
+    categoryName: '오늘의 할 일',
     priority: 'low',
     status: 'on_hold',
-  },
+    sortOrder: 40,
+  }),
 ];
 
 const lanes: Array<{ label: string; status: TaskStatus; tone: BadgeTone }> = [
@@ -55,13 +63,43 @@ const lanes: Array<{ label: string; status: TaskStatus; tone: BadgeTone }> = [
 type BadgeTone = 'primary' | 'warning' | 'muted' | 'success';
 
 export function TodayBoardPlaceholder() {
-  const summary = calculateAchievementSummary(mockTasks);
+  const [tasks, setTasks] = useState<DailyFlowTask[]>(initialTasks);
+  const activeTasks = useMemo(() => visibleTasks(tasks), [tasks]);
+  const summary = calculateAchievementSummary(activeTasks);
   const percentage = Math.round(summary.achievementRate * 100);
+
+  const addTask = () => {
+    setTasks((currentTasks) => [
+      ...currentTasks,
+      createLocalTask({
+        title: `새 할 일 ${currentTasks.length + 1}`,
+        categoryName: '오늘의 할 일',
+        priority: 'normal',
+        scheduledDate: today,
+      }),
+    ]);
+  };
+
+  const updateStatus = (taskId: string, status: TaskStatus) => {
+    setTasks((currentTasks) =>
+      currentTasks.map((task) => {
+        return task.id === taskId ? transitionTaskStatus(task, status) : task;
+      }),
+    );
+  };
+
+  const deleteTask = (taskId: string) => {
+    setTasks((currentTasks) =>
+      currentTasks.map((task) => {
+        return task.id === taskId ? softDeleteTask(task) : task;
+      }),
+    );
+  };
 
   return (
     <section className="today-board" aria-labelledby="today-heading">
       <PageHeader
-        action={<Button>+ 할 일 추가</Button>}
+        action={<Button onClick={addTask}>+ 할 일 추가</Button>}
         description="상태 중심 칸반으로 오늘의 계획과 달성률을 봅니다."
         eyebrow="Today Board"
         title="오늘의 흐름"
@@ -81,32 +119,77 @@ export function TodayBoardPlaceholder() {
 
       <div className="kanban-grid" aria-label="오늘 상태 칸반">
         {lanes.map((lane) => {
-          const tasks = mockTasks.filter((task) => task.status === lane.status);
+          const laneTasks = activeTasks
+            .filter((task) => task.status === lane.status)
+            .sort((a, b) => a.sortOrder - b.sortOrder);
 
           return (
             <Card as="section" className="kanban-lane" key={lane.status}>
               <header>
                 <h2>{lane.label}</h2>
-                <Badge tone={lane.tone}>{tasks.length}</Badge>
+                <Badge tone={lane.tone}>{laneTasks.length}</Badge>
               </header>
               <div className="task-list">
-                {tasks.map((task) => (
-                  <Card as="article" className="task-card" key={task.id}>
-                    <div className="task-card-header">
-                      <Badge tone={`priority-${task.priority}`}>
-                        {priorityLabel(task.priority)}
-                      </Badge>
-                      <Badge>{task.category}</Badge>
-                    </div>
-                    <h3>{task.title}</h3>
-                  </Card>
-                ))}
+                {laneTasks.length > 0 ? (
+                  laneTasks.map((task) => (
+                    <TaskCard
+                      key={task.id}
+                      onDelete={deleteTask}
+                      onStatusChange={updateStatus}
+                      task={task}
+                    />
+                  ))
+                ) : (
+                  <p className="empty-lane">아직 항목이 없습니다.</p>
+                )}
               </div>
             </Card>
           );
         })}
       </div>
     </section>
+  );
+}
+
+function TaskCard({
+  onDelete,
+  onStatusChange,
+  task,
+}: {
+  onDelete: (taskId: string) => void;
+  onStatusChange: (taskId: string, status: TaskStatus) => void;
+  task: DailyFlowTask;
+}) {
+  return (
+    <Card as="article" className="task-card">
+      <div className="task-card-header">
+        <Badge tone={`priority-${task.priority}`}>
+          {priorityLabel(task.priority)}
+        </Badge>
+        <Badge>{task.categoryName}</Badge>
+      </div>
+      <h3>{task.title}</h3>
+      <div className="task-actions" aria-label={`${task.title} 상태 변경`}>
+        {lanes.map((lane) => (
+          <button
+            aria-pressed={task.status === lane.status}
+            className="task-action"
+            key={lane.status}
+            onClick={() => onStatusChange(task.id, lane.status)}
+            type="button"
+          >
+            {lane.label}
+          </button>
+        ))}
+        <button
+          className="task-action task-action-danger"
+          onClick={() => onDelete(task.id)}
+          type="button"
+        >
+          삭제
+        </button>
+      </div>
+    </Card>
   );
 }
 
@@ -130,7 +213,7 @@ function SummaryCard({
   );
 }
 
-function priorityLabel(priority: MockTask['priority']) {
+function priorityLabel(priority: TaskPriority) {
   switch (priority) {
     case 'high':
       return '높음';
@@ -139,4 +222,36 @@ function priorityLabel(priority: MockTask['priority']) {
     case 'low':
       return '낮음';
   }
+}
+
+function createSeedTask({
+  categoryName,
+  id,
+  priority,
+  sortOrder,
+  status,
+  title,
+}: {
+  categoryName: string;
+  id: string;
+  priority: TaskPriority;
+  sortOrder: number;
+  status: TaskStatus;
+  title: string;
+}): DailyFlowTask {
+  const task = createLocalTask({
+    title,
+    categoryName,
+    priority,
+    scheduledDate: today,
+  });
+
+  return transitionTaskStatus(
+    {
+      ...task,
+      id,
+      sortOrder,
+    },
+    status,
+  );
 }
