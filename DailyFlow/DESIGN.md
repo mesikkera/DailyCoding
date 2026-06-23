@@ -225,6 +225,7 @@
   - Sync, login, conflict, and notification-permission errors should be explicit and recoverable.
 - Success:
   - Completing a task should update counts immediately with subtle visual feedback.
+  - Carrying a task over should remove it from the current day's active lanes and count it on the destination date.
 - Disabled:
   - Disabled actions must explain why when relevant, especially notification permission or sync-dependent features.
 - Offline/slow network, if applicable:

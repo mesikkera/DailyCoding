@@ -197,6 +197,8 @@ Verification:
 
 Goal: reduce daily manual bookkeeping.
 
+Status: domain and Today Board slice complete. Tasks can be carried to tomorrow from the card actions, task records retain original schedule/carry-over count, and daily recurrence rule generation is idempotent by `recurrenceRuleId + generatedForDate`.
+
 Deliverables:
 
 - Carry-over action from task card/detail.

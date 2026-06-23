@@ -8,6 +8,7 @@ import { PageHeader } from '../../components/ui/PageHeader';
 import { SyncStatusBanner } from '../sync/SyncStatusBanner';
 import { useOnlineStatus } from '../sync/useOnlineStatus';
 import {
+  carryOverTask,
   countPendingTasks,
   createLocalTask,
   markTaskSynced,
@@ -69,10 +70,14 @@ type BadgeTone = 'primary' | 'warning' | 'muted' | 'success';
 export function TodayBoardPlaceholder() {
   const isOnline = useOnlineStatus();
   const [tasks, setTasks] = useState<DailyFlowTask[]>(initialTasks);
-  const activeTasks = useMemo(() => visibleTasks(tasks), [tasks]);
+  const visibleTaskList = useMemo(() => visibleTasks(tasks), [tasks]);
+  const activeTasks = useMemo(
+    () => visibleTaskList.filter((task) => task.scheduledDate === today),
+    [visibleTaskList],
+  );
   const summary = calculateAchievementSummary(activeTasks);
   const percentage = Math.round(summary.achievementRate * 100);
-  const pendingCount = countPendingTasks(activeTasks);
+  const pendingCount = countPendingTasks(visibleTaskList);
 
   const addTask = () => {
     setTasks((currentTasks) => [
@@ -98,6 +103,14 @@ export function TodayBoardPlaceholder() {
     setTasks((currentTasks) =>
       currentTasks.map((task) => {
         return task.id === taskId ? softDeleteTask(task) : task;
+      }),
+    );
+  };
+
+  const carryOverToTomorrow = (taskId: string) => {
+    setTasks((currentTasks) =>
+      currentTasks.map((task) => {
+        return task.id === taskId ? carryOverTask(task, nextDate(today)) : task;
       }),
     );
   };
@@ -158,6 +171,7 @@ export function TodayBoardPlaceholder() {
                   laneTasks.map((task) => (
                     <TaskCard
                       key={task.id}
+                      onCarryOver={carryOverToTomorrow}
                       onDelete={deleteTask}
                       onStatusChange={updateStatus}
                       task={task}
@@ -176,10 +190,12 @@ export function TodayBoardPlaceholder() {
 }
 
 function TaskCard({
+  onCarryOver,
   onDelete,
   onStatusChange,
   task,
 }: {
+  onCarryOver: (taskId: string) => void;
   onDelete: (taskId: string) => void;
   onStatusChange: (taskId: string, status: TaskStatus) => void;
   task: DailyFlowTask;
@@ -215,6 +231,13 @@ function TaskCard({
             {lane.label}
           </button>
         ))}
+        <button
+          className="task-action"
+          onClick={() => onCarryOver(task.id)}
+          type="button"
+        >
+          내일로 이월
+        </button>
         <button
           className="task-action task-action-danger"
           onClick={() => onDelete(task.id)}
@@ -319,4 +342,11 @@ function formatTime(isoDate: string) {
     hour: '2-digit',
     minute: '2-digit',
   }).format(new Date(isoDate));
+}
+
+function nextDate(date: string) {
+  const nextDay = new Date(`${date}T00:00:00.000Z`);
+  nextDay.setUTCDate(nextDay.getUTCDate() + 1);
+
+  return nextDay.toISOString().slice(0, 10);
 }

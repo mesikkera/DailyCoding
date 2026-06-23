@@ -11,5 +11,10 @@ export interface TaskRepository {
     taskId: string,
     status: TaskStatus,
   ): Promise<void>;
+  carryOverTask(
+    userId: string,
+    taskId: string,
+    destinationDate: string,
+  ): Promise<void>;
   softDeleteTask(userId: string, taskId: string): Promise<void>;
 }

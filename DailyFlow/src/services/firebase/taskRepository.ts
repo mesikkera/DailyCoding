@@ -2,6 +2,7 @@ import {
   addDoc,
   collection,
   doc,
+  getDoc,
   getDocs,
   orderBy,
   query,
@@ -57,6 +58,23 @@ export class FirestoreTaskRepository implements TaskRepository {
     await updateDoc(doc(this.db, `users/${userId}/tasks/${taskId}`), {
       status,
       completedAt: status === 'completed' ? serverTimestamp() : null,
+      updatedAt: serverTimestamp(),
+      clientUpdatedAt: serverTimestamp(),
+    });
+  }
+
+  async carryOverTask(userId: string, taskId: string, destinationDate: string) {
+    const taskRef = doc(this.db, `users/${userId}/tasks/${taskId}`);
+    const snapshot = await getDoc(taskRef);
+    const task = snapshot.data() as DailyFlowTask | undefined;
+
+    await updateDoc(taskRef, {
+      scheduledDate: destinationDate,
+      originalScheduledDate:
+        task?.originalScheduledDate ?? task?.scheduledDate ?? null,
+      carryOverCount: (task?.carryOverCount ?? 0) + 1,
+      status: 'planned',
+      completedAt: null,
       updatedAt: serverTimestamp(),
       clientUpdatedAt: serverTimestamp(),
     });
