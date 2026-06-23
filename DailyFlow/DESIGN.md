@@ -212,7 +212,7 @@
   - Desktop Today Board: summary header plus configurable category lanes for the selected date; task status is handled inside each card and no longer defines the main board columns.
   - Tablet: fewer columns or horizontally scrollable lanes.
   - Mobile: segmented status tabs or stacked lanes; summary remains sticky or near top.
-  - Calendar desktop/tablet: week view is primary and should show a top achievement summary followed by a 00:00–24:00 hourly schedule grid.
+  - Calendar desktop/tablet: week view is primary and should open on the current week, show a top achievement summary followed by a 00:00–24:00 hourly schedule grid, keep the time axis fixed, and let horizontal/side-wheel scrolling move only the date columns.
   - Calendar mobile: day and agenda-style views may be more usable than dense month grids.
 - Touch/hover differences:
   - Do not require hover for core actions.

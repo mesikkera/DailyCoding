@@ -19,7 +19,6 @@ import {
   type DailyFlowCalendarEvent,
 } from '../../features/calendar/calendar';
 
-const today = new Date().toISOString().slice(0, 10);
 const hourSlots = Array.from({ length: 24 }, (_, hour) => hour);
 
 const viewOptions: Array<{ label: string; value: CalendarView }> = [
@@ -28,29 +27,32 @@ const viewOptions: Array<{ label: string; value: CalendarView }> = [
   { label: '월', value: 'month' },
 ];
 
-const weekDates = getWeekDates(today);
-const sampleSummaries: CalendarDaySummary[] = [
-  {
-    date: weekDates[0],
-    plannedTaskCount: 3,
-    completedTaskCount: 2,
-    achievementRate: 0.67,
-  },
-  {
-    date: today,
-    plannedTaskCount: 4,
-    completedTaskCount: 1,
-    achievementRate: 0.25,
-  },
-  {
-    date: weekDates[4],
-    plannedTaskCount: 5,
-    completedTaskCount: 4,
-    achievementRate: 0.8,
-  },
-];
-
 export function CalendarRoute() {
+  const today = useMemo(() => getLocalDateKey(new Date()), []);
+  const currentWeekDates = useMemo(() => getWeekDates(today), [today]);
+  const sampleSummaries = useMemo<CalendarDaySummary[]>(
+    () => [
+      {
+        date: currentWeekDates[0],
+        plannedTaskCount: 3,
+        completedTaskCount: 2,
+        achievementRate: 0.67,
+      },
+      {
+        date: today,
+        plannedTaskCount: 4,
+        completedTaskCount: 1,
+        achievementRate: 0.25,
+      },
+      {
+        date: currentWeekDates[4],
+        plannedTaskCount: 5,
+        completedTaskCount: 4,
+        achievementRate: 0.8,
+      },
+    ],
+    [currentWeekDates, today],
+  );
   const [activeView, setActiveView] = useState<CalendarView>('week');
   const [events, setEvents] = useState<DailyFlowCalendarEvent[]>([
     createCalendarEvent({ date: today, hour: 10, title: '주간 계획 정리' }),
@@ -60,10 +62,8 @@ export function CalendarRoute() {
       return [today];
     }
 
-    return activeView === 'week'
-      ? getWeekDates(today)
-      : getMonthGridDates(today);
-  }, [activeView]);
+    return activeView === 'week' ? currentWeekDates : getMonthGridDates(today);
+  }, [activeView, currentWeekDates, today]);
 
   const addEvent = (date = today, hour = 10) => {
     setEvents((currentEvents) => [
@@ -148,16 +148,24 @@ function WeekCalendarView({
     return dates.some((date) => eventFallsOnDate(event, date));
   });
   const handleTimeboardWheel = (event: WheelEvent<HTMLElement>) => {
-    if (Math.abs(event.deltaY) <= Math.abs(event.deltaX)) {
+    const scrollDelta =
+      Math.abs(event.deltaX) > 0 ? event.deltaX : event.deltaY;
+
+    if (scrollDelta === 0) {
       return;
     }
 
     event.preventDefault();
-    event.currentTarget.scrollLeft += event.deltaY;
+    event.currentTarget.scrollLeft += scrollDelta;
   };
 
   return (
     <div className="week-calendar" aria-label="주간 캘린더">
+      <div className="week-range-heading" aria-label="이번 주 캘린더 범위">
+        <span>이번 주</span>
+        <strong>{formatWeekRange(dates)}</strong>
+      </div>
+
       <div className="week-summary-grid" aria-label="주간 요약">
         <CalendarSummaryCard
           label="주간 평균 달성률"
@@ -188,7 +196,7 @@ function WeekCalendarView({
           role="grid"
           aria-label="00시부터 24시까지 주간 일정표"
         >
-          <div className="time-axis-header" />
+          <div className="time-axis-header" aria-label="고정 시간축" />
           {dates.map((date) => (
             <div className="week-day-header" key={date} role="columnheader">
               <strong>{weekdayLabel(date)}</strong>
@@ -229,7 +237,11 @@ function WeekHourRow({
 }) {
   return (
     <>
-      <div className="time-axis-label" role="rowheader">
+      <div
+        aria-label={`${formatHourLabel(hour)} 고정 시간축`}
+        className="time-axis-label"
+        role="rowheader"
+      >
         {formatHourLabel(hour)}
       </div>
       {dates.map((date) => {
@@ -341,6 +353,17 @@ function formatCalendarDate(date: string) {
   }).format(new Date(`${date}T00:00:00.000Z`));
 }
 
+function formatWeekRange(dates: string[]) {
+  if (dates.length === 0) {
+    return '';
+  }
+
+  const startDate = formatCalendarDate(dates[0]);
+  const endDate = formatCalendarDate(dates[dates.length - 1]);
+
+  return `${startDate}–${endDate}`;
+}
+
 function weekdayLabel(date: string) {
   return new Intl.DateTimeFormat('ko-KR', { weekday: 'short' }).format(
     new Date(`${date}T00:00:00.000Z`),
@@ -356,4 +379,12 @@ function formatEventTime(isoDate: string) {
 
 function formatHourLabel(hour: number) {
   return `${String(hour).padStart(2, '0')}:00`;
+}
+
+function getLocalDateKey(date: Date) {
+  const localMidnight = new Date(
+    date.getTime() - date.getTimezoneOffset() * 60_000,
+  );
+
+  return localMidnight.toISOString().slice(0, 10);
 }

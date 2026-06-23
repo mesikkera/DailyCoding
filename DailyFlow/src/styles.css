@@ -1220,6 +1220,25 @@ body {
   letter-spacing: -0.05em;
 }
 
+.week-range-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: 2px 2px 0;
+}
+
+.week-range-heading span {
+  color: var(--color-primary-strong);
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.week-range-heading strong {
+  color: var(--color-text-secondary);
+  font-size: 0.95rem;
+}
+
 .week-timeboard-card {
   overflow: auto;
   padding: 0;
@@ -1227,8 +1246,8 @@ body {
 
 .week-timeboard {
   display: grid;
-  min-width: 980px;
-  grid-template-columns: 72px repeat(7, minmax(120px, 1fr));
+  min-width: 1192px;
+  grid-template-columns: 72px repeat(7, minmax(160px, 1fr));
 }
 
 .time-axis-header,
@@ -1242,10 +1261,17 @@ body {
   backdrop-filter: blur(18px);
 }
 
+.time-axis-header {
+  left: 0;
+  z-index: 4;
+  border-right: 1px solid var(--color-border);
+}
+
 .week-day-header {
   display: grid;
   gap: 2px;
   align-content: center;
+  z-index: 3;
   padding: 10px 12px;
   border-left: 1px solid var(--color-border);
 }
@@ -1261,12 +1287,18 @@ body {
 }
 
 .time-axis-label {
+  position: sticky;
+  left: 0;
+  z-index: 2;
   min-height: 68px;
   padding: 8px 10px;
+  border-right: 1px solid var(--color-border);
   border-bottom: 1px solid var(--color-border);
   color: var(--color-text-tertiary);
+  background: rgba(255, 255, 255, 0.94);
   font-size: 0.78rem;
   font-weight: 700;
+  backdrop-filter: blur(18px);
 }
 
 .week-time-slot {

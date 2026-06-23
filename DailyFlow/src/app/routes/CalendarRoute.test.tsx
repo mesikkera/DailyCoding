@@ -13,10 +13,14 @@ describe('CalendarRoute', () => {
       'true',
     );
     expect(screen.getByLabelText('주간 캘린더')).toBeInTheDocument();
+    expect(screen.getByLabelText('이번 주 캘린더 범위')).toHaveTextContent(
+      '이번 주',
+    );
     expect(screen.getByText('주간 평균 달성률')).toBeInTheDocument();
     expect(screen.getByText('00:00')).toBeInTheDocument();
     expect(screen.getByText('23:00')).toBeInTheDocument();
     expect(screen.getByText('주간 계획 정리')).toBeInTheDocument();
+    expect(screen.getByLabelText('고정 시간축')).toBeInTheDocument();
   });
 
   it('adds a calendar event from a weekly time slot', async () => {
@@ -38,6 +42,15 @@ describe('CalendarRoute', () => {
     fireEvent.wheel(scrollArea, { deltaY: 240 });
 
     expect(scrollArea.scrollLeft).toBe(240);
+  });
+
+  it('moves date columns horizontally with side wheel input', () => {
+    render(<CalendarRoute />);
+
+    const scrollArea = screen.getByLabelText('주간 시간표 스크롤 영역');
+    fireEvent.wheel(scrollArea, { deltaX: 180 });
+
+    expect(scrollArea.scrollLeft).toBe(180);
   });
 
   it('switches day and month views', async () => {
