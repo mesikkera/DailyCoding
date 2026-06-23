@@ -1,4 +1,6 @@
 import { getApps, initializeApp, type FirebaseApp } from 'firebase/app';
+import { getAuth, type Auth } from 'firebase/auth';
+import { getFirestore, type Firestore } from 'firebase/firestore';
 
 export interface DailyFlowFirebaseConfig {
   apiKey: string;
@@ -7,6 +9,12 @@ export interface DailyFlowFirebaseConfig {
   storageBucket: string;
   messagingSenderId: string;
   appId: string;
+}
+
+export interface DailyFlowFirebaseServices {
+  app: FirebaseApp;
+  auth: Auth;
+  db: Firestore;
 }
 
 export function getFirebaseConfigFromEnv(): DailyFlowFirebaseConfig | null {
@@ -26,6 +34,12 @@ export function getFirebaseConfigFromEnv(): DailyFlowFirebaseConfig | null {
 
 export function initializeDailyFlowFirebase(
   config: DailyFlowFirebaseConfig,
-): FirebaseApp {
-  return getApps()[0] ?? initializeApp(config);
+): DailyFlowFirebaseServices {
+  const app = getApps()[0] ?? initializeApp(config);
+
+  return {
+    app,
+    auth: getAuth(app),
+    db: getFirestore(app),
+  };
 }

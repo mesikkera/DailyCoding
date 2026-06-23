@@ -363,3 +363,46 @@ h1 {
     grid-template-columns: 1fr;
   }
 }
+
+.auth-panel {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-4);
+  align-items: center;
+  max-width: 1180px;
+  margin: 0 auto var(--space-5);
+  padding: var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  background: rgba(255, 255, 255, 0.64);
+}
+
+.auth-title {
+  margin: var(--space-2) 0 var(--space-1);
+  font-weight: 700;
+}
+
+.auth-description,
+.auth-error {
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-size: 0.9rem;
+}
+
+.auth-error {
+  margin-top: var(--space-2);
+  color: var(--color-priority-high-text);
+}
+
+.auth-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--space-2);
+}
+
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.52;
+  box-shadow: none;
+}
