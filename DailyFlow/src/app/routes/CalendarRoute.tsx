@@ -1,3 +1,4 @@
+import type { WheelEvent } from 'react';
 import { useMemo, useState } from 'react';
 
 import { Badge } from '../../components/ui/Badge';
@@ -146,6 +147,14 @@ function WeekCalendarView({
   const weekEvents = events.filter((event) => {
     return dates.some((date) => eventFallsOnDate(event, date));
   });
+  const handleTimeboardWheel = (event: WheelEvent<HTMLElement>) => {
+    if (Math.abs(event.deltaY) <= Math.abs(event.deltaX)) {
+      return;
+    }
+
+    event.preventDefault();
+    event.currentTarget.scrollLeft += event.deltaY;
+  };
 
   return (
     <div className="week-calendar" aria-label="주간 캘린더">
@@ -168,7 +177,12 @@ function WeekCalendarView({
         />
       </div>
 
-      <Card className="week-timeboard-card">
+      <Card
+        aria-label="주간 시간표 스크롤 영역"
+        className="week-timeboard-card"
+        onWheel={handleTimeboardWheel}
+        tabIndex={0}
+      >
         <div
           className="week-timeboard"
           role="grid"

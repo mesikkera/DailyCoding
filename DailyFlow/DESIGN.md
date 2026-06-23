@@ -108,8 +108,9 @@
     2. Weekly summary: task achievement rate, completed/planned task count, and event count
     3. 00:00–24:00 time grid for week view
     4. Events placed in hourly slots with quick slot-based event creation
-    5. Task distribution and achievement overlays
-    6. South Korean holidays
+    5. Horizontal navigation with mouse side wheel, trackpad horizontal scroll, and vertical wheel translated to horizontal movement inside the timetable
+    6. Task distribution and achievement overlays
+    7. South Korean holidays
 
 ## Design principles
 

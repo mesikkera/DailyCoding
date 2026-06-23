@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, expect, it } from 'vitest';
 
@@ -29,6 +29,15 @@ describe('CalendarRoute', () => {
     await user.click(addButtons[0]);
 
     expect(screen.getByText('새 일정 2')).toBeInTheDocument();
+  });
+
+  it('scrolls the weekly timetable horizontally with vertical wheel input', () => {
+    render(<CalendarRoute />);
+
+    const scrollArea = screen.getByLabelText('주간 시간표 스크롤 영역');
+    fireEvent.wheel(scrollArea, { deltaY: 240 });
+
+    expect(scrollArea.scrollLeft).toBe(240);
   });
 
   it('switches day and month views', async () => {

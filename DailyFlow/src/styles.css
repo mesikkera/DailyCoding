@@ -1313,3 +1313,13 @@ body {
     grid-template-columns: 1fr;
   }
 }
+
+.week-timeboard-card {
+  overscroll-behavior-x: contain;
+  scroll-behavior: smooth;
+}
+
+.week-timeboard-card:focus-visible {
+  outline: 3px solid rgba(0, 122, 255, 0.28);
+  outline-offset: 4px;
+}
