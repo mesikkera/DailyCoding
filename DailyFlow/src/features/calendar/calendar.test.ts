@@ -3,12 +3,14 @@ import { describe, expect, it } from 'vitest';
 import {
   calculateAverageAchievementRate,
   createCalendarEvent,
+  deleteCalendarEvent,
   eventFallsOnDate,
   eventStartsAtHour,
   formatAchievement,
   getKoreanHolidayName,
   getMonthGridDates,
   getWeekDates,
+  renameCalendarEvent,
 } from './calendar';
 
 describe('calendar domain', () => {
@@ -45,6 +47,25 @@ describe('calendar domain', () => {
     expect(eventFallsOnDate(event, '2026-06-23')).toBe(true);
     expect(eventStartsAtHour(event, 14)).toBe(true);
     expect(formatAchievement(undefined)).toBe('달성률 준비중');
+  });
+
+  it('renames and soft-deletes calendar events', () => {
+    const event = createCalendarEvent({
+      date: '2026-06-23',
+      hour: 14,
+      title: '주간 계획',
+    });
+    const renamedEvent = renameCalendarEvent(event, ' 회고 작성 ');
+    const fallbackEvent = renameCalendarEvent(renamedEvent, '   ');
+    const deletedEvent = deleteCalendarEvent(
+      fallbackEvent,
+      '2026-06-24T00:00:00.000Z',
+    );
+
+    expect(renamedEvent.title).toBe('회고 작성');
+    expect(fallbackEvent.title).toBe('회고 작성');
+    expect(deletedEvent.deletedAt).toBe('2026-06-24T00:00:00.000Z');
+    expect(eventFallsOnDate(deletedEvent, '2026-06-23')).toBe(false);
   });
 
   it('calculates weekly average achievement from visible day summaries', () => {

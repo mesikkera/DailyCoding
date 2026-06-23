@@ -1,5 +1,5 @@
-import type { WheelEvent } from 'react';
-import { useMemo, useState } from 'react';
+import type { ChangeEvent, WheelEvent } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 import { Badge } from '../../components/ui/Badge';
 import { Button } from '../../components/ui/Button';
@@ -8,12 +8,14 @@ import { PageHeader } from '../../components/ui/PageHeader';
 import {
   calculateAverageAchievementRate,
   createCalendarEvent,
+  deleteCalendarEvent,
   eventFallsOnDate,
   eventStartsAtHour,
   formatAchievement,
   getKoreanHolidayName,
   getMonthGridDates,
   getWeekDates,
+  renameCalendarEvent,
   type CalendarDaySummary,
   type CalendarView,
   type DailyFlowCalendarEvent,
@@ -75,6 +77,20 @@ export function CalendarRoute() {
       }),
     ]);
   };
+  const renameEvent = (eventId: string, title: string) => {
+    setEvents((currentEvents) =>
+      currentEvents.map((event) =>
+        event.id === eventId ? renameCalendarEvent(event, title) : event,
+      ),
+    );
+  };
+  const deleteEvent = (eventId: string) => {
+    setEvents((currentEvents) =>
+      currentEvents.map((event) =>
+        event.id === eventId ? deleteCalendarEvent(event) : event,
+      ),
+    );
+  };
 
   return (
     <section className="page-surface" aria-labelledby="calendar-heading">
@@ -103,6 +119,8 @@ export function CalendarRoute() {
           dates={visibleDates}
           events={events}
           onAddEvent={addEvent}
+          onDeleteEvent={deleteEvent}
+          onRenameEvent={renameEvent}
           summaries={sampleSummaries}
         />
       ) : (
@@ -112,6 +130,8 @@ export function CalendarRoute() {
               date={date}
               events={events.filter((event) => eventFallsOnDate(event, date))}
               key={date}
+              onDeleteEvent={deleteEvent}
+              onRenameEvent={renameEvent}
               summary={sampleSummaries.find((summary) => summary.date === date)}
             />
           ))}
@@ -125,11 +145,15 @@ function WeekCalendarView({
   dates,
   events,
   onAddEvent,
+  onDeleteEvent,
+  onRenameEvent,
   summaries,
 }: {
   dates: string[];
   events: DailyFlowCalendarEvent[];
   onAddEvent: (date?: string, hour?: number) => void;
+  onDeleteEvent: (eventId: string) => void;
+  onRenameEvent: (eventId: string, title: string) => void;
   summaries: CalendarDaySummary[];
 }) {
   const weekSummaries = dates
@@ -216,6 +240,8 @@ function WeekCalendarView({
               hour={hour}
               key={hour}
               onAddEvent={onAddEvent}
+              onDeleteEvent={onDeleteEvent}
+              onRenameEvent={onRenameEvent}
             />
           ))}
         </div>
@@ -229,11 +255,15 @@ function WeekHourRow({
   events,
   hour,
   onAddEvent,
+  onDeleteEvent,
+  onRenameEvent,
 }: {
   dates: string[];
   events: DailyFlowCalendarEvent[];
   hour: number;
   onAddEvent: (date?: string, hour?: number) => void;
+  onDeleteEvent: (eventId: string) => void;
+  onRenameEvent: (eventId: string, title: string) => void;
 }) {
   return (
     <>
@@ -258,16 +288,13 @@ function WeekHourRow({
             role="gridcell"
           >
             {slotEvents.map((event) => (
-              <div
-                className="calendar-event calendar-event-timeblock"
+              <CalendarEventCard
+                compact
+                event={event}
                 key={event.id}
-              >
-                <strong>{event.title}</strong>
-                <span>
-                  {formatEventTime(event.startsAt)}–
-                  {formatEventTime(event.endsAt)}
-                </span>
-              </div>
+                onDeleteEvent={onDeleteEvent}
+                onRenameEvent={onRenameEvent}
+              />
             ))}
             <button
               aria-label={`${date} ${formatHourLabel(hour)} 일정 추가`}
@@ -302,10 +329,14 @@ function CalendarSummaryCard({
 function CalendarDayCell({
   date,
   events,
+  onDeleteEvent,
+  onRenameEvent,
   summary,
 }: {
   date: string;
   events: DailyFlowCalendarEvent[];
+  onDeleteEvent: (eventId: string) => void;
+  onRenameEvent: (eventId: string, title: string) => void;
   summary?: CalendarDaySummary;
 }) {
   const holidayName = getKoreanHolidayName(date);
@@ -329,20 +360,78 @@ function CalendarDayCell({
       <div className="calendar-events">
         {events.length > 0 ? (
           events.map((event) => (
-            <div className="calendar-event" key={event.id}>
-              <strong>{event.title}</strong>
-              <span>
-                {formatEventTime(event.startsAt)}–
-                {formatEventTime(event.endsAt)} · 알림{' '}
-                {event.reminder.minutesBefore}분 전
-              </span>
-            </div>
+            <CalendarEventCard
+              event={event}
+              key={event.id}
+              onDeleteEvent={onDeleteEvent}
+              onRenameEvent={onRenameEvent}
+            />
           ))
         ) : (
           <p>등록된 일정이 없습니다.</p>
         )}
       </div>
     </Card>
+  );
+}
+
+function CalendarEventCard({
+  compact = false,
+  event,
+  onDeleteEvent,
+  onRenameEvent,
+}: {
+  compact?: boolean;
+  event: DailyFlowCalendarEvent;
+  onDeleteEvent: (eventId: string) => void;
+  onRenameEvent: (eventId: string, title: string) => void;
+}) {
+  const [draftTitle, setDraftTitle] = useState(event.title);
+
+  useEffect(() => {
+    setDraftTitle(event.title);
+  }, [event.title]);
+
+  const handleTitleChange = (changeEvent: ChangeEvent<HTMLInputElement>) => {
+    setDraftTitle(changeEvent.currentTarget.value);
+  };
+  const commitTitleChange = () => {
+    const nextTitle =
+      draftTitle.trim().length > 0 ? draftTitle.trim() : event.title;
+
+    setDraftTitle(nextTitle);
+    onRenameEvent(event.id, nextTitle);
+  };
+
+  return (
+    <div
+      className={`calendar-event ${compact ? 'calendar-event-timeblock' : ''}`}
+    >
+      <input
+        aria-label={`${event.title} 제목 수정`}
+        className="calendar-event-title-input"
+        onBlur={commitTitleChange}
+        onChange={handleTitleChange}
+        onKeyDown={(keyboardEvent) => {
+          if (keyboardEvent.key === 'Enter') {
+            keyboardEvent.currentTarget.blur();
+          }
+        }}
+        value={draftTitle}
+      />
+      <span>
+        {formatEventTime(event.startsAt)}–{formatEventTime(event.endsAt)} · 알림{' '}
+        {event.reminder.minutesBefore}분 전
+      </span>
+      <button
+        aria-label={`${event.title} 삭제`}
+        className="calendar-event-delete"
+        onClick={() => onDeleteEvent(event.id)}
+        type="button"
+      >
+        삭제
+      </button>
+    </div>
   );
 }
 

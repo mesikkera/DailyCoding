@@ -19,7 +19,7 @@ describe('CalendarRoute', () => {
     expect(screen.getByText('주간 평균 달성률')).toBeInTheDocument();
     expect(screen.getByText('00:00')).toBeInTheDocument();
     expect(screen.getByText('23:00')).toBeInTheDocument();
-    expect(screen.getByText('주간 계획 정리')).toBeInTheDocument();
+    expect(screen.getByDisplayValue('주간 계획 정리')).toBeInTheDocument();
     expect(screen.getByLabelText('고정 시간축')).toBeInTheDocument();
   });
 
@@ -32,7 +32,24 @@ describe('CalendarRoute', () => {
     });
     await user.click(addButtons[0]);
 
-    expect(screen.getByText('새 일정 2')).toBeInTheDocument();
+    expect(screen.getByDisplayValue('새 일정 2')).toBeInTheDocument();
+  });
+
+  it('edits and deletes a calendar event from the weekly timetable', async () => {
+    const user = userEvent.setup();
+    render(<CalendarRoute />);
+
+    const titleInput = screen.getByRole('textbox', {
+      name: '주간 계획 정리 제목 수정',
+    });
+    await user.clear(titleInput);
+    await user.type(titleInput, '월간 리뷰{Enter}');
+
+    expect(screen.getByDisplayValue('월간 리뷰')).toBeInTheDocument();
+
+    await user.click(screen.getByRole('button', { name: '월간 리뷰 삭제' }));
+
+    expect(screen.queryByDisplayValue('월간 리뷰')).not.toBeInTheDocument();
   });
 
   it('scrolls the weekly timetable horizontally with vertical wheel input', () => {
@@ -76,7 +93,7 @@ describe('CalendarRoute', () => {
 
     await user.click(screen.getByRole('button', { name: '+ 일정 추가' }));
 
-    expect(screen.getByText('새 일정 2')).toBeInTheDocument();
+    expect(screen.getByDisplayValue('새 일정 2')).toBeInTheDocument();
     expect(
       screen.getByText(/일정은 할 일 달성률에 포함되지 않습니다/),
     ).toBeInTheDocument();

@@ -44,6 +44,28 @@ export function createCalendarEvent({
   };
 }
 
+export function renameCalendarEvent(
+  event: DailyFlowCalendarEvent,
+  title: string,
+): DailyFlowCalendarEvent {
+  const trimmedTitle = title.trim();
+
+  return {
+    ...event,
+    title: trimmedTitle.length > 0 ? trimmedTitle : event.title,
+  };
+}
+
+export function deleteCalendarEvent(
+  event: DailyFlowCalendarEvent,
+  deletedAt = new Date().toISOString(),
+): DailyFlowCalendarEvent {
+  return {
+    ...event,
+    deletedAt,
+  };
+}
+
 export function getWeekDates(anchorDate: string) {
   const anchor = parseUtcDate(anchorDate);
   const day = anchor.getUTCDay();

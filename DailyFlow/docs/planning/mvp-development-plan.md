@@ -225,7 +225,7 @@ Verification:
 
 Goal: provide week-first schedule and productivity context.
 
-Status: first interactive calendar slice complete. The route defaults to the current week view, supports day/week/month toggles, shows a weekly achievement summary above a 00:00–24:00 hourly timetable with a fixed time axis and side-wheel date-column scrolling, can add events from a time slot with reminder metadata, shows fixed-date Korean holiday labels, and displays daily achievement/task distribution placeholders.
+Status: first interactive calendar slice complete. The route defaults to the current week view, supports day/week/month toggles, shows a weekly achievement summary above a 00:00–24:00 hourly timetable with a fixed time axis and side-wheel date-column scrolling, can add/edit/delete events with reminder metadata, shows fixed-date Korean holiday labels, and displays daily achievement/task distribution placeholders.
 
 Deliverables:
 
@@ -244,6 +244,7 @@ Acceptance criteria:
 - Calendar entry starts from the current week.
 - Weekly timetable keeps the time axis fixed while date columns scroll horizontally.
 - User can create an event with start/end time.
+- User can edit and delete an event.
 - Event appears in calendar but does not affect achievement rate.
 - Day/month views are available.
 - Korean holidays are visible.
