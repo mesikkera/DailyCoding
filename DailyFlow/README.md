@@ -4,7 +4,7 @@ DailyFlow is a personal productivity app for managing daily tasks, routines, cal
 
 ## Current status
 
-Phase 7 statistics MVP slice complete: daily task-only achievement stats, weekly/monthly average summaries, and clear exclusion of on-hold tasks and calendar events.
+Phase 8 browser push preparation complete: notification permission UI, browser push enable/disable controls, test-notification path, and Firestore subscription storage model.
 
 ## Key documents
 

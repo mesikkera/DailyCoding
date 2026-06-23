@@ -284,6 +284,8 @@ Verification:
 
 Goal: implement the MVP notification channel.
 
+Status: client/settings slice complete. Settings exposes the browser notification permission flow, browser push enable/disable state, a test notification action, and a Firestore `notificationSubscriptions` repository for storing FCM subscription records. Real FCM token issuance and backend reminder delivery remain integration work.
+
 Deliverables:
 
 - Notification permission flow.

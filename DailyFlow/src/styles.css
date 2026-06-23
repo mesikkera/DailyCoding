@@ -691,3 +691,62 @@ h1 {
     grid-template-columns: 1fr 1fr;
   }
 }
+
+.settings-card {
+  padding: var(--space-5);
+}
+
+.settings-card > header {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-4);
+  align-items: flex-start;
+  margin-bottom: var(--space-5);
+}
+
+.settings-card h2 {
+  margin-bottom: var(--space-1);
+}
+
+.settings-card p,
+.settings-note,
+.setting-metric span {
+  color: var(--color-text-secondary);
+}
+
+.notification-settings-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: var(--space-5);
+}
+
+.setting-metric {
+  display: grid;
+  gap: 6px;
+  padding: 14px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.66);
+}
+
+.setting-metric strong {
+  font-size: 1.05rem;
+}
+
+.settings-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.settings-note {
+  margin: var(--space-4) 0 0;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 960px) {
+  .notification-settings-grid {
+    grid-template-columns: 1fr;
+  }
+}
