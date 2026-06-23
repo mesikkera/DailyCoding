@@ -1192,3 +1192,124 @@ body {
   color: var(--color-text-secondary);
   font-size: 0.78rem;
 }
+
+.week-calendar {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.week-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.calendar-summary-card {
+  padding: 18px;
+}
+
+.calendar-summary-card span {
+  color: var(--color-text-secondary);
+  font-weight: 700;
+}
+
+.calendar-summary-card strong {
+  display: block;
+  margin-top: var(--space-2);
+  font-size: 2rem;
+  letter-spacing: -0.05em;
+}
+
+.week-timeboard-card {
+  overflow: auto;
+  padding: 0;
+}
+
+.week-timeboard {
+  display: grid;
+  min-width: 980px;
+  grid-template-columns: 72px repeat(7, minmax(120px, 1fr));
+}
+
+.time-axis-header,
+.week-day-header {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  min-height: 72px;
+  border-bottom: 1px solid var(--color-border);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(18px);
+}
+
+.week-day-header {
+  display: grid;
+  gap: 2px;
+  align-content: center;
+  padding: 10px 12px;
+  border-left: 1px solid var(--color-border);
+}
+
+.week-day-header strong {
+  font-size: 0.9rem;
+}
+
+.week-day-header span,
+.week-day-header small {
+  color: var(--color-text-secondary);
+  font-size: 0.78rem;
+}
+
+.time-axis-label {
+  min-height: 68px;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text-tertiary);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.week-time-slot {
+  position: relative;
+  display: grid;
+  align-content: start;
+  min-height: 68px;
+  padding: 6px;
+  border-bottom: 1px solid var(--color-border);
+  border-left: 1px solid var(--color-border);
+  background: rgba(255, 255, 255, 0.42);
+}
+
+.week-time-slot:hover {
+  background: rgba(0, 122, 255, 0.045);
+}
+
+.time-slot-add {
+  position: absolute;
+  right: 6px;
+  bottom: 6px;
+  display: grid;
+  width: 22px;
+  height: 22px;
+  place-items: center;
+  border: 1px solid rgba(0, 122, 255, 0.18);
+  border-radius: 50%;
+  color: var(--color-primary-strong);
+  background: rgba(255, 255, 255, 0.78);
+  cursor: pointer;
+  font-size: 0.9rem;
+  line-height: 1;
+}
+
+.calendar-event-timeblock {
+  margin-right: 24px;
+  padding: 7px 8px;
+  border-left: 3px solid var(--color-primary);
+  background: rgba(0, 122, 255, 0.1);
+}
+
+@media (max-width: 960px) {
+  .week-summary-grid {
+    grid-template-columns: 1fr;
+  }
+}

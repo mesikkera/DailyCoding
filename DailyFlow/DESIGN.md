@@ -105,10 +105,11 @@
     6. Today's schedule summary
   - Calendar:
     1. View selector: day/week/month
-    2. Current date range
-    3. Events by time
-    4. Task distribution and achievement overlays
-    5. South Korean holidays
+    2. Weekly summary: task achievement rate, completed/planned task count, and event count
+    3. 00:00–24:00 time grid for week view
+    4. Events placed in hourly slots with quick slot-based event creation
+    5. Task distribution and achievement overlays
+    6. South Korean holidays
 
 ## Design principles
 
@@ -210,7 +211,7 @@
   - Desktop Today Board: summary header plus configurable category lanes for the selected date; task status is handled inside each card and no longer defines the main board columns.
   - Tablet: fewer columns or horizontally scrollable lanes.
   - Mobile: segmented status tabs or stacked lanes; summary remains sticky or near top.
-  - Calendar desktop/tablet: week grid is primary.
+  - Calendar desktop/tablet: week view is primary and should show a top achievement summary followed by a 00:00–24:00 hourly schedule grid.
   - Calendar mobile: day and agenda-style views may be more usable than dense month grids.
 - Touch/hover differences:
   - Do not require hover for core actions.

@@ -5,15 +5,30 @@ import { describe, expect, it } from 'vitest';
 import { CalendarRoute } from './CalendarRoute';
 
 describe('CalendarRoute', () => {
-  it('loads week view by default', () => {
+  it('loads week timetable view by default with achievement summary', () => {
     render(<CalendarRoute />);
 
     expect(screen.getByRole('button', { name: '주' })).toHaveAttribute(
       'aria-pressed',
       'true',
     );
+    expect(screen.getByLabelText('주간 캘린더')).toBeInTheDocument();
+    expect(screen.getByText('주간 평균 달성률')).toBeInTheDocument();
+    expect(screen.getByText('00:00')).toBeInTheDocument();
+    expect(screen.getByText('23:00')).toBeInTheDocument();
     expect(screen.getByText('주간 계획 정리')).toBeInTheDocument();
-    expect(screen.getAllByText(/달성률/).length).toBeGreaterThan(0);
+  });
+
+  it('adds a calendar event from a weekly time slot', async () => {
+    const user = userEvent.setup();
+    render(<CalendarRoute />);
+
+    const addButtons = screen.getAllByRole('button', {
+      name: /09:00 일정 추가/,
+    });
+    await user.click(addButtons[0]);
+
+    expect(screen.getByText('새 일정 2')).toBeInTheDocument();
   });
 
   it('switches day and month views', async () => {
@@ -33,7 +48,7 @@ describe('CalendarRoute', () => {
     );
   });
 
-  it('adds a calendar event without changing task achievement copy', async () => {
+  it('adds a default calendar event without changing task achievement copy', async () => {
     const user = userEvent.setup();
     render(<CalendarRoute />);
 
